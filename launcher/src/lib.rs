@@ -19,10 +19,10 @@ pub const DEFAULT_PORT: u16 = 8787;
 pub const WEBUI_URL: &str = "http://127.0.0.1:8787/";
 pub const HEALTH_PATH: &str = "/api/health";
 pub const LOG_FILE_NAME: &str = "webui-server.log";
-pub const PROJECT_URL: &str = "https://github.com/kadevin/ilab-gpt-conjure";
-pub const RELEASES_URL: &str = "https://github.com/kadevin/ilab-gpt-conjure/releases/latest";
+pub const PROJECT_URL: &str = "https://github.com/jiema123/gpt_image_factory";
+pub const RELEASES_URL: &str = "https://github.com/jiema123/gpt_image_factory/releases/latest";
 pub const LATEST_UPDATE_MANIFEST_URL: &str =
-    "https://github.com/kadevin/ilab-gpt-conjure/releases/latest/download/latest.json";
+    "https://github.com/jiema123/gpt_image_factory/releases/latest/download/latest.json";
 pub const UPDATE_SIGNING_PUBLIC_KEY_B64: &str =
     include_str!("../assets/update-signing-public-key.b64");
 pub const DEFAULT_LOCALE_TAG: &str = "zh-CN";
@@ -949,7 +949,7 @@ fn verify_signature_with_key(
 }
 
 fn update_manifest_signing_payload(manifest: &UpdateManifest) -> String {
-    let mut lines = vec!["ilab-gpt-conjure-update-manifest-v1".to_string()];
+    let mut lines = vec!["gpt-image-factory-update-manifest-v1".to_string()];
     push_signing_field(
         &mut lines,
         "schema_version",
@@ -970,7 +970,7 @@ fn update_manifest_signing_payload(manifest: &UpdateManifest) -> String {
 }
 
 fn standard_update_manifest_signing_payload(manifest: &UpdateManifest) -> String {
-    let mut lines = vec!["ilab-gpt-conjure-standard-update-manifest-v1".to_string()];
+    let mut lines = vec!["gpt-image-factory-standard-update-manifest-v1".to_string()];
     push_signing_field(
         &mut lines,
         "schema_version",
@@ -2701,7 +2701,7 @@ mod tests {
             r#"{
                 "schema_version": 1,
                 "version": "0.6.0",
-                "release_url": "https://github.com/kadevin/ilab-gpt-conjure/releases/tag/v0.6.0",
+                "release_url": "https://github.com/jiema123/gpt_image_factory/releases/tag/v0.6.0",
                 "notes": "更新说明",
                 "signature": {
                     "algorithm": "ed25519",
@@ -2709,13 +2709,13 @@ mod tests {
                 },
                 "platforms": {
                     "darwin-aarch64": {
-                        "asset": "ilab-gpt-conjure_macos_portable_arm64_0.6.0.zip",
+                        "asset": "gpt-image-factory_macos_portable_arm64_0.6.0.zip",
                         "url": "https://example.test/arm64.zip",
                         "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
                         "package": "portable-zip"
                     },
                     "windows-x86_64": {
-                        "asset": "ilab-gpt-conjure_windows_portable_x64_0.6.0.zip",
+                        "asset": "gpt-image-factory_windows_portable_x64_0.6.0.zip",
                         "url": "https://example.test/windows.zip",
                         "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
                         "package": "portable-zip"
@@ -2723,7 +2723,7 @@ mod tests {
                 },
                 "standard_platforms": {
                     "darwin-aarch64": {
-                        "asset": "iLab-GPT-CONJURE-macos-arm64-0.6.0.dmg",
+                        "asset": "GPT-IMAGE-FACTORY-macos-arm64-0.6.0.dmg",
                         "url": "https://example.test/arm64.dmg",
                         "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
                         "package": "standard-dmg"
@@ -2736,7 +2736,7 @@ mod tests {
         assert_eq!(manifest.version, "0.6.0");
         assert_eq!(
             manifest.release_url,
-            "https://github.com/kadevin/ilab-gpt-conjure/releases/tag/v0.6.0"
+            "https://github.com/jiema123/gpt_image_factory/releases/tag/v0.6.0"
         );
         assert_eq!(manifest.notes, "更新说明");
         assert_eq!(manifest.platforms.len(), 2);

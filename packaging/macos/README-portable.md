@@ -9,7 +9,7 @@ without installing Python separately.
    - `macos_portable_arm64` for Apple Silicon Macs.
    - `macos_portable_x64` for Intel Macs.
 2. Extract the zip package into a normal user directory, for example
-   `~/Applications/ilab-gpt-conjure`.
+   `~/Applications/gpt-image-factory`.
 3. Double-click `Start iLab GPT CONJURE.app` for the menu bar launcher, or
    `Start WebUI Portable.command` for the legacy terminal launcher.
 4. Open `http://127.0.0.1:8787/` if the browser does not open automatically.
@@ -38,9 +38,9 @@ download, use one of these local actions:
 - Or remove quarantine from the extracted folder:
 
 ```bash
-xattr -dr com.apple.quarantine /path/to/ilab-gpt-conjure_macos_portable_arm64
+xattr -dr com.apple.quarantine /path/to/gpt-image-factory_macos_portable_arm64
 # or:
-xattr -dr com.apple.quarantine /path/to/ilab-gpt-conjure_macos_portable_x64
+xattr -dr com.apple.quarantine /path/to/gpt-image-factory_macos_portable_x64
 ```
 
 ## Directory layout

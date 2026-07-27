@@ -5,11 +5,11 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/kadevin/ilab-gpt-conjure/releases"><img alt="release" src="https://img.shields.io/github/v/release/kadevin/ilab-gpt-conjure?style=flat-square&logo=github&label=release&color=0EA5E9"></a>
-  <a href="https://github.com/kadevin/ilab-gpt-conjure/actions/workflows/ci.yml"><img alt="CI status" src="https://github.com/kadevin/ilab-gpt-conjure/actions/workflows/ci.yml/badge.svg?branch=main&event=push"></a>
-  <a href="https://github.com/kadevin/ilab-gpt-conjure/commits/main"><img alt="last commit" src="https://img.shields.io/github/last-commit/kadevin/ilab-gpt-conjure?style=flat-square&logo=github&label=last%20commit&color=10B981"></a>
-  <a href="https://github.com/kadevin/ilab-gpt-conjure/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/kadevin/ilab-gpt-conjure?style=flat-square&logo=github&label=stars&color=0284C7"></a>
-  <a href="https://github.com/kadevin/ilab-gpt-conjure/network/members"><img alt="forks" src="https://img.shields.io/github/forks/kadevin/ilab-gpt-conjure?style=flat-square&logo=github&label=forks&color=0369A1"></a>
+  <a href="https://github.com/jiema123/gpt_image_factory/releases"><img alt="release" src="https://img.shields.io/github/v/release/jiema123/gpt_image_factory?style=flat-square&logo=github&label=release&color=0EA5E9"></a>
+  <a href="https://github.com/jiema123/gpt_image_factory/actions/workflows/ci.yml"><img alt="CI status" src="https://github.com/jiema123/gpt_image_factory/actions/workflows/ci.yml/badge.svg?branch=main&event=push"></a>
+  <a href="https://github.com/jiema123/gpt_image_factory/commits/main"><img alt="last commit" src="https://img.shields.io/github/last-commit/jiema123/gpt_image_factory?style=flat-square&logo=github&label=last%20commit&color=10B981"></a>
+  <a href="https://github.com/jiema123/gpt_image_factory/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jiema123/gpt_image_factory?style=flat-square&logo=github&label=stars&color=0284C7"></a>
+  <a href="https://github.com/jiema123/gpt_image_factory/network/members"><img alt="forks" src="https://img.shields.io/github/forks/jiema123/gpt_image_factory?style=flat-square&logo=github&label=forks&color=0369A1"></a>
 </p>
 
 <p align="center">
@@ -91,8 +91,8 @@ Codex 模式默认使用 Image 通道生成和编辑，也可在系统设置的 
 ## 安装
 
 ```bash
-git clone https://github.com/kadevin/ilab-gpt-conjure.git
-cd ilab-gpt-conjure
+git clone https://github.com/jiema123/gpt_image_factory.git
+cd gpt-image-factory
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-webui.txt
 ```
@@ -123,17 +123,88 @@ Start WebUI.bat
 http://127.0.0.1:8787/
 ```
 
+## Cloudflare Workers / Pages 部署
+
+本仓库同时提供 Cloudflare 轻量部署入口，适合把 WebUI 发布到 Cloudflare
+Workers 或 Pages 上，并通过 OpenAI-compatible Images API 生成或编辑图片。
+
+Cloudflare 运行时不支持本地 Python `FastAPI` 进程、SQLite 历史库、本地队列、
+本机 OAuth 登录态、桌面文件管理器和本地输入/输出目录。因此 Cloudflare 版是
+API 模式的轻量云端形态；需要完整历史库、图库、队列和本机工作流时，请继续使用
+上面的本地 WebUI。
+
+首次部署前安装前端依赖，并写入 API Key secret：
+
+```bash
+npm install
+npx wrangler secret put OPENAI_API_KEY
+```
+
+可选环境变量在 `wrangler.toml` 中配置：
+
+- `OPENAI_BASE_URL`：OpenAI-compatible API Base URL，默认 `https://api.openai.com/v1`。
+- `OPENAI_IMAGE_MODEL`：默认图像模型，默认 `gpt-image-2`。
+- `OPENAI_ORG_ID` / `OPENAI_PROJECT_ID`：需要组织或项目请求头时设置为 secret。
+
+### 生成图片持久化（R2）
+
+Cloudflare 运行时没有本地磁盘。默认情况下生成结果只透传上游 API 返回的
+临时链接或内联数据，**上游临时链接通常一小时左右过期，过期后历史里打不开**。
+
+要长期保存生成图片，绑定 Cloudflare R2 对象存储：
+
+```bash
+npx wrangler r2 bucket create gpt-image-factory-images
+```
+
+然后在 `wrangler.toml` 取消 `[[r2_buckets]]` 注释（`bucket_name` 与上面一致）。
+绑定后，Worker 会把每张生成图片写入 R2，并返回稳定的 `/api/images/{key}` 链接，
+由 Worker 回读，不再依赖会过期的上游链接。未绑定 R2 时自动降级为透传，接口
+响应里的 `persisted` 字段会标记本次是否已持久化。
+
+本地测试 Cloudflare 版时，可以使用本地目录模拟 R2：
+
+```bash
+OPENAI_API_KEY=你的_key npm run dev:cloudflare:local
+```
+
+默认访问 `http://127.0.0.1:9000/`，生成图片会写入 `.dist/local-images/`。如需
+自定义目录或端口：
+
+```bash
+LOCAL_IMAGE_DIR=.local-cloudflare-images PORT=9001 OPENAI_API_KEY=你的_key npm run dev:cloudflare:local
+```
+
+当前 R2 / 本地目录只持久化图片本身；任务历史列表（`/history` 页面）在 Cloudflare
+版仍为空，需要历史库时请使用本地 WebUI。
+
+部署到 Workers：
+
+```bash
+npm run deploy:workers
+```
+
+部署到 Pages：
+
+```bash
+npm run deploy:pages
+```
+
+部署脚本会先生成 `.dist/cloudflare`，补齐 WebUI 在 Cloudflare 上需要的 `/static/*`
+资源映射。Pages 会发布这个目录，并使用 `functions/[[path]].ts` 处理 `/api/*`
+请求；Workers 会通过 `wrangler.toml` 的 assets 绑定托管同一套静态资源。
+
 ## 应用包下载
 
 当前可用的标准包和一键包见 [下载 / Releases](RELEASES.md)，也可以直接打开
-[GitHub Release v0.5.7](https://github.com/kadevin/ilab-gpt-conjure/releases/tag/v0.5.7)。
+[GitHub Release v0.5.7](https://github.com/jiema123/gpt_image_factory/releases/tag/v0.5.7)。
 
 新用户建议优先下载标准包：
 
-1. macOS：Apple Silicon 下载 `iLab-GPT-CONJURE-macos-arm64-0.5.7.dmg`，
-   Intel 下载 `iLab-GPT-CONJURE-macos-x64-0.5.7.dmg`，然后把
+1. macOS：Apple Silicon 下载 `GPT-IMAGE-FACTORY-macos-arm64-0.5.7.dmg`，
+   Intel 下载 `GPT-IMAGE-FACTORY-macos-x64-0.5.7.dmg`，然后把
    `iLab GPT CONJURE.app` 拖到 Applications。
-2. Windows：下载 `iLab-GPT-CONJURE-windows-x64_0.5.7.zip`，
+2. Windows：下载 `GPT-IMAGE-FACTORY-windows-x64_0.5.7.zip`，
    解压到普通用户目录，双击 `iLab GPT CONJURE.exe`。
 
 标准包的用户数据会写入 macOS 的
@@ -177,9 +248,9 @@ Apple Silicon Mac 下载 `macos_portable_arm64`，Intel Mac 下载
 再次确认 Open。portable zip 还可以对解压目录执行：
 
 ```bash
-xattr -dr com.apple.quarantine /path/to/ilab-gpt-conjure_macos_portable_arm64
+xattr -dr com.apple.quarantine /path/to/gpt-image-factory_macos_portable_arm64
 # 或：
-xattr -dr com.apple.quarantine /path/to/ilab-gpt-conjure_macos_portable_x64
+xattr -dr com.apple.quarantine /path/to/gpt-image-factory_macos_portable_x64
 ```
 
 不要把一键包里的 Python、依赖、API key、OAuth 文件、本地输入图、生成结果、

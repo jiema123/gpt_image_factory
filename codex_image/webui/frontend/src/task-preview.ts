@@ -81,6 +81,8 @@ function renderPreview(task: any = null) {
   const visibleSelectedTask = selectedTask && !isTaskArchived(selectedTask.task_id) ? selectedTask : null;
   const selected = task || visibleSelectedTask || state.tasks.find((item: any) => !isTaskArchived(item.task_id)) || selectedTask || state.tasks[0];
   const status = taskPreviewStatus(selected);
+  const hasPreviewContent = Boolean(selected && (taskOutputUrls(selected).length || ["running", "submitting", "queued"].includes(status)));
+  document.body.classList.toggle("has-preview-content", hasPreviewContent);
   updatePreviewDownloadActions(selected);
   const nextPreviewKey = previewStructureKey(selected);
   if (state.previewRenderKey === nextPreviewKey) {

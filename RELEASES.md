@@ -1,6 +1,6 @@
 # 下载 / Releases
 
-当前正式版本：[v0.5.7](https://github.com/kadevin/ilab-gpt-conjure/releases/tag/v0.5.7)
+当前正式版本：[v0.5.7](https://github.com/jiema123/gpt_image_factory/releases/tag/v0.5.7)
 
 ## 版本说明
 
@@ -46,9 +46,9 @@
 
 | 平台 | 推荐给 | 下载 | SHA256 |
 | --- | --- | --- | --- |
-| macOS Apple Silicon | 新用户，M1/M2/M3/M4 | [iLab-GPT-CONJURE-macos-arm64-0.5.7.dmg](https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.5.7/iLab-GPT-CONJURE-macos-arm64-0.5.7.dmg) | [sha256](https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.5.7/iLab-GPT-CONJURE-macos-arm64-0.5.7.dmg.sha256.txt) |
-| macOS Intel | 新用户，Intel x64 | [iLab-GPT-CONJURE-macos-x64-0.5.7.dmg](https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.5.7/iLab-GPT-CONJURE-macos-x64-0.5.7.dmg) | [sha256](https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.5.7/iLab-GPT-CONJURE-macos-x64-0.5.7.dmg.sha256.txt) |
-| Windows x64 | 新用户，Windows 10/11 x64 | [iLab-GPT-CONJURE-windows-x64_0.5.7.zip](https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.5.7/iLab-GPT-CONJURE-windows-x64_0.5.7.zip) | [sha256](https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.5.7/iLab-GPT-CONJURE-windows-x64_0.5.7.zip.sha256.txt) |
+| macOS Apple Silicon | 新用户，M1/M2/M3/M4 | [GPT-IMAGE-FACTORY-macos-arm64-0.5.7.dmg](https://github.com/jiema123/gpt_image_factory/releases/download/v0.5.7/GPT-IMAGE-FACTORY-macos-arm64-0.5.7.dmg) | [sha256](https://github.com/jiema123/gpt_image_factory/releases/download/v0.5.7/GPT-IMAGE-FACTORY-macos-arm64-0.5.7.dmg.sha256.txt) |
+| macOS Intel | 新用户，Intel x64 | [GPT-IMAGE-FACTORY-macos-x64-0.5.7.dmg](https://github.com/jiema123/gpt_image_factory/releases/download/v0.5.7/GPT-IMAGE-FACTORY-macos-x64-0.5.7.dmg) | [sha256](https://github.com/jiema123/gpt_image_factory/releases/download/v0.5.7/GPT-IMAGE-FACTORY-macos-x64-0.5.7.dmg.sha256.txt) |
+| Windows x64 | 新用户，Windows 10/11 x64 | [GPT-IMAGE-FACTORY-windows-x64_0.5.7.zip](https://github.com/jiema123/gpt_image_factory/releases/download/v0.5.7/GPT-IMAGE-FACTORY-windows-x64_0.5.7.zip) | [sha256](https://github.com/jiema123/gpt_image_factory/releases/download/v0.5.7/GPT-IMAGE-FACTORY-windows-x64_0.5.7.zip.sha256.txt) |
 
 标准包数据目录：
 
@@ -61,13 +61,13 @@
 
 | 平台 | 适用设备 | 下载 | SHA256 |
 | --- | --- | --- | --- |
-| Windows x64 | Windows 10/11 x64 | [ilab-gpt-conjure_windows_portable_x64_0.5.7.zip](https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.5.7/ilab-gpt-conjure_windows_portable_x64_0.5.7.zip) | [sha256](https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.5.7/ilab-gpt-conjure_windows_portable_x64_0.5.7.zip.sha256.txt) |
-| macOS Apple Silicon | M1/M2/M3/M4 | [ilab-gpt-conjure_macos_portable_arm64_0.5.7.zip](https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.5.7/ilab-gpt-conjure_macos_portable_arm64_0.5.7.zip) | [sha256](https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.5.7/ilab-gpt-conjure_macos_portable_arm64_0.5.7.zip.sha256.txt) |
-| macOS Intel | Intel x64 | [ilab-gpt-conjure_macos_portable_x64_0.5.7.zip](https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.5.7/ilab-gpt-conjure_macos_portable_x64_0.5.7.zip) | [sha256](https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.5.7/ilab-gpt-conjure_macos_portable_x64_0.5.7.zip.sha256.txt) |
+| Windows x64 | Windows 10/11 x64 | [gpt-image-factory_windows_portable_x64_0.5.7.zip](https://github.com/jiema123/gpt_image_factory/releases/download/v0.5.7/gpt-image-factory_windows_portable_x64_0.5.7.zip) | [sha256](https://github.com/jiema123/gpt_image_factory/releases/download/v0.5.7/gpt-image-factory_windows_portable_x64_0.5.7.zip.sha256.txt) |
+| macOS Apple Silicon | M1/M2/M3/M4 | [gpt-image-factory_macos_portable_arm64_0.5.7.zip](https://github.com/jiema123/gpt_image_factory/releases/download/v0.5.7/gpt-image-factory_macos_portable_arm64_0.5.7.zip) | [sha256](https://github.com/jiema123/gpt_image_factory/releases/download/v0.5.7/gpt-image-factory_macos_portable_arm64_0.5.7.zip.sha256.txt) |
+| macOS Intel | Intel x64 | [gpt-image-factory_macos_portable_x64_0.5.7.zip](https://github.com/jiema123/gpt_image_factory/releases/download/v0.5.7/gpt-image-factory_macos_portable_x64_0.5.7.zip) | [sha256](https://github.com/jiema123/gpt_image_factory/releases/download/v0.5.7/gpt-image-factory_macos_portable_x64_0.5.7.zip.sha256.txt) |
 
 portable 自动更新 manifest：
 
-- [latest.json](https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.5.7/latest.json)
+- [latest.json](https://github.com/jiema123/gpt_image_factory/releases/download/v0.5.7/latest.json)
 
 使用方式：
 
@@ -91,9 +91,9 @@ macOS 标准 DMG 和 portable zip 都暂未签名、未 notarize。如果 macOS
 portable zip 也可以对解压目录执行：
 
 ```bash
-xattr -dr com.apple.quarantine /path/to/ilab-gpt-conjure_macos_portable_arm64
+xattr -dr com.apple.quarantine /path/to/gpt-image-factory_macos_portable_arm64
 # 或：
-xattr -dr com.apple.quarantine /path/to/ilab-gpt-conjure_macos_portable_x64
+xattr -dr com.apple.quarantine /path/to/gpt-image-factory_macos_portable_x64
 ```
 
 一键包内的 `data/` 目录会保存本地设置、公用图库、输入图、输出图、任务数据库和日志。

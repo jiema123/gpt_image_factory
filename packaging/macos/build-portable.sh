@@ -26,7 +26,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-PROJECT_NAME="ilab-gpt-conjure"
+PROJECT_NAME="gpt-image-factory"
 APP_LAUNCHER_NAME="Start iLab GPT CONJURE"
 APP_BUNDLE_NAME="${APP_LAUNCHER_NAME}.app"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

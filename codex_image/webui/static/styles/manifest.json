@@ -14,5 +14,6 @@
   "74-api-system-settings.css",
   "75-gallery-card-image-editor.css",
   "80-utilities-responsive.css",
-  "90-history.css"
+  "90-history.css",
+  "99-chatgpt-theme.css"
 ]

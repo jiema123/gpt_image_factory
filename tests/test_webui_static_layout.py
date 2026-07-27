@@ -1652,7 +1652,7 @@ class WebUIStaticLayoutTests(WebUIStaticTestCase):
         self.assertIn('title="系统设置"', html)
         self.assertNotIn("双击打开 API 设置", html)
         self.assertIn('id="githubLink"', html)
-        self.assertIn('href="https://github.com/kadevin/ilab-gpt-conjure"', html)
+        self.assertIn('href="https://github.com/jiema123/gpt_image_factory"', html)
         self.assertIn('aria-label="GitHub"', html)
         self.assertIn('target="_blank"', html)
         self.assertIn('rel="noreferrer"', html)

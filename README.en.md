@@ -5,11 +5,11 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/kadevin/ilab-gpt-conjure/releases"><img alt="release" src="https://img.shields.io/github/v/release/kadevin/ilab-gpt-conjure?style=flat-square&logo=github&label=release&color=0EA5E9"></a>
-  <a href="https://github.com/kadevin/ilab-gpt-conjure/actions/workflows/ci.yml"><img alt="CI status" src="https://github.com/kadevin/ilab-gpt-conjure/actions/workflows/ci.yml/badge.svg?branch=main&event=push"></a>
-  <a href="https://github.com/kadevin/ilab-gpt-conjure/commits/main"><img alt="last commit" src="https://img.shields.io/github/last-commit/kadevin/ilab-gpt-conjure?style=flat-square&logo=github&label=last%20commit&color=10B981"></a>
-  <a href="https://github.com/kadevin/ilab-gpt-conjure/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/kadevin/ilab-gpt-conjure?style=flat-square&logo=github&label=stars&color=0284C7"></a>
-  <a href="https://github.com/kadevin/ilab-gpt-conjure/network/members"><img alt="forks" src="https://img.shields.io/github/forks/kadevin/ilab-gpt-conjure?style=flat-square&logo=github&label=forks&color=0369A1"></a>
+  <a href="https://github.com/jiema123/gpt_image_factory/releases"><img alt="release" src="https://img.shields.io/github/v/release/jiema123/gpt_image_factory?style=flat-square&logo=github&label=release&color=0EA5E9"></a>
+  <a href="https://github.com/jiema123/gpt_image_factory/actions/workflows/ci.yml"><img alt="CI status" src="https://github.com/jiema123/gpt_image_factory/actions/workflows/ci.yml/badge.svg?branch=main&event=push"></a>
+  <a href="https://github.com/jiema123/gpt_image_factory/commits/main"><img alt="last commit" src="https://img.shields.io/github/last-commit/jiema123/gpt_image_factory?style=flat-square&logo=github&label=last%20commit&color=10B981"></a>
+  <a href="https://github.com/jiema123/gpt_image_factory/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jiema123/gpt_image_factory?style=flat-square&logo=github&label=stars&color=0284C7"></a>
+  <a href="https://github.com/jiema123/gpt_image_factory/network/members"><img alt="forks" src="https://img.shields.io/github/forks/jiema123/gpt_image_factory?style=flat-square&logo=github&label=forks&color=0369A1"></a>
 </p>
 
 <p align="center">
@@ -117,8 +117,8 @@ metadata, SQLite databases, or debug logs.
 ## Install
 
 ```bash
-git clone https://github.com/kadevin/ilab-gpt-conjure.git
-cd ilab-gpt-conjure
+git clone https://github.com/jiema123/gpt_image_factory.git
+cd gpt-image-factory
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-webui.txt
 ```
@@ -152,15 +152,15 @@ http://127.0.0.1:8787/
 ## App packages
 
 Download the current packages from [Downloads / Releases](RELEASES.md), or open
-[GitHub Release v0.5.7](https://github.com/kadevin/ilab-gpt-conjure/releases/tag/v0.5.7)
+[GitHub Release v0.5.7](https://github.com/jiema123/gpt_image_factory/releases/tag/v0.5.7)
 directly.
 
 New users should choose the standard packages:
 
-1. macOS: download `iLab-GPT-CONJURE-macos-arm64-0.5.7.dmg`
-   for Apple Silicon or `iLab-GPT-CONJURE-macos-x64-0.5.7.dmg`
+1. macOS: download `GPT-IMAGE-FACTORY-macos-arm64-0.5.7.dmg`
+   for Apple Silicon or `GPT-IMAGE-FACTORY-macos-x64-0.5.7.dmg`
    for Intel, then drag `iLab GPT CONJURE.app` to Applications.
-2. Windows: download `iLab-GPT-CONJURE-windows-x64_0.5.7.zip`,
+2. Windows: download `GPT-IMAGE-FACTORY-windows-x64_0.5.7.zip`,
    extract it into a normal user directory, and run `iLab GPT CONJURE.exe`.
 
 Standard packages store user data in `~/Library/Application Support/iLab GPT
@@ -212,9 +212,9 @@ app, choose Open, then confirm Open again in the macOS security prompt. For
 portable zips, you can also remove quarantine from the extracted folder:
 
 ```bash
-xattr -dr com.apple.quarantine /path/to/ilab-gpt-conjure_macos_portable_arm64
+xattr -dr com.apple.quarantine /path/to/gpt-image-factory_macos_portable_arm64
 # or:
-xattr -dr com.apple.quarantine /path/to/ilab-gpt-conjure_macos_portable_x64
+xattr -dr com.apple.quarantine /path/to/gpt-image-factory_macos_portable_x64
 ```
 
 Do not commit portable package contents back to Git. API keys, OAuth files,

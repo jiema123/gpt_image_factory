@@ -20,57 +20,57 @@
       "#promptTemplateDrawer.open, #galleryDrawer.open, .modal-overlay:not(.hidden), .prompt-popover:not(.hidden), .confirm-popover:not(.hidden), .compression-popover:not(.hidden), .task-notification-center:not(.hidden)"
     ));
   }
-  function handleRunTaskShortcut(event, els43, methods) {
+  function handleRunTaskShortcut(event, els45, methods) {
     if (!isRunTaskShortcut(event)) return;
-    if (hasOpenShortcutBlockingLayer() || els43.runButton.disabled) return;
+    if (hasOpenShortcutBlockingLayer() || els45.runButton.disabled) return;
     event.preventDefault();
     void call(methods, "runTask");
   }
   var systemSettingsBackdropPointerDown = false;
-  function bindWebUIEvents(state32, els43, methods) {
+  function bindWebUIEvents(state32, els45, methods) {
     call(methods, "bindShellUiEvents");
     call(methods, "bindFormControlEvents");
-    els43.clearPromptButton.addEventListener("click", () => {
+    els45.clearPromptButton.addEventListener("click", () => {
       call(methods, "setPromptText", "");
       call(methods, "syncGalleryInputsFromPrompt");
       call(methods, "updatePromptCount");
       call(methods, "updateRequestPreview");
     });
-    els43.quickGalleryRail?.addEventListener("mouseover", (event) => call(methods, "handleQuickGalleryCategoryEvent", event));
-    els43.quickGalleryRail?.addEventListener("focusin", (event) => call(methods, "handleQuickGalleryCategoryEvent", event));
-    els43.quickGalleryRail?.addEventListener("click", (event) => call(methods, "handleQuickGalleryCategoryEvent", event));
-    els43.quickGalleryList?.addEventListener("scroll", () => call(methods, "scheduleQuickGalleryFocusUpdate"));
-    els43.quickGalleryList?.addEventListener("wheel", (event) => call(methods, "handleQuickGalleryBoundaryWheel", event), { passive: false });
-    els43.addGalleryCategoryButton?.addEventListener("click", () => call(methods, "createGalleryCategory"));
-    els43.addToGalleryClose?.addEventListener("click", () => call(methods, "closeAddToGallery"));
-    els43.addToGalleryModal?.addEventListener("click", (event) => {
-      if (event.target === els43.addToGalleryModal) call(methods, "closeAddToGallery");
+    els45.quickGalleryRail?.addEventListener("mouseover", (event) => call(methods, "handleQuickGalleryCategoryEvent", event));
+    els45.quickGalleryRail?.addEventListener("focusin", (event) => call(methods, "handleQuickGalleryCategoryEvent", event));
+    els45.quickGalleryRail?.addEventListener("click", (event) => call(methods, "handleQuickGalleryCategoryEvent", event));
+    els45.quickGalleryList?.addEventListener("scroll", () => call(methods, "scheduleQuickGalleryFocusUpdate"));
+    els45.quickGalleryList?.addEventListener("wheel", (event) => call(methods, "handleQuickGalleryBoundaryWheel", event), { passive: false });
+    els45.addGalleryCategoryButton?.addEventListener("click", () => call(methods, "createGalleryCategory"));
+    els45.addToGalleryClose?.addEventListener("click", () => call(methods, "closeAddToGallery"));
+    els45.addToGalleryModal?.addEventListener("click", (event) => {
+      if (event.target === els45.addToGalleryModal) call(methods, "closeAddToGallery");
     });
-    els43.saveToGalleryButton?.addEventListener("click", () => call(methods, "saveUploadToGallery"));
-    els43.systemSettingsModalClose?.addEventListener("click", () => call(methods, "closeSystemSettingsModal"));
-    els43.systemSettingsModal?.addEventListener("pointerdown", (event) => {
-      systemSettingsBackdropPointerDown = event.target === els43.systemSettingsModal;
+    els45.saveToGalleryButton?.addEventListener("click", () => call(methods, "saveUploadToGallery"));
+    els45.systemSettingsModalClose?.addEventListener("click", () => call(methods, "closeSystemSettingsModal"));
+    els45.systemSettingsModal?.addEventListener("pointerdown", (event) => {
+      systemSettingsBackdropPointerDown = event.target === els45.systemSettingsModal;
     });
-    els43.systemSettingsModal?.addEventListener("click", (event) => {
-      if (event.target === els43.systemSettingsModal && systemSettingsBackdropPointerDown) {
+    els45.systemSettingsModal?.addEventListener("click", (event) => {
+      if (event.target === els45.systemSettingsModal && systemSettingsBackdropPointerDown) {
         call(methods, "closeSystemSettingsModal");
       }
       systemSettingsBackdropPointerDown = false;
     });
-    els43.saveSettingsButton?.addEventListener("click", () => call(methods, "saveSettings"));
-    els43.authSourceGroup?.addEventListener("click", (event) => call(methods, "handleAuthSourceClick", event));
-    els43.apiSourceSettingsButton?.addEventListener("click", () => call(methods, "openApiSettingsModal"));
-    els43.apiDirectSettingsButton?.addEventListener("click", () => call(methods, "openApiSettingsModal"));
-    els43.codexModeNotes?.forEach?.((note) => {
+    els45.saveSettingsButton?.addEventListener("click", () => call(methods, "saveSettings"));
+    els45.authSourceGroup?.addEventListener("click", (event) => call(methods, "handleAuthSourceClick", event));
+    els45.apiSourceSettingsButton?.addEventListener("click", () => call(methods, "openApiSettingsModal"));
+    els45.apiDirectSettingsButton?.addEventListener("click", () => call(methods, "openApiSettingsModal"));
+    els45.codexModeNotes?.forEach?.((note) => {
       note.addEventListener("click", () => call(methods, "selectCodexMode", note.dataset.codexModeNote));
     });
-    els43.apiProviderQuick?.addEventListener("change", () => {
-      call(methods, "selectApiProvider", els43.apiProviderQuick?.value || call(methods, "currentApiProviderId"));
+    els45.apiProviderQuick?.addEventListener("change", () => {
+      call(methods, "selectApiProvider", els45.apiProviderQuick?.value || call(methods, "currentApiProviderId"));
     });
-    els43.apiProvider?.addEventListener("change", () => {
-      call(methods, "selectApiProvider", els43.apiProvider?.value || call(methods, "currentApiProviderId"));
+    els45.apiProvider?.addEventListener("change", () => {
+      call(methods, "selectApiProvider", els45.apiProvider?.value || call(methods, "currentApiProviderId"));
     });
-    els43.apiProviderList?.addEventListener("click", (event) => {
+    els45.apiProviderList?.addEventListener("click", (event) => {
       const sortButton = event.target?.closest?.("[data-api-provider-sort]");
       if (sortButton) {
         call(methods, "moveApiProvider", sortButton.dataset.apiProviderId, sortButton.dataset.apiProviderSort);
@@ -80,24 +80,24 @@
       if (!button) return;
       call(methods, "selectApiProvider", button.dataset.apiProviderId);
     });
-    els43.editApiProviderButton?.addEventListener("click", () => call(methods, "editApiProvider"));
-    els43.copyApiProviderButton?.addEventListener("click", () => call(methods, "copyApiProvider"));
-    els43.addApiProviderButton?.addEventListener("click", () => call(methods, "addApiProvider"));
-    els43.sortApiProvidersButton?.addEventListener("click", () => call(methods, "toggleApiProviderSortMode"));
-    els43.deleteApiProviderButton?.addEventListener("click", () => call(methods, "confirmDeleteApiProvider", els43.deleteApiProviderButton));
-    els43.cancelApiProviderEditButton?.addEventListener("click", () => call(methods, "cancelApiProviderEdit"));
-    els43.saveApiProviderEditButton?.addEventListener("click", () => call(methods, "saveApiProviderEdit"));
-    els43.apiKeyRevealButton?.addEventListener("pointerdown", (event) => call(methods, "revealApiKeyWhilePressed", event));
-    els43.apiKeyRevealButton?.addEventListener("pointerup", () => call(methods, "hideApiKeyReveal"));
-    els43.apiKeyRevealButton?.addEventListener("pointercancel", () => call(methods, "hideApiKeyReveal"));
-    els43.apiKeyRevealButton?.addEventListener("pointerleave", () => call(methods, "hideApiKeyReveal"));
-    els43.apiKeyRevealButton?.addEventListener("blur", () => call(methods, "hideApiKeyReveal"));
-    els43.apiKeyRevealButton?.addEventListener("keydown", (event) => {
+    els45.editApiProviderButton?.addEventListener("click", () => call(methods, "editApiProvider"));
+    els45.copyApiProviderButton?.addEventListener("click", () => call(methods, "copyApiProvider"));
+    els45.addApiProviderButton?.addEventListener("click", () => call(methods, "addApiProvider"));
+    els45.sortApiProvidersButton?.addEventListener("click", () => call(methods, "toggleApiProviderSortMode"));
+    els45.deleteApiProviderButton?.addEventListener("click", () => call(methods, "confirmDeleteApiProvider", els45.deleteApiProviderButton));
+    els45.cancelApiProviderEditButton?.addEventListener("click", () => call(methods, "cancelApiProviderEdit"));
+    els45.saveApiProviderEditButton?.addEventListener("click", () => call(methods, "saveApiProviderEdit"));
+    els45.apiKeyRevealButton?.addEventListener("pointerdown", (event) => call(methods, "revealApiKeyWhilePressed", event));
+    els45.apiKeyRevealButton?.addEventListener("pointerup", () => call(methods, "hideApiKeyReveal"));
+    els45.apiKeyRevealButton?.addEventListener("pointercancel", () => call(methods, "hideApiKeyReveal"));
+    els45.apiKeyRevealButton?.addEventListener("pointerleave", () => call(methods, "hideApiKeyReveal"));
+    els45.apiKeyRevealButton?.addEventListener("blur", () => call(methods, "hideApiKeyReveal"));
+    els45.apiKeyRevealButton?.addEventListener("keydown", (event) => {
       if (event.key === " " || event.key === "Enter") call(methods, "revealApiKeyWhilePressed", event);
     });
-    els43.apiKeyRevealButton?.addEventListener("keyup", () => call(methods, "hideApiKeyReveal"));
-    els43.apiKey?.addEventListener("input", () => call(methods, "updateApiKeyRevealButton"));
-    [els43.codexMode].filter(Boolean).forEach((element2) => {
+    els45.apiKeyRevealButton?.addEventListener("keyup", () => call(methods, "hideApiKeyReveal"));
+    els45.apiKey?.addEventListener("input", () => call(methods, "updateApiKeyRevealButton"));
+    [els45.codexMode].filter(Boolean).forEach((element2) => {
       element2?.addEventListener("input", () => {
         call(methods, "readApiSettingsForm");
         call(methods, "persistApiSettings");
@@ -110,9 +110,9 @@
       element2?.addEventListener("change", () => call(methods, "syncCodexModeNotes"));
     });
     call(methods, "bindOverlayPopoverEvents");
-    els43.runButton.addEventListener("click", () => call(methods, "runTask"));
-    document.addEventListener("keydown", (event) => handleRunTaskShortcut(event, els43, methods));
-    els43.refreshButton.addEventListener("click", () => {
+    els45.runButton.addEventListener("click", () => call(methods, "runTask"));
+    document.addEventListener("keydown", (event) => handleRunTaskShortcut(event, els45, methods));
+    els45.refreshButton.addEventListener("click", () => {
       void handleRefreshButtonClick(methods);
     });
     call(methods, "bindTaskListControlEvents");
@@ -122,8 +122,8 @@
   function call2(methods, name, ...args) {
     return methods[name]?.(...args);
   }
-  function bootWebUI(state32, els43, methods) {
-    bindWebUIEvents(state32, els43, methods);
+  function bootWebUI(state32, els45, methods) {
+    bindWebUIEvents(state32, els45, methods);
     call2(methods, "restoreThemePreference");
     call2(methods, "restoreSidebarWidth");
     call2(methods, "restoreMainModel");
@@ -344,6 +344,19 @@
       prompt: document.querySelector("#prompt"),
       promptEditor: document.querySelector("#promptEditor"),
       promptTemplateButton: document.querySelector("#promptTemplateButton"),
+      promptCaseLibraryButton: document.querySelector("#promptCaseLibraryButton"),
+      promptCaseLibraryDrawer: document.querySelector("#promptCaseLibraryDrawer"),
+      promptCaseLibraryDrawerClose: document.querySelector("#promptCaseLibraryDrawerClose"),
+      promptCaseLibraryDrawerBackdrop: document.querySelector("#promptCaseLibraryDrawerBackdrop"),
+      promptCaseLibrarySearch: document.querySelector("#promptCaseLibrarySearch"),
+      promptCaseLibraryLanguage: document.querySelector("#promptCaseLibraryLanguage"),
+      promptCaseLibraryList: document.querySelector("#promptCaseLibraryList"),
+      promptCaseLibrarySummary: document.querySelector("#promptCaseLibrarySummary"),
+      advancedSettingsButton: document.querySelector("#advancedSettingsButton"),
+      advancedSettingsDrawer: document.querySelector("#advancedSettingsDrawer"),
+      advancedSettingsDrawerClose: document.querySelector("#advancedSettingsDrawerClose"),
+      advancedSettingsDrawerBackdrop: document.querySelector("#advancedSettingsDrawerBackdrop"),
+      advancedSettingsBody: document.querySelector("#advancedSettingsBody"),
       promptTemplateRecentDock: document.querySelector("#promptTemplateRecentDock"),
       promptTemplateDrawer: document.querySelector("#promptTemplateDrawer"),
       promptTemplateDrawerClose: document.querySelector("#promptTemplateDrawerClose"),
@@ -431,9 +444,9 @@
   }
 
   // codex_image/webui/frontend/src/legacy-bridge.ts
-  function installLegacyBridge(bridge39) {
-    window.__codexImageWebUI = bridge39;
-    return bridge39;
+  function installLegacyBridge(bridge41) {
+    window.__codexImageWebUI = bridge41;
+    return bridge41;
   }
   function bindBridgeMethod(name, options = {}) {
     const proxy2 = (...args) => {
@@ -451,11 +464,11 @@
 
   // codex_image/webui/frontend/src/state.ts
   function getLegacyBridge() {
-    const bridge39 = window.__codexImageWebUI;
-    if (!bridge39) {
+    const bridge41 = window.__codexImageWebUI;
+    if (!bridge41) {
       throw new Error("WebUI legacy bridge is not initialized");
     }
-    return bridge39;
+    return bridge41;
   }
   function getState() {
     return getLegacyBridge().state;
@@ -12266,25 +12279,25 @@
   }
   function localeFromLanguageTag(value) {
     if (typeof value !== "string") return null;
-    const language = value.trim().toLowerCase();
-    if (!language) return null;
-    const exact = LOCALES.find((locale) => locale.toLowerCase() === language);
+    const language2 = value.trim().toLowerCase();
+    if (!language2) return null;
+    const exact = LOCALES.find((locale) => locale.toLowerCase() === language2);
     if (exact) return exact;
-    if (language.startsWith("zh-hk") || language.startsWith("zh-mo")) return "zh-HK";
-    if (language.startsWith("zh-tw") || language.startsWith("zh-hant")) return "zh-TW";
-    if (language.startsWith("zh-cn") || language.startsWith("zh-sg") || language.startsWith("zh-hans") || language === "zh") {
+    if (language2.startsWith("zh-hk") || language2.startsWith("zh-mo")) return "zh-HK";
+    if (language2.startsWith("zh-tw") || language2.startsWith("zh-hant")) return "zh-TW";
+    if (language2.startsWith("zh-cn") || language2.startsWith("zh-sg") || language2.startsWith("zh-hans") || language2 === "zh") {
       return "zh-CN";
     }
-    if (language.startsWith("ja")) return "ja";
-    if (language.startsWith("ko")) return "ko";
-    if (language.startsWith("en")) return "en";
-    if (language.startsWith("es")) return "es";
-    if (language.startsWith("pt")) return "pt";
-    if (language.startsWith("fr")) return "fr";
-    if (language.startsWith("de")) return "de";
-    if (language.startsWith("ru")) return "ru";
-    if (language.startsWith("it")) return "it";
-    if (language.startsWith("hi")) return "hi";
+    if (language2.startsWith("ja")) return "ja";
+    if (language2.startsWith("ko")) return "ko";
+    if (language2.startsWith("en")) return "en";
+    if (language2.startsWith("es")) return "es";
+    if (language2.startsWith("pt")) return "pt";
+    if (language2.startsWith("fr")) return "fr";
+    if (language2.startsWith("de")) return "de";
+    if (language2.startsWith("ru")) return "ru";
+    if (language2.startsWith("it")) return "it";
+    if (language2.startsWith("hi")) return "hi";
     return null;
   }
   function detectPreferredLocale(languages) {
@@ -12292,8 +12305,8 @@
       ...Array.from(navigator.languages || []),
       navigator.language
     ];
-    for (const language of candidates) {
-      const locale = localeFromLanguageTag(language);
+    for (const language2 of candidates) {
+      const locale = localeFromLanguageTag(language2);
       if (locale) return locale;
     }
     return DEFAULT_LOCALE;
@@ -12515,8 +12528,8 @@
   function setTextIfChanged(element2, text) {
     if (element2.textContent !== text) element2.textContent = text;
   }
-  function activeElapsedTaskCards(els43, taskId) {
-    const roots = [els43.taskActiveList, els43.taskList].filter((root) => root instanceof HTMLElement);
+  function activeElapsedTaskCards(els45, taskId) {
+    const roots = [els45.taskActiveList, els45.taskList].filter((root) => root instanceof HTMLElement);
     const cards = roots.flatMap(
       (root) => Array.from(root.querySelectorAll(`.task-card[data-task-id="${cssEscape(taskId)}"]`))
     );
@@ -12542,19 +12555,19 @@
     if (retryElement) setTextIfChanged(retryElement, taskRetryStateText(task));
   }
   function updateTaskElapsedDisplays() {
-    const { state: state32, els: els43 } = getLegacyBridge();
+    const { state: state32, els: els45 } = getLegacyBridge();
     const activeTasks = state32.tasks.filter((task) => taskNeedsElapsedTick(task));
     if (!activeTasks.length) return;
     activeTasks.forEach((task) => {
       const taskId = String(task.task_id || "");
       if (!taskId) return;
-      activeElapsedTaskCards(els43, taskId).forEach((card) => updateTaskElapsedCard(card, task));
+      activeElapsedTaskCards(els45, taskId).forEach((card) => updateTaskElapsedCard(card, task));
     });
   }
   function updatePreviewElapsedDisplay() {
-    const { els: els43 } = getLegacyBridge();
-    if (!els43.previewGrid) return;
-    els43.previewGrid.querySelectorAll("[data-preview-elapsed]").forEach((element2) => {
+    const { els: els45 } = getLegacyBridge();
+    if (!els45.previewGrid) return;
+    els45.previewGrid.querySelectorAll("[data-preview-elapsed]").forEach((element2) => {
       updateElapsedTimerElement(element2, elapsedMillisecondsSince(element2.dataset.previewStart));
     });
   }
@@ -12590,9 +12603,9 @@
     }
   }
   function updatePromptCount() {
-    const { els: els43 } = getLegacyBridge();
-    if (!els43.charCount) return;
-    els43.charCount.textContent = `${getPromptText().length} / 4000`;
+    const { els: els45 } = getLegacyBridge();
+    if (!els45.charCount) return;
+    els45.charCount.textContent = `${getPromptText().length} / 4000`;
   }
   function addPendingTask(task) {
     const state32 = getLegacyBridge().state;
@@ -12628,20 +12641,20 @@
     renderPreview(task);
   }
   function startRunFeedback(task, actionLabel = null) {
-    const { state: state32, els: els43 } = getLegacyBridge();
+    const { state: state32, els: els45 } = getLegacyBridge();
     stopRunFeedback();
     state32.runFeedbackAction = actionLabel;
     state32.runStartedAt = timestampMs(task.started_at || task.created_at) || Date.now();
     state32.runTimerId = window.setInterval(updateRunFeedback, 100);
-    els43.runButton?.classList.add("running");
+    els45.runButton?.classList.add("running");
     updateRunFeedback();
   }
   function updateRunFeedback() {
-    const { state: state32, els: els43 } = getLegacyBridge();
+    const { state: state32, els: els45 } = getLegacyBridge();
     if (!state32.runStartedAt) return;
     const elapsed = formatDurationTenths(elapsedMillisecondsSince(state32.runStartedAt));
     const action = state32.runFeedbackAction || (state32.mode === "edit" ? translate("runFeedback.editing") : translate("runFeedback.generating"));
-    if (els43.runButton) els43.runButton.textContent = `${action} ${elapsed}`;
+    if (els45.runButton) els45.runButton.textContent = `${action} ${elapsed}`;
     setStatus(formatTranslation("runFeedback.status", { action, elapsed }), "running");
     updateElapsedDisplays();
     if (state32.selectedTaskId === state32.pendingTaskId) {
@@ -12649,14 +12662,14 @@
     }
   }
   function stopRunFeedback() {
-    const { state: state32, els: els43 } = getLegacyBridge();
+    const { state: state32, els: els45 } = getLegacyBridge();
     if (state32.runTimerId) {
       window.clearInterval(state32.runTimerId);
     }
     state32.runTimerId = null;
     state32.runStartedAt = null;
     state32.runFeedbackAction = null;
-    els43.runButton?.classList.remove("running");
+    els45.runButton?.classList.remove("running");
     syncRunButtonLabel();
   }
 
@@ -13181,8 +13194,8 @@
     });
   }
   function focusImagePasteTarget() {
-    const els43 = getEls();
-    els43.imageUploadSource?.focus({ preventScroll: true });
+    const els45 = getEls();
+    els45.imageUploadSource?.focus({ preventScroll: true });
   }
   function handleImagePaste(event) {
     const files = imageFilesFromClipboardItems(event.clipboardData?.items);
@@ -13257,13 +13270,13 @@
     return files;
   }
   async function pasteClipboardImages() {
-    const els43 = getEls();
+    const els45 = getEls();
     if (!navigator.clipboard?.read) {
       focusImagePasteTarget();
       setStatus2(clipboardReadFallbackMessage(translate("inputSource.clipboardUnsupported")), "error");
       return;
     }
-    els43.pasteClipboardButton.disabled = true;
+    els45.pasteClipboardButton.disabled = true;
     try {
       const files = await readClipboardImageFiles();
       const added = addImageFiles(files, {
@@ -13276,7 +13289,7 @@
       const reason = ["NotAllowedError", "SecurityError"].includes(String(error?.name || "")) ? translate("inputSource.clipboardDenied") : translate("inputSource.clipboardReadFailed");
       setStatus2(clipboardReadFallbackMessage(reason), "error");
     } finally {
-      els43.pasteClipboardButton.disabled = false;
+      els45.pasteClipboardButton.disabled = false;
     }
   }
   function missingGalleryInputs() {
@@ -13315,16 +13328,16 @@
   }
   function renderReferenceCollector() {
     const state32 = getState();
-    const els43 = getEls();
-    if (!els43.referenceCollector) return;
+    const els45 = getEls();
+    if (!els45.referenceCollector) return;
     const items = state32.collectedReferences;
     if (!items.length) {
-      els43.referenceCollector.classList.add("hidden");
-      els43.referenceCollector.innerHTML = "";
+      els45.referenceCollector.classList.add("hidden");
+      els45.referenceCollector.innerHTML = "";
       return;
     }
-    els43.referenceCollector.classList.remove("hidden");
-    els43.referenceCollector.innerHTML = `
+    els45.referenceCollector.classList.remove("hidden");
+    els45.referenceCollector.innerHTML = `
     <div class="reference-collector-header">
       <span>${escapeHtml2(formatTranslation("referenceCollector.title", { count: items.length }))}</span>
       <div class="reference-collector-actions">
@@ -13341,9 +13354,9 @@
       `).join("")}
     </div>
   `;
-    els43.referenceCollector.querySelector("[data-reference-collector-add-all]")?.addEventListener("click", addCollectedReferencesToInput);
-    els43.referenceCollector.querySelector("[data-reference-collector-clear]")?.addEventListener("click", () => clearCollectedReferences());
-    els43.referenceCollector.querySelectorAll("[data-reference-collector-remove]").forEach((button) => {
+    els45.referenceCollector.querySelector("[data-reference-collector-add-all]")?.addEventListener("click", addCollectedReferencesToInput);
+    els45.referenceCollector.querySelector("[data-reference-collector-clear]")?.addEventListener("click", () => clearCollectedReferences());
+    els45.referenceCollector.querySelectorAll("[data-reference-collector-remove]").forEach((button) => {
       button.addEventListener("click", () => removeCollectedReference(button.dataset.referenceCollectorRemove));
     });
   }
@@ -13394,10 +13407,10 @@
   }
   async function addCollectedReferencesToInput() {
     const state32 = getState();
-    const els43 = getEls();
+    const els45 = getEls();
     const items = state32.collectedReferences.slice();
     if (!items.length) return;
-    const addButton = els43.referenceCollector?.querySelector("[data-reference-collector-add-all]");
+    const addButton = els45.referenceCollector?.querySelector("[data-reference-collector-add-all]");
     if (addButton) addButton.disabled = true;
     try {
       const files = [];
@@ -13436,13 +13449,13 @@
     }
   }
   function bindInputSourceEvents() {
-    const els43 = getEls();
-    els43.pasteClipboardButton?.addEventListener("click", pasteClipboardImages);
+    const els45 = getEls();
+    els45.pasteClipboardButton?.addEventListener("click", pasteClipboardImages);
     document.addEventListener("paste", handleImagePaste);
-    els43.imageUploaderGrid?.addEventListener("dragenter", handleImageDragEnter);
-    els43.imageUploaderGrid?.addEventListener("dragover", handleImageDragOver);
-    els43.imageUploaderGrid?.addEventListener("dragleave", handleImageDragLeave);
-    els43.imageUploaderGrid?.addEventListener("drop", handleImageDrop);
+    els45.imageUploaderGrid?.addEventListener("dragenter", handleImageDragEnter);
+    els45.imageUploaderGrid?.addEventListener("dragover", handleImageDragOver);
+    els45.imageUploaderGrid?.addEventListener("dragleave", handleImageDragLeave);
+    els45.imageUploaderGrid?.addEventListener("drop", handleImageDrop);
   }
   function initInputSourcesFeature() {
     if (inputSourcesFeatureInitialized) return;
@@ -25182,9 +25195,9 @@ js: import "konva/skia-backend";
     return source.originalFile?.name || source.file?.name || source.name || "input.png";
   }
   async function remoteImageSourceFile(source) {
-    const imageUrl = legacyMethod3("sourcePreviewUrl", source);
-    if (!imageUrl) throw new Error(translate("imageEditor.loadForEditFailed"));
-    const response = await fetch(imageUrl);
+    const imageUrl2 = legacyMethod3("sourcePreviewUrl", source);
+    if (!imageUrl2) throw new Error(translate("imageEditor.loadForEditFailed"));
+    const response = await fetch(imageUrl2);
     if (!response.ok) throw new Error(translate("imageEditor.loadForEditFailed"));
     const blob = await response.blob();
     return new File([blob], imageEditorSourceName(source), {
@@ -25197,10 +25210,10 @@ js: import "konva/skia-backend";
     return remoteImageSourceFile(source);
   }
   function setImageEditorStatus(message, type = "") {
-    const els43 = getEls();
-    if (!els43.imageEditorStatus) return;
-    els43.imageEditorStatus.textContent = message || "";
-    els43.imageEditorStatus.className = `image-editor-status ${type || ""}`.trim();
+    const els45 = getEls();
+    if (!els45.imageEditorStatus) return;
+    els45.imageEditorStatus.textContent = message || "";
+    els45.imageEditorStatus.className = `image-editor-status ${type || ""}`.trim();
   }
   function nextImageEditorSession() {
     imageEditorState.sessionId += 1;
@@ -25592,8 +25605,8 @@ js: import "konva/skia-backend";
     imageEditorState.previewNode = null;
   }
   function initializeImageEditorKonva(width, height) {
-    const els43 = getEls();
-    const container = els43.imageEditorKonvaMount;
+    const els45 = getEls();
+    const container = els45.imageEditorKonvaMount;
     if (!container) throw new Error(translate("imageEditor.canvasCreateFailed"));
     destroyImageEditorKonva();
     container.innerHTML = "";
@@ -25670,8 +25683,8 @@ js: import "konva/skia-backend";
     pushImageEditorHistory();
   }
   function renderImageEditor() {
-    const els43 = getEls();
-    const visible = els43.imageEditorCanvas;
+    const els45 = getEls();
+    const visible = els45.imageEditorCanvas;
     const stage = imageEditorState.konvaStage;
     const work = imageEditorState.workCanvas;
     if (visible && work) {
@@ -25715,16 +25728,16 @@ js: import "konva/skia-backend";
     restoreImageEditorSnapshot(snapshot);
   }
   function updateImageEditorControls() {
-    const els43 = getEls();
+    const els45 = getEls();
     const canUndo = imageEditorState.historyIndex > 0;
     const canRedo = imageEditorState.historyIndex >= 0 && imageEditorState.historyIndex < imageEditorState.history.length - 1;
     const selectedLayer = selectedImageEditorLayer();
-    if (els43.imageEditorUndo) els43.imageEditorUndo.disabled = !canUndo;
-    if (els43.imageEditorRedo) els43.imageEditorRedo.disabled = !canRedo;
-    if (els43.imageEditorLayerUp) els43.imageEditorLayerUp.disabled = !selectedLayer || imageEditorState.layers.indexOf(selectedLayer) >= imageEditorState.layers.length - 1;
-    if (els43.imageEditorLayerDown) els43.imageEditorLayerDown.disabled = !selectedLayer || imageEditorState.layers.indexOf(selectedLayer) <= 0;
-    if (els43.imageEditorLayerDelete) els43.imageEditorLayerDelete.disabled = !selectedLayer || imageEditorState.layers.length <= 1;
-    if (els43.imageEditorStrokeValue) els43.imageEditorStrokeValue.textContent = `${imageEditorState.strokeWidth}px`;
+    if (els45.imageEditorUndo) els45.imageEditorUndo.disabled = !canUndo;
+    if (els45.imageEditorRedo) els45.imageEditorRedo.disabled = !canRedo;
+    if (els45.imageEditorLayerUp) els45.imageEditorLayerUp.disabled = !selectedLayer || imageEditorState.layers.indexOf(selectedLayer) >= imageEditorState.layers.length - 1;
+    if (els45.imageEditorLayerDown) els45.imageEditorLayerDown.disabled = !selectedLayer || imageEditorState.layers.indexOf(selectedLayer) <= 0;
+    if (els45.imageEditorLayerDelete) els45.imageEditorLayerDelete.disabled = !selectedLayer || imageEditorState.layers.length <= 1;
+    if (els45.imageEditorStrokeValue) els45.imageEditorStrokeValue.textContent = `${imageEditorState.strokeWidth}px`;
     document.querySelectorAll("[data-image-editor-tool]").forEach((button) => {
       button.classList.toggle("active", button.dataset.imageEditorTool === imageEditorState.tool);
     });
@@ -25756,9 +25769,9 @@ js: import "konva/skia-backend";
     transformer.rotateAnchorOffset?.(Math.max(28, Math.round(28 / safeScale)));
   }
   function updateImageEditorDisplayScale() {
-    const els43 = getEls();
-    const wrap = els43.imageEditorCanvasWrap;
-    const mount = els43.imageEditorKonvaMount;
+    const els45 = getEls();
+    const wrap = els45.imageEditorCanvasWrap;
+    const mount = els45.imageEditorKonvaMount;
     const stage = imageEditorState.konvaStage;
     if (!wrap || !mount || !stage) return;
     const width = stage.width();
@@ -25781,16 +25794,16 @@ js: import "konva/skia-backend";
     mount.style.setProperty("--image-editor-stage-scale", String(displayScale));
   }
   function updateImageEditorCropBox() {
-    const els43 = getEls();
-    const box = els43.imageEditorCropBox;
-    const wrap = els43.imageEditorCanvasWrap;
+    const els45 = getEls();
+    const box = els45.imageEditorCropBox;
+    const wrap = els45.imageEditorCanvasWrap;
     const stage = imageEditorState.konvaStage;
     const crop = imageEditorState.crop;
     if (!box || !wrap || !stage || !crop) {
       box?.classList.add("hidden");
       return;
     }
-    const content = els43.imageEditorKonvaMount?.querySelector(".konvajs-content");
+    const content = els45.imageEditorKonvaMount?.querySelector(".konvajs-content");
     const rect = content?.getBoundingClientRect() || wrap.getBoundingClientRect();
     const wrapRect = wrap.getBoundingClientRect();
     const scaleX = rect.width / Math.max(1, stage.width());
@@ -26308,7 +26321,7 @@ ${hint}` : hint;
   }
   async function saveImageEdit() {
     const state32 = getState();
-    const els43 = getEls();
+    const els45 = getEls();
     const sessionId = imageEditorState.sessionId;
     const source = imageEditorState.source;
     const saveCanvas = imageEditorCanvasForSave();
@@ -26316,7 +26329,7 @@ ${hint}` : hint;
       setImageEditorStatus(translate("imageEditor.saveFailed"), "error");
       return;
     }
-    if (els43.imageEditorSave) els43.imageEditorSave.disabled = true;
+    if (els45.imageEditorSave) els45.imageEditorSave.disabled = true;
     try {
       const blob = await imageEditorExportBlob(saveCanvas);
       const sourceIndex = state32.images.indexOf(source);
@@ -26347,7 +26360,7 @@ ${hint}` : hint;
     } catch (error) {
       setImageEditorStatus(error.message || translate("imageEditor.saveFailed"), "error");
     } finally {
-      if (els43.imageEditorSave) els43.imageEditorSave.disabled = false;
+      if (els45.imageEditorSave) els45.imageEditorSave.disabled = false;
     }
   }
   function sourcePreviewUrlForEditor(source) {
@@ -26527,7 +26540,7 @@ ${hint}` : hint;
   }
   async function openImageEditor(index) {
     const state32 = getState();
-    const els43 = getEls();
+    const els45 = getEls();
     const source = state32.images[index];
     if (!source || !isEditableImageSource(source)) {
       legacyMethod3("setStatus", translate("imageEditor.uneditable"), "error");
@@ -26538,16 +26551,16 @@ ${hint}` : hint;
     imageEditorState.source = source;
     imageEditorState.originalFile = null;
     imageEditorState.tool = "crop";
-    imageEditorState.color = els43.imageEditorColor?.value || "#ff3b30";
-    imageEditorState.strokeWidth = Number(els43.imageEditorStroke?.value || 8);
+    imageEditorState.color = els45.imageEditorColor?.value || "#ff3b30";
+    imageEditorState.strokeWidth = Number(els45.imageEditorStroke?.value || 8);
     imageEditorState.hasInstructionMarks = false;
     imageEditorState.drawing = null;
     imageEditorState.canvasScope = "base";
     setImageEditorStatus("");
-    if (els43.imageEditorSubtitle) {
-      els43.imageEditorSubtitle.textContent = legacyMethod3("sourceName", source) || translate("imageEditor.inputFallback");
+    if (els45.imageEditorSubtitle) {
+      els45.imageEditorSubtitle.textContent = legacyMethod3("sourceName", source) || translate("imageEditor.inputFallback");
     }
-    els43.imageEditorModal?.classList.remove("hidden");
+    els45.imageEditorModal?.classList.remove("hidden");
     try {
       const file = await imageEditorSourceFile(source);
       if (sessionId !== imageEditorState.sessionId || imageEditorState.source !== source) return;
@@ -26564,9 +26577,9 @@ ${hint}` : hint;
     }
   }
   function closeImageEditor() {
-    const els43 = getEls();
+    const els45 = getEls();
     nextImageEditorSession();
-    els43.imageEditorModal?.classList.add("hidden");
+    els45.imageEditorModal?.classList.add("hidden");
     destroyImageEditorKonva();
     imageEditorState.sourceIndex = null;
     imageEditorState.source = null;
@@ -26628,8 +26641,8 @@ ${hint}` : hint;
     }
   }
   function isImageEditorModalOpen() {
-    const els43 = getEls();
-    return Boolean(els43.imageEditorModal && !els43.imageEditorModal.classList.contains("hidden"));
+    const els45 = getEls();
+    return Boolean(els45.imageEditorModal && !els45.imageEditorModal.classList.contains("hidden"));
   }
   function handleImageEditorHistoryShortcut(event) {
     if (!isImageEditorModalOpen()) return false;
@@ -26674,11 +26687,11 @@ ${hint}` : hint;
     });
   }
   function bindImageEditorEvents() {
-    const els43 = getEls();
-    els43.imageEditorClose?.addEventListener("click", closeImageEditor);
-    els43.imageEditorCancel?.addEventListener("click", closeImageEditor);
-    els43.imageEditorModal?.addEventListener("click", (event) => {
-      if (event.target === els43.imageEditorModal) closeImageEditor();
+    const els45 = getEls();
+    els45.imageEditorClose?.addEventListener("click", closeImageEditor);
+    els45.imageEditorCancel?.addEventListener("click", closeImageEditor);
+    els45.imageEditorModal?.addEventListener("click", (event) => {
+      if (event.target === els45.imageEditorModal) closeImageEditor();
     });
     document.querySelectorAll("[data-image-editor-tool]").forEach((button) => {
       button.addEventListener("click", () => setImageEditorTool(button.dataset.imageEditorTool));
@@ -26686,32 +26699,32 @@ ${hint}` : hint;
     document.querySelectorAll("[data-image-editor-color]").forEach((button) => {
       button.addEventListener("click", () => {
         imageEditorState.color = button.dataset.imageEditorColor || imageEditorState.color;
-        if (els43.imageEditorColor) els43.imageEditorColor.value = imageEditorState.color;
+        if (els45.imageEditorColor) els45.imageEditorColor.value = imageEditorState.color;
         updateImageEditorControls();
       });
     });
     document.querySelectorAll("[data-image-editor-canvas-scope]").forEach((button) => {
       button.addEventListener("click", () => setImageEditorCanvasScope(button.dataset.imageEditorCanvasScope));
     });
-    els43.imageEditorColor?.addEventListener("input", () => {
-      imageEditorState.color = els43.imageEditorColor.value || imageEditorState.color;
+    els45.imageEditorColor?.addEventListener("input", () => {
+      imageEditorState.color = els45.imageEditorColor.value || imageEditorState.color;
       updateImageEditorControls();
     });
-    els43.imageEditorStroke?.addEventListener("input", () => {
-      imageEditorState.strokeWidth = Number(els43.imageEditorStroke.value || 8);
+    els45.imageEditorStroke?.addEventListener("input", () => {
+      imageEditorState.strokeWidth = Number(els45.imageEditorStroke.value || 8);
       updateImageEditorControls();
     });
-    els43.imageEditorUndo?.addEventListener("click", undoImageEdit);
-    els43.imageEditorRedo?.addEventListener("click", redoImageEdit);
-    els43.imageEditorReset?.addEventListener("click", resetImageEdit);
-    els43.imageEditorSave?.addEventListener("click", saveImageEdit);
-    els43.imageEditorLayerUp?.addEventListener("click", () => moveImageEditorLayer("up"));
-    els43.imageEditorLayerDown?.addEventListener("click", () => moveImageEditorLayer("down"));
-    els43.imageEditorLayerDelete?.addEventListener("click", deleteSelectedImageEditorLayer);
-    els43.imageEditorCanvas?.addEventListener("pointerdown", handleImageEditorPointerDown);
-    els43.imageEditorCanvas?.addEventListener("pointermove", handleImageEditorPointerMove);
-    els43.imageEditorCanvas?.addEventListener("pointerup", handleImageEditorPointerUp);
-    els43.imageEditorCanvas?.addEventListener("pointercancel", handleImageEditorPointerCancel);
+    els45.imageEditorUndo?.addEventListener("click", undoImageEdit);
+    els45.imageEditorRedo?.addEventListener("click", redoImageEdit);
+    els45.imageEditorReset?.addEventListener("click", resetImageEdit);
+    els45.imageEditorSave?.addEventListener("click", saveImageEdit);
+    els45.imageEditorLayerUp?.addEventListener("click", () => moveImageEditorLayer("up"));
+    els45.imageEditorLayerDown?.addEventListener("click", () => moveImageEditorLayer("down"));
+    els45.imageEditorLayerDelete?.addEventListener("click", deleteSelectedImageEditorLayer);
+    els45.imageEditorCanvas?.addEventListener("pointerdown", handleImageEditorPointerDown);
+    els45.imageEditorCanvas?.addEventListener("pointermove", handleImageEditorPointerMove);
+    els45.imageEditorCanvas?.addEventListener("pointerup", handleImageEditorPointerUp);
+    els45.imageEditorCanvas?.addEventListener("pointercancel", handleImageEditorPointerCancel);
   }
   function initImageEditorFeature() {
     if (imageEditorFeatureInitialized) return;
@@ -26760,9 +26773,9 @@ ${hint}` : hint;
   }
   function imageStripNeedsCompactGrid() {
     const state32 = getState();
-    const els43 = getEls();
-    if (!els43.imageUploaderGrid || !state32.images.length) return false;
-    const availableWidth = Math.max(0, els43.imageUploaderGrid.clientWidth - 24);
+    const els45 = getEls();
+    if (!els45.imageUploaderGrid || !state32.images.length) return false;
+    const availableWidth = Math.max(0, els45.imageUploaderGrid.clientWidth - 24);
     if (!availableWidth) return false;
     const thumbCount = state32.images.length;
     const fullSizeThumbsWidth = thumbCount * 116 + Math.max(0, thumbCount - 1) * 10;
@@ -26772,24 +26785,24 @@ ${hint}` : hint;
   }
   function updateImageStripDensity() {
     const state32 = getState();
-    const els43 = getEls();
+    const els45 = getEls();
     const hasImages = Boolean(state32.images.length);
     const compactGrid = imageStripNeedsCompactGrid();
-    els43.imageUploaderGrid?.classList.toggle("has-images", hasImages);
-    els43.imageUploaderGrid?.classList.toggle("compact-grid", compactGrid);
+    els45.imageUploaderGrid?.classList.toggle("has-images", hasImages);
+    els45.imageUploaderGrid?.classList.toggle("compact-grid", compactGrid);
   }
   function wheelDeltaInPixels(event) {
     const dominantDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
     if (event.deltaMode === WheelEvent.DOM_DELTA_LINE) return dominantDelta * 16;
     if (event.deltaMode === WheelEvent.DOM_DELTA_PAGE) {
-      const els43 = getEls();
-      return dominantDelta * Math.max(1, els43.imageStrip?.clientWidth || 1);
+      const els45 = getEls();
+      return dominantDelta * Math.max(1, els45.imageStrip?.clientWidth || 1);
     }
     return dominantDelta;
   }
   function handleImageStripWheel(event) {
-    const els43 = getEls();
-    const scrollTarget = els43.imageUploaderGrid?.classList.contains("compact-grid") ? els43.imageStrip : els43.imageThumbList;
+    const els45 = getEls();
+    const scrollTarget = els45.imageUploaderGrid?.classList.contains("compact-grid") ? els45.imageStrip : els45.imageThumbList;
     if (!scrollTarget) return;
     const maxScrollLeft = Math.max(0, scrollTarget.scrollWidth - scrollTarget.clientWidth);
     if (!maxScrollLeft) return;
@@ -26802,9 +26815,9 @@ ${hint}` : hint;
   }
   function renderImageStrip() {
     const state32 = getState();
-    const els43 = getEls();
+    const els45 = getEls();
     const hasImages = Boolean(state32.images.length);
-    const thumbList = els43.imageThumbList || els43.imageStrip;
+    const thumbList = els45.imageThumbList || els45.imageStrip;
     updateImageStripDensity();
     if (!thumbList) return;
     if (!hasImages) {
@@ -26886,10 +26899,10 @@ ${hint}` : hint;
     legacyMethod4("updateCustomRatioReferenceButtonState");
   }
   function bindImageStripEvents() {
-    const els43 = getEls();
-    els43.imageInput?.addEventListener("change", addImages);
-    els43.clearImagesButton?.addEventListener("click", clearImages);
-    els43.imageStrip?.addEventListener("wheel", handleImageStripWheel, { passive: false });
+    const els45 = getEls();
+    els45.imageInput?.addEventListener("change", addImages);
+    els45.clearImagesButton?.addEventListener("click", clearImages);
+    els45.imageStrip?.addEventListener("wheel", handleImageStripWheel, { passive: false });
     window.addEventListener("resize", updateImageStripDensity);
     document.addEventListener(LOCALE_CHANGE_EVENT, renderImageStrip);
   }
@@ -28402,9 +28415,9 @@ ${hint}` : hint;
     return Math.min(Math.max(value, min), max);
   }
   async function remoteImageSourceFile2(source) {
-    const imageUrl = sourcePreviewUrl2(source);
-    if (!imageUrl) throw new Error(translate("gallery.imageLoadFailed"));
-    const response = await fetch(imageUrl);
+    const imageUrl2 = sourcePreviewUrl2(source);
+    if (!imageUrl2) throw new Error(translate("gallery.imageLoadFailed"));
+    const response = await fetch(imageUrl2);
     if (!response.ok) throw new Error(translate("gallery.imageLoadFailed"));
     const blob = await response.blob();
     return new File([blob], sourceName2(source), {
@@ -29232,12 +29245,12 @@ ${hint}` : hint;
     if (typeof method === "function") method(...args);
   }
   function systemSettingsPanel() {
-    const { els: els43 } = getLegacyBridge();
-    return els43.systemSettingsModal?.querySelector(".system-settings-modal-panel") || null;
+    const { els: els45 } = getLegacyBridge();
+    return els45.systemSettingsModal?.querySelector(".system-settings-modal-panel") || null;
   }
   function shouldAnimateSystemSettingsHeight() {
-    const { els: els43 } = getLegacyBridge();
-    if (els43.systemSettingsModal?.classList.contains("hidden")) return false;
+    const { els: els45 } = getLegacyBridge();
+    if (els45.systemSettingsModal?.classList.contains("hidden")) return false;
     return !window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
   }
   function clearSystemSettingsHeightAnimation(panel) {
@@ -29250,8 +29263,8 @@ ${hint}` : hint;
     panel.style.height = "";
   }
   function positionSystemSettingsModal() {
-    const { els: els43 } = getLegacyBridge();
-    const modal = els43.systemSettingsModal;
+    const { els: els45 } = getLegacyBridge();
+    const modal = els45.systemSettingsModal;
     const panel = systemSettingsPanel();
     if (!modal || !panel || modal.classList.contains("hidden")) return;
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
@@ -29299,12 +29312,12 @@ ${hint}` : hint;
   }
   function setSystemSettingsTab(tab, options = {}) {
     const selected = normalizedTab(tab);
-    const { els: els43 } = getLegacyBridge();
+    const { els: els45 } = getLegacyBridge();
     const panel = systemSettingsPanel();
     const animateHeight = Boolean(panel && shouldAnimateSystemSettingsHeight());
     const beforeHeight = animateHeight && panel ? panel.getBoundingClientRect().height : 0;
     if (animateHeight && panel) clearSystemSettingsHeightAnimation(panel);
-    const buttons = Array.from(els43.systemSettingsTabs?.querySelectorAll("[data-system-settings-tab]") || []);
+    const buttons = Array.from(els45.systemSettingsTabs?.querySelectorAll("[data-system-settings-tab]") || []);
     buttons.forEach((button) => {
       const active = button.dataset.systemSettingsTab === selected;
       button.classList.toggle("active", active);
@@ -29312,10 +29325,10 @@ ${hint}` : hint;
       button.tabIndex = active ? 0 : -1;
     });
     [
-      ["api", els43.systemSettingsApiPanel],
-      ["codex", els43.systemSettingsCodexPanel],
-      ["language", els43.systemSettingsLanguagePanel],
-      ["storage", els43.systemSettingsStoragePanel]
+      ["api", els45.systemSettingsApiPanel],
+      ["codex", els45.systemSettingsCodexPanel],
+      ["language", els45.systemSettingsLanguagePanel],
+      ["storage", els45.systemSettingsStoragePanel]
     ].forEach(([name, panel2]) => {
       if (!panel2) return;
       const active = name === selected;
@@ -29333,19 +29346,19 @@ ${hint}` : hint;
     if (animateHeight && panel) animateSystemSettingsPanelHeight(panel, beforeHeight);
   }
   function openSystemSettingsModal(tab = "api") {
-    const { els: els43 } = getLegacyBridge();
-    const wasHidden = els43.systemSettingsModal?.classList.contains("hidden") ?? true;
+    const { els: els45 } = getLegacyBridge();
+    const wasHidden = els45.systemSettingsModal?.classList.contains("hidden") ?? true;
     setSystemSettingsTab(tab);
-    els43.systemSettingsModal?.classList.remove("hidden");
-    els43.systemSettingsModal?.setAttribute("aria-hidden", "false");
+    els45.systemSettingsModal?.classList.remove("hidden");
+    els45.systemSettingsModal?.setAttribute("aria-hidden", "false");
     if (wasHidden) positionSystemSettingsModal();
     refreshSegmentedIndicators();
   }
   function closeSystemSettingsModal() {
-    const { els: els43 } = getLegacyBridge();
-    els43.systemSettingsModal?.classList.add("hidden");
-    els43.systemSettingsModal?.setAttribute("aria-hidden", "true");
-    els43.systemSettingsModal?.style.removeProperty("--system-settings-modal-top");
+    const { els: els45 } = getLegacyBridge();
+    els45.systemSettingsModal?.classList.add("hidden");
+    els45.systemSettingsModal?.setAttribute("aria-hidden", "true");
+    els45.systemSettingsModal?.style.removeProperty("--system-settings-modal-top");
   }
   function openSystemSettingsFromUrl() {
     const params = new URLSearchParams(window.location.search);
@@ -29372,8 +29385,8 @@ ${hint}` : hint;
   function initSystemSettingsFeature() {
     if (systemSettingsFeatureInitialized) return;
     systemSettingsFeatureInitialized = true;
-    const { els: els43 } = getLegacyBridge();
-    els43.systemSettingsTabs?.addEventListener("click", handleSystemSettingsTabClick);
+    const { els: els45 } = getLegacyBridge();
+    els45.systemSettingsTabs?.addEventListener("click", handleSystemSettingsTabClick);
     window.addEventListener("resize", handleSystemSettingsResize);
     Object.assign(getLegacyBridge().methods, {
       setSystemSettingsTab,
@@ -30149,9 +30162,9 @@ ${hint}` : hint;
     if (apiSettingsFeatureInitialized) return;
     apiSettingsFeatureInitialized = true;
     document.addEventListener(LOCALE_CHANGE_EVENT, () => {
-      const bridge39 = getLegacyBridge();
-      renderAuthSource(bridge39.state.authStatus);
-      if (!bridge39.els.systemSettingsModal?.classList.contains("hidden") && (!bridge39.els.systemSettingsApiPanel?.hidden || !bridge39.els.systemSettingsCodexPanel?.hidden)) {
+      const bridge41 = getLegacyBridge();
+      renderAuthSource(bridge41.state.authStatus);
+      if (!bridge41.els.systemSettingsModal?.classList.contains("hidden") && (!bridge41.els.systemSettingsApiPanel?.hidden || !bridge41.els.systemSettingsCodexPanel?.hidden)) {
         setApiSettingsFeedback("", "");
       }
     });
@@ -31202,8 +31215,8 @@ ${hint}` : hint;
       hidePromptSnippetSuggest();
       return;
     }
-    const query = match.query.toLowerCase();
-    const snippets = promptSnippetsForQuery(query).slice(0, 8);
+    const query2 = match.query.toLowerCase();
+    const snippets = promptSnippetsForQuery(query2).slice(0, 8);
     if (!snippets.length) {
       hidePromptSnippetSuggest();
       return;
@@ -31229,8 +31242,8 @@ ${hint}` : hint;
     positionPromptSnippetSuggestAtCaret(match);
     suggest.classList.remove("hidden");
   }
-  function promptSnippetsForQuery(query) {
-    const normalized = String(query || "").trim().toLowerCase();
+  function promptSnippetsForQuery(query2) {
+    const normalized = String(query2 || "").trim().toLowerCase();
     if (!normalized) return state12.promptSnippets.slice();
     return state12.promptSnippets.filter((snippet) => snippet.tag.toLowerCase().includes(normalized) || snippet.title.toLowerCase().includes(normalized) || snippet.content.toLowerCase().includes(normalized));
   }
@@ -32010,12 +32023,12 @@ ${hint}` : hint;
     els15.promptTemplateCategoryManageButton?.setAttribute("aria-expanded", "false");
   }
   function promptTemplatesForDisplay() {
-    const query = String(state13.promptTemplateQuery || "").trim().toLowerCase();
+    const query2 = String(state13.promptTemplateQuery || "").trim().toLowerCase();
     return (state13.promptTemplates || []).filter((template) => {
       if (state13.promptTemplateFilter === "favorite" && !template.favorite) return false;
       if (state13.promptTemplateFilter === "recent" && !template.last_used_at) return false;
       if (state13.promptTemplateCategory && template.category !== state13.promptTemplateCategory) return false;
-      if (!query) return true;
+      if (!query2) return true;
       return [
         template.title,
         template.short_title,
@@ -32024,7 +32037,7 @@ ${hint}` : hint;
         template.notes,
         template.model_hint,
         ...template.tags || []
-      ].join(" ").toLowerCase().includes(query);
+      ].join(" ").toLowerCase().includes(query2);
     });
   }
   function renderPromptTemplateList() {
@@ -32638,9 +32651,153 @@ ${hint}` : hint;
     bindPromptTemplateEvents();
   }
 
-  // codex_image/webui/frontend/src/prompt-serialization.ts
+  // codex_image/webui/frontend/src/prompt-case-library.ts
+  var DATA_URL = "/static/prompt-library/cases.json";
+  var IMAGE_ROOT = "/static/prompt-library";
   var bridge15 = getLegacyBridge();
-  var els16 = bridge15.els;
+  var els16 = getEls();
+  var cases = [];
+  var query = "";
+  var language = "zh";
+  function escapeHtml11(value) {
+    return bridge15.methods.escapeHtml(value);
+  }
+  function imageUrl(item) {
+    return `${IMAGE_ROOT}${item.image}`;
+  }
+  function promptFor(item) {
+    if (language === "en") return item.promptEn || item.prompt;
+    return item.promptZh || item.prompt;
+  }
+  function updateLanguageButton() {
+    const button = els16.promptCaseLibraryLanguage;
+    if (!button) return;
+    button.textContent = language === "zh" ? "English" : "\u4E2D\u6587";
+    button.setAttribute("aria-label", language === "zh" ? "\u5207\u6362\u5230\u82F1\u6587 prompt" : "\u5207\u6362\u5230\u4E2D\u6587 prompt");
+  }
+  function fillPromptEditor(prompt) {
+    const editor = els16.promptEditor;
+    if (editor) {
+      editor.innerHTML = escapeHtml11(prompt).replace(/\n/g, "<br>");
+      editor.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertText", data: null }));
+    }
+    bridge15.methods.setPromptText(prompt);
+    bridge15.methods.updatePromptCount();
+    bridge15.methods.updateRequestPreview();
+  }
+  function filteredCases() {
+    const needle = query.trim().toLocaleLowerCase();
+    if (!needle) return cases;
+    return cases.filter((item) => [item.title, item.category, item.prompt, item.promptZh, item.promptEn, ...item.styles || [], ...item.scenes || []].filter(Boolean).join(" ").toLocaleLowerCase().includes(needle));
+  }
+  function render() {
+    if (!els16.promptCaseLibraryList) return;
+    updateLanguageButton();
+    const items = filteredCases();
+    els16.promptCaseLibraryList.innerHTML = items.length ? items.map((item) => `
+    <button class="prompt-template-card prompt-case-library-card" type="button" data-case-id="${item.id}">
+      <div class="prompt-template-card-thumb"><img src="${escapeHtml11(imageUrl(item))}" alt="${escapeHtml11(item.title)}" loading="lazy"></div>
+      <div class="prompt-template-card-body">
+        <div class="prompt-template-card-title">${escapeHtml11(item.title)}</div>
+        <div class="prompt-template-card-subtitle">${escapeHtml11(item.category || "GPT-Image \u6848\u4F8B")}</div>
+        <div class="prompt-template-card-preview">${escapeHtml11(promptFor(item).replace(/\s+/g, " ").slice(0, 150))}</div>
+      </div>
+    </button>`).join("") : `<div class="prompt-template-empty">\u6CA1\u6709\u5339\u914D\u7684\u6848\u4F8B</div>`;
+    els16.promptCaseLibraryList.querySelectorAll("[data-case-id]").forEach((button) => {
+      button.addEventListener("click", () => void selectCase(Number(button.dataset.caseId)));
+    });
+    if (els16.promptCaseLibrarySummary) {
+      els16.promptCaseLibrarySummary.textContent = query ? `\u627E\u5230 ${filteredCases().length} \u4E2A\u6848\u4F8B` : `\u6765\u81EA awesome-gpt-image-2 \u7684 ${cases.length} \u4E2A prompt \u6848\u4F8B`;
+    }
+  }
+  async function selectCase(id) {
+    const item = cases.find((candidate) => candidate.id === id);
+    if (!item) return;
+    fillPromptEditor(promptFor(item));
+    close();
+    try {
+      const file = await bridge15.methods.imageFileFromUrl(imageUrl(item), `case-${item.id}.jpg`);
+      bridge15.methods.addImageFiles([file], { source: "prompt-case-library" });
+      bridge15.methods.setStatus(`\u5DF2\u8F7D\u5165\u300C${item.title}\u300D\u7684 prompt \u548C\u53C2\u8003\u56FE`, "success");
+    } catch (error) {
+      console.warn("Unable to load prompt case reference image", error);
+      bridge15.methods.setStatus("prompt \u5DF2\u8F7D\u5165\uFF0C\u4F46\u53C2\u8003\u56FE\u52A0\u8F7D\u5931\u8D25", "error");
+    }
+  }
+  function open() {
+    bridge15.methods.closeGallery?.({ restoreFocus: false });
+    els16.promptCaseLibraryDrawer?.classList.add("open");
+    els16.promptCaseLibraryDrawer?.setAttribute("aria-hidden", "false");
+    els16.promptCaseLibraryDrawerBackdrop?.classList.remove("hidden");
+    els16.promptCaseLibraryButton?.setAttribute("aria-expanded", "true");
+    render();
+    els16.promptCaseLibrarySearch?.focus({ preventScroll: true });
+  }
+  function close() {
+    els16.promptCaseLibraryDrawer?.classList.remove("open");
+    els16.promptCaseLibraryDrawer?.setAttribute("aria-hidden", "true");
+    els16.promptCaseLibraryDrawerBackdrop?.classList.add("hidden");
+    els16.promptCaseLibraryButton?.setAttribute("aria-expanded", "false");
+  }
+  function initPromptCaseLibraryFeature() {
+    els16.promptCaseLibraryButton?.addEventListener("click", open);
+    els16.promptCaseLibraryDrawerClose?.addEventListener("click", close);
+    els16.promptCaseLibraryDrawerBackdrop?.addEventListener("click", close);
+    els16.promptCaseLibrarySearch?.addEventListener("input", (event) => {
+      query = event.target.value;
+      render();
+    });
+    els16.promptCaseLibraryLanguage?.addEventListener("click", () => {
+      language = language === "zh" ? "en" : "zh";
+      render();
+    });
+    void fetch(DATA_URL).then((response) => response.json()).then((payload2) => {
+      cases = Array.isArray(payload2?.cases) ? payload2.cases : [];
+      render();
+    }).catch((error) => {
+      console.warn("Unable to load prompt case library", error);
+      if (els16.promptCaseLibraryList) els16.promptCaseLibraryList.innerHTML = `<div class="prompt-template-empty">\u6848\u4F8B\u5E93\u52A0\u8F7D\u5931\u8D25</div>`;
+    });
+  }
+
+  // codex_image/webui/frontend/src/advanced-settings.ts
+  var bridge16 = getLegacyBridge();
+  var els17 = getEls();
+  function close2() {
+    els17.advancedSettingsDrawer?.classList.remove("open");
+    els17.advancedSettingsDrawer?.setAttribute("aria-hidden", "true");
+    els17.advancedSettingsDrawerBackdrop?.classList.add("hidden");
+    els17.advancedSettingsButton?.setAttribute("aria-expanded", "false");
+  }
+  function open2() {
+    bridge16.methods.closeGallery?.({ restoreFocus: false });
+    els17.advancedSettingsDrawer?.classList.add("open");
+    els17.advancedSettingsDrawer?.setAttribute("aria-hidden", "false");
+    els17.advancedSettingsDrawerBackdrop?.classList.remove("hidden");
+    els17.advancedSettingsButton?.setAttribute("aria-expanded", "true");
+    els17.advancedSettingsDrawerClose?.focus({ preventScroll: true });
+  }
+  function initAdvancedSettingsFeature() {
+    const outputPanel = document.querySelector(".output-panel");
+    if (outputPanel && els17.advancedSettingsBody) {
+      els17.advancedSettingsBody.append(outputPanel);
+    }
+    const promptEntry = document.querySelector(".prompt-template-entry");
+    const galleryButton = els17.galleryManageButton;
+    const galleryHost = galleryButton?.closest("#galleryManagePanel");
+    if (promptEntry && galleryButton) {
+      galleryButton.classList.add("prompt-template-button");
+      promptEntry.insertBefore(galleryButton, els17.advancedSettingsButton || null);
+      galleryHost?.remove();
+    }
+    els17.advancedSettingsButton?.addEventListener("click", open2);
+    els17.advancedSettingsDrawerClose?.addEventListener("click", close2);
+    els17.advancedSettingsDrawerBackdrop?.addEventListener("click", close2);
+  }
+
+  // codex_image/webui/frontend/src/prompt-serialization.ts
+  var bridge17 = getLegacyBridge();
+  var els18 = bridge17.els;
   function legacyMethod19(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -32688,8 +32845,8 @@ ${hint}` : hint;
     legacyMethod19("closePromptSnippetPopover");
   }
   function getPromptText5() {
-    if (!els16.promptEditor) return els16.prompt.value;
-    return normalizePromptEditorText(promptTextFromNode(els16.promptEditor).replace(/\u00a0/g, " ")).trim();
+    if (!els18.promptEditor) return els18.prompt.value;
+    return normalizePromptEditorText(promptTextFromNode(els18.promptEditor).replace(/\u00a0/g, " ")).trim();
   }
   function normalizePromptEditorText(value) {
     return String(value || "").replace(/\r\n?/g, "\n");
@@ -32742,11 +32899,11 @@ ${hint}` : hint;
   }
   function promptSelectionText() {
     const selection = window.getSelection();
-    if (!selection || !selection.rangeCount || !els16.promptEditor) return "";
+    if (!selection || !selection.rangeCount || !els18.promptEditor) return "";
     const parts = [];
     for (let index = 0; index < selection.rangeCount; index += 1) {
       const range = selection.getRangeAt(index);
-      if (range.collapsed || !rangeIntersectsNode2(range, els16.promptEditor)) continue;
+      if (range.collapsed || !rangeIntersectsNode2(range, els18.promptEditor)) continue;
       parts.push(promptTextFromRange2(range));
     }
     return parts.join("").replace(/\u00a0/g, " ");
@@ -32764,10 +32921,10 @@ ${hint}` : hint;
     }
   }
   function selectPromptEditorContents() {
-    if (!els16.promptEditor) return;
-    els16.promptEditor.focus();
+    if (!els18.promptEditor) return;
+    els18.promptEditor.focus();
     const range = document.createRange();
-    range.selectNodeContents(els16.promptEditor);
+    range.selectNodeContents(els18.promptEditor);
     const selection = window.getSelection();
     if (!selection) return;
     selection.removeAllRanges();
@@ -32776,12 +32933,12 @@ ${hint}` : hint;
   }
   function setPromptText2(text) {
     const normalized = normalizePromptEditorText(text);
-    if (els16.promptEditor) {
-      els16.promptEditor.innerHTML = "";
+    if (els18.promptEditor) {
+      els18.promptEditor.innerHTML = "";
       const { fragment } = createPromptTextFragment(normalized);
-      els16.promptEditor.append(fragment);
+      els18.promptEditor.append(fragment);
     }
-    els16.prompt.value = normalized;
+    els18.prompt.value = normalized;
     hideMentionSuggest();
     hideColorSuggest2();
     hidePromptSnippetSuggest2();
@@ -32789,21 +32946,21 @@ ${hint}` : hint;
     closePromptSnippetPopover2();
   }
   function setPromptWithGalleryRefs(text, refs) {
-    if (!els16.promptEditor) {
+    if (!els18.promptEditor) {
       setPromptText2(text);
       return;
     }
     const refList = Array.isArray(refs) ? refs : [];
     const sortedRefs = galleryRefsByMentionLength(refList);
     const promptText = normalizePromptEditorText(text);
-    els16.promptEditor.innerHTML = "";
+    els18.promptEditor.innerHTML = "";
     let cursor = 0;
     let plainStart = 0;
     while (cursor < promptText.length) {
       const refMatch = findGalleryRefMentionAt(promptText, cursor, sortedRefs);
       if (refMatch) {
         appendPromptText4(promptText.slice(plainStart, cursor));
-        els16.promptEditor.append(createGalleryChip(refMatch.ref));
+        els18.promptEditor.append(createGalleryChip(refMatch.ref));
         cursor = refMatch.end;
         plainStart = cursor;
         continue;
@@ -32813,7 +32970,7 @@ ${hint}` : hint;
         const match = colorMatch;
         const colorCode = normalizeHexColor3(match[0]);
         appendPromptText4(promptText.slice(plainStart, cursor));
-        els16.promptEditor.append(createColorChip2(colorCode));
+        els18.promptEditor.append(createColorChip2(colorCode));
         cursor += match[0].length;
         plainStart = cursor;
         continue;
@@ -32821,7 +32978,7 @@ ${hint}` : hint;
       const snippetMatch = findPromptSnippetRefAt2(promptText, cursor);
       if (snippetMatch) {
         appendPromptText4(promptText.slice(plainStart, cursor));
-        els16.promptEditor.append(createPromptSnippetChip2(snippetMatch.snippet));
+        els18.promptEditor.append(createPromptSnippetChip2(snippetMatch.snippet));
         cursor = snippetMatch.end;
         plainStart = cursor;
         continue;
@@ -32836,17 +32993,17 @@ ${hint}` : hint;
   }
   function appendPromptText4(text) {
     const { fragment } = createPromptTextFragment(text);
-    els16.promptEditor.append(fragment);
+    els18.promptEditor.append(fragment);
   }
   function clearPromptEditorIfEmpty() {
-    if (!els16.promptEditor) return;
-    const visibleText = promptTextFromNode(els16.promptEditor).replace(/\u00a0/g, " ").trim();
+    if (!els18.promptEditor) return;
+    const visibleText = promptTextFromNode(els18.promptEditor).replace(/\u00a0/g, " ").trim();
     if (!visibleText) {
-      els16.promptEditor.textContent = "";
+      els18.promptEditor.textContent = "";
     }
   }
   function syncPromptFromEditor3() {
-    els16.prompt.value = getPromptText5();
+    els18.prompt.value = getPromptText5();
   }
   function initPromptSerializationFeature() {
     Object.assign(getLegacyBridge().methods, {
@@ -32867,9 +33024,9 @@ ${hint}` : hint;
   }
 
   // codex_image/webui/frontend/src/prompt-gallery-chips.ts
-  var bridge16 = getLegacyBridge();
-  var state14 = bridge16.state;
-  var els17 = bridge16.els;
+  var bridge18 = getLegacyBridge();
+  var state14 = bridge18.state;
+  var els19 = bridge18.els;
   function legacyMethod20(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -32877,7 +33034,7 @@ ${hint}` : hint;
     }
     return method(...args);
   }
-  function escapeHtml11(value) {
+  function escapeHtml12(value) {
     return legacyMethod20("escapeHtml", value);
   }
   function categoryLabel5(category) {
@@ -32947,26 +33104,26 @@ ${hint}` : hint;
     return null;
   }
   function updateMentionSuggest() {
-    if (!els17.mentionSuggest || !els17.promptEditor) return;
+    if (!els19.mentionSuggest || !els19.promptEditor) return;
     const match = activeMentionMatch();
     if (!match) {
       hideMentionSuggest2();
       return;
     }
-    const query = match.query.toLowerCase();
-    const items = state14.galleryItems.filter((item) => item.name.toLowerCase().includes(query)).slice(0, 8);
+    const query2 = match.query.toLowerCase();
+    const items = state14.galleryItems.filter((item) => item.name.toLowerCase().includes(query2)).slice(0, 8);
     if (!items.length) {
       hideMentionSuggest2();
       return;
     }
-    els17.mentionSuggest.innerHTML = items.map((item) => `
-    <button type="button" class="mention-option" data-mention-id="${escapeHtml11(item.id)}">
-      <img src="${escapeHtml11(item.image_url)}" alt="">
-      <span>@${escapeHtml11(item.name)}</span>
-      <small>${escapeHtml11(categoryLabel5(item.category))}</small>
+    els19.mentionSuggest.innerHTML = items.map((item) => `
+    <button type="button" class="mention-option" data-mention-id="${escapeHtml12(item.id)}">
+      <img src="${escapeHtml12(item.image_url)}" alt="">
+      <span>@${escapeHtml12(item.name)}</span>
+      <small>${escapeHtml12(categoryLabel5(item.category))}</small>
     </button>
   `).join("");
-    els17.mentionSuggest.querySelectorAll("[data-mention-id]").forEach((button) => {
+    els19.mentionSuggest.querySelectorAll("[data-mention-id]").forEach((button) => {
       button.addEventListener("mousedown", (event) => {
         event.preventDefault();
         const item = findGalleryItem5(button.dataset.mentionId);
@@ -32974,12 +33131,12 @@ ${hint}` : hint;
       });
     });
     positionMentionSuggestAtCaret(match);
-    els17.mentionSuggest.classList.remove("hidden");
+    els19.mentionSuggest.classList.remove("hidden");
   }
   function activeMentionMatch() {
     const selection = window.getSelection();
-    if (!selection || !selection.rangeCount || !selection.isCollapsed || !els17.promptEditor) return null;
-    if (!els17.promptEditor.contains(selection.anchorNode)) return null;
+    if (!selection || !selection.rangeCount || !selection.isCollapsed || !els19.promptEditor) return null;
+    if (!els19.promptEditor.contains(selection.anchorNode)) return null;
     const selectionRange = selection.getRangeAt(0);
     let container = selectionRange.startContainer;
     let offset = selectionRange.startOffset;
@@ -33016,9 +33173,9 @@ ${hint}` : hint;
       if (currentText && !/\s$/.test(currentText)) {
         appendPromptText5(" ");
       }
-      els17.promptEditor.append(createGalleryChip2(item));
+      els19.promptEditor.append(createGalleryChip2(item));
       trailingSpace = document.createTextNode(" ");
-      els17.promptEditor.append(trailingSpace);
+      els19.promptEditor.append(trailingSpace);
     }
     addGalleryInput4(item, { syncPrompt: false });
     syncPromptFromEditor4();
@@ -33029,11 +33186,11 @@ ${hint}` : hint;
     setCaretAfterNode3(trailingSpace);
   }
   function positionMentionSuggestAtCaret(match) {
-    if (!els17.mentionSuggest || !els17.promptEditor || !match?.range) return;
-    const host = els17.promptEditor.closest(".prompt-editor-wrap") || els17.promptEditor;
-    const anchorRect = mentionRangeRect3(match.range) || els17.promptEditor.getBoundingClientRect();
+    if (!els19.mentionSuggest || !els19.promptEditor || !match?.range) return;
+    const host = els19.promptEditor.closest(".prompt-editor-wrap") || els19.promptEditor;
+    const anchorRect = mentionRangeRect3(match.range) || els19.promptEditor.getBoundingClientRect();
     positionPromptPopoverAtAnchor(
-      els17.mentionSuggest,
+      els19.mentionSuggest,
       host,
       anchorRect,
       {
@@ -33080,7 +33237,7 @@ ${hint}` : hint;
     return chip;
   }
   function removePromptGalleryChip3(chip) {
-    if (!chip || !els17.promptEditor?.contains(chip)) return;
+    if (!chip || !els19.promptEditor?.contains(chip)) return;
     const nextNode = chip.nextSibling;
     chip.remove();
     if (nextNode?.nodeType === Node.TEXT_NODE && !nextNode.textContent.trim()) {
@@ -33093,16 +33250,16 @@ ${hint}` : hint;
     if (!galleryInputsChanged) updateRequestPreview8();
     hideMentionSuggest2();
     hideColorSuggest3();
-    setCaretToEnd(els17.promptEditor);
+    setCaretToEnd(els19.promptEditor);
   }
   function currentPromptGalleryIds() {
-    if (!els17.promptEditor) return /* @__PURE__ */ new Set();
+    if (!els19.promptEditor) return /* @__PURE__ */ new Set();
     return new Set(
-      Array.from(els17.promptEditor.querySelectorAll(".gallery-chip[data-gallery-id]")).map((chip) => chip.dataset.galleryId).filter(Boolean)
+      Array.from(els19.promptEditor.querySelectorAll(".gallery-chip[data-gallery-id]")).map((chip) => chip.dataset.galleryId).filter(Boolean)
     );
   }
   function ensurePromptGalleryMention(item) {
-    if (!item || !els17.promptEditor || currentPromptGalleryIds().has(item.id)) {
+    if (!item || !els19.promptEditor || currentPromptGalleryIds().has(item.id)) {
       syncPromptFromEditor4();
       return;
     }
@@ -33110,7 +33267,7 @@ ${hint}` : hint;
     if (currentText && !/\s$/.test(currentText)) {
       appendPromptText5(" ");
     }
-    els17.promptEditor.append(createGalleryChip2(item));
+    els19.promptEditor.append(createGalleryChip2(item));
     appendPromptText5(" ");
     syncPromptFromEditor4();
     updatePromptCount4();
@@ -33118,7 +33275,7 @@ ${hint}` : hint;
     hideColorSuggest3();
   }
   function syncGalleryInputsFromPrompt() {
-    const chips = Array.from(els17.promptEditor?.querySelectorAll(".gallery-chip[data-gallery-id]") || []);
+    const chips = Array.from(els19.promptEditor?.querySelectorAll(".gallery-chip[data-gallery-id]") || []);
     const mentionedIds = new Set(chips.map((chip) => chip.dataset.galleryId).filter(Boolean));
     const beforeKey = imageSourcesKey(state14.images);
     const uploads = state14.images.filter((source) => source.kind !== "gallery");
@@ -33157,10 +33314,10 @@ ${hint}` : hint;
     ]));
   }
   function syncPromptGalleryMentionsFromInputs() {
-    if (!els17.promptEditor) return false;
+    if (!els19.promptEditor) return false;
     const selectedGalleryIds = new Set(galleryInputs2().map((source) => source.id));
     let changed = false;
-    els17.promptEditor.querySelectorAll(".gallery-chip[data-gallery-id]").forEach((chip) => {
+    els19.promptEditor.querySelectorAll(".gallery-chip[data-gallery-id]").forEach((chip) => {
       if (!selectedGalleryIds.has(chip.dataset.galleryId)) {
         chip.remove();
         changed = true;
@@ -33173,13 +33330,13 @@ ${hint}` : hint;
     return true;
   }
   function hideMentionSuggest2() {
-    if (!els17.mentionSuggest) return;
-    els17.mentionSuggest.classList.add("hidden");
-    els17.mentionSuggest.innerHTML = "";
-    els17.mentionSuggest.style.removeProperty("--mention-left");
-    els17.mentionSuggest.style.removeProperty("--mention-top");
-    els17.mentionSuggest.style.removeProperty("--mention-width");
-    els17.mentionSuggest.style.removeProperty("--prompt-popover-max-height");
+    if (!els19.mentionSuggest) return;
+    els19.mentionSuggest.classList.add("hidden");
+    els19.mentionSuggest.innerHTML = "";
+    els19.mentionSuggest.style.removeProperty("--mention-left");
+    els19.mentionSuggest.style.removeProperty("--mention-top");
+    els19.mentionSuggest.style.removeProperty("--mention-width");
+    els19.mentionSuggest.style.removeProperty("--prompt-popover-max-height");
   }
   function setCaretToEnd(element2) {
     legacyMethod20("setCaretToEnd", element2);
@@ -33204,8 +33361,8 @@ ${hint}` : hint;
   }
 
   // codex_image/webui/frontend/src/prompt-editor-paste.ts
-  var bridge17 = getLegacyBridge();
-  var els18 = bridge17.els;
+  var bridge19 = getLegacyBridge();
+  var els20 = bridge19.els;
   function legacyMethod21(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -33272,21 +33429,21 @@ ${hint}` : hint;
     return html ? promptPlainTextFromHtml(html) : "";
   }
   function insertPlainPromptText(text) {
-    if (!els18.promptEditor) return;
+    if (!els20.promptEditor) return;
     const normalized = normalizePromptPasteText(text);
     if (!normalized) return;
-    els18.promptEditor.focus();
+    els20.promptEditor.focus();
     const { fragment, lastNode } = createPromptTextFragment2(normalized);
     if (!lastNode) return;
     const selection = window.getSelection();
     if (!selection || !selection.rangeCount) {
-      els18.promptEditor.append(fragment);
+      els20.promptEditor.append(fragment);
       setCaretAfterNode4(lastNode);
       return;
     }
     const range = selection.getRangeAt(0);
-    if (!rangeIntersectsNode3(range, els18.promptEditor)) {
-      els18.promptEditor.append(fragment);
+    if (!rangeIntersectsNode3(range, els20.promptEditor)) {
+      els20.promptEditor.append(fragment);
       setCaretAfterNode4(lastNode);
       return;
     }
@@ -33295,7 +33452,7 @@ ${hint}` : hint;
     setCaretAfterNode4(lastNode);
   }
   function handlePromptEditorPaste(event) {
-    if (!event.clipboardData || !els18.promptEditor?.contains(event.target)) return;
+    if (!event.clipboardData || !els20.promptEditor?.contains(event.target)) return;
     if (clipboardHasImageFile(event.clipboardData)) return;
     const text = promptPasteTextFromClipboard(event.clipboardData);
     if (!text) return;
@@ -33308,9 +33465,9 @@ ${hint}` : hint;
   }
 
   // codex_image/webui/frontend/src/prompt-editor-events.ts
-  var bridge18 = getLegacyBridge();
-  var state15 = bridge18.state;
-  var els19 = bridge18.els;
+  var bridge20 = getLegacyBridge();
+  var state15 = bridge20.state;
+  var els21 = bridge20.els;
   function legacyMethod22(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -33405,17 +33562,17 @@ ${hint}` : hint;
   }
   function promptEditorFocusInside() {
     const activeElement = document.activeElement;
-    return Boolean(activeElement && els19.promptEditor && els19.promptEditor.contains(activeElement));
+    return Boolean(activeElement && els21.promptEditor && els21.promptEditor.contains(activeElement));
   }
   function updatePromptChipSelectionState2() {
-    const chips = Array.from(els19.promptEditor?.querySelectorAll(".gallery-chip, .color-chip, .prompt-snippet-chip") || []);
+    const chips = Array.from(els21.promptEditor?.querySelectorAll(".gallery-chip, .color-chip, .prompt-snippet-chip") || []);
     if (!chips.length) return;
     const selection = window.getSelection();
     const ranges = [];
-    if (selection && !selection.isCollapsed && selection.rangeCount && els19.promptEditor) {
+    if (selection && !selection.isCollapsed && selection.rangeCount && els21.promptEditor) {
       for (let index = 0; index < selection.rangeCount; index += 1) {
         const range = selection.getRangeAt(index);
-        if (rangeIntersectsNode4(range, els19.promptEditor)) ranges.push(range);
+        if (rangeIntersectsNode4(range, els21.promptEditor)) ranges.push(range);
       }
     }
     chips.forEach((chip) => {
@@ -33424,7 +33581,7 @@ ${hint}` : hint;
     });
   }
   function syncPromptFromEditor5() {
-    els19.prompt.value = getPromptText7();
+    els21.prompt.value = getPromptText7();
   }
   function handlePromptEditorKeydown(event) {
     if (isPromptEditorArrowKey(event.key)) {
@@ -33452,14 +33609,14 @@ ${hint}` : hint;
       closePromptSnippetPopover3();
       return;
     }
-    if (event.key === "Enter" && !els19.colorSuggest.classList.contains("hidden")) {
+    if (event.key === "Enter" && !els21.colorSuggest.classList.contains("hidden")) {
       event.preventDefault();
-      const input = els19.colorSuggest.querySelector("[data-color-hex-input]");
+      const input = els21.colorSuggest.querySelector("[data-color-hex-input]");
       insertColorCode2(input?.value || state15.selectedColorCode);
       return;
     }
-    if (event.key === "Enter" && !els19.mentionSuggest.classList.contains("hidden")) {
-      const first = els19.mentionSuggest.querySelector("[data-mention-id]");
+    if (event.key === "Enter" && !els21.mentionSuggest.classList.contains("hidden")) {
+      const first = els21.mentionSuggest.querySelector("[data-mention-id]");
       if (first) {
         event.preventDefault();
         const item = findGalleryItem6(first.dataset.mentionId);
@@ -33475,6 +33632,11 @@ ${hint}` : hint;
         const snippet = findPromptSnippetById2(first.dataset.promptSnippetId);
         if (snippet) insertPromptSnippet2(snippet);
       }
+      return;
+    }
+    if (event.key === "Enter" && !event.shiftKey && !event.metaKey && !event.ctrlKey && !event.altKey && !event.isComposing) {
+      event.preventDefault();
+      legacyMethod22("runTask");
     }
   }
   function isPromptEditorArrowKey(key) {
@@ -33482,21 +33644,21 @@ ${hint}` : hint;
   }
   function handlePromptEditorClick(event) {
     const removeButton = event.target.closest?.("[data-remove-gallery-chip], [data-remove-color-chip], [data-remove-prompt-snippet-chip]");
-    if (removeButton && els19.promptEditor.contains(removeButton)) {
+    if (removeButton && els21.promptEditor.contains(removeButton)) {
       event.preventDefault();
       event.stopPropagation();
       removePromptGalleryChip4(removeButton.closest(".gallery-chip, .color-chip, .prompt-snippet-chip"));
       return;
     }
     const editColorButton = event.target.closest?.("[data-edit-color-chip]");
-    if (editColorButton && els19.promptEditor.contains(editColorButton)) {
+    if (editColorButton && els21.promptEditor.contains(editColorButton)) {
       event.preventDefault();
       event.stopPropagation();
       openColorChipEditor2(editColorButton.closest(".color-chip"));
       return;
     }
     const snippetChip = event.target.closest?.(".prompt-snippet-chip");
-    if (snippetChip && els19.promptEditor.contains(snippetChip) && !event.target.closest?.("[data-remove-prompt-snippet-chip]")) {
+    if (snippetChip && els21.promptEditor.contains(snippetChip) && !event.target.closest?.("[data-remove-prompt-snippet-chip]")) {
       event.preventDefault();
       event.stopPropagation();
       openPromptSnippetChipPopover2(snippetChip);
@@ -33504,8 +33666,8 @@ ${hint}` : hint;
   }
   function promptChipAtCaretForDeletion(key) {
     const selection = window.getSelection();
-    if (!selection || !selection.rangeCount || !selection.isCollapsed || !els19.promptEditor) return null;
-    if (!els19.promptEditor.contains(selection.anchorNode)) return null;
+    if (!selection || !selection.rangeCount || !selection.isCollapsed || !els21.promptEditor) return null;
+    if (!els21.promptEditor.contains(selection.anchorNode)) return null;
     const range = selection.getRangeAt(0);
     const isBackspace = key === "Backspace";
     const container = range.startContainer;
@@ -33525,10 +33687,10 @@ ${hint}` : hint;
     return null;
   }
   function promptChipFallbackForDeletion(key) {
-    if (!els19.promptEditor) return null;
-    const chips = Array.from(els19.promptEditor.querySelectorAll(".gallery-chip[data-gallery-id], .color-chip[data-color-code], .prompt-snippet-chip[data-prompt-snippet-tag]"));
+    if (!els21.promptEditor) return null;
+    const chips = Array.from(els21.promptEditor.querySelectorAll(".gallery-chip[data-gallery-id], .color-chip[data-color-code], .prompt-snippet-chip[data-prompt-snippet-tag]"));
     if (!chips.length) return null;
-    const textWithoutChips = Array.from(els19.promptEditor.childNodes).reduce((text, child) => {
+    const textWithoutChips = Array.from(els21.promptEditor.childNodes).reduce((text, child) => {
       if (child.nodeType === Node.ELEMENT_NODE && isPromptAtomicChip(child)) {
         return text;
       }
@@ -33542,7 +33704,7 @@ ${hint}` : hint;
   }
   function promptChipFromEvent(event) {
     const chip = event.target.closest?.(".gallery-chip, .color-chip, .prompt-snippet-chip");
-    if (!chip || !els19.promptEditor?.contains(chip)) return null;
+    if (!chip || !els21.promptEditor?.contains(chip)) return null;
     return chip;
   }
   function handlePromptChipDragStart(event) {
@@ -33570,19 +33732,19 @@ ${hint}` : hint;
   }
   function handlePromptChipDrop(event) {
     const chip = state15.draggedPromptChip;
-    if (!chip || !els19.promptEditor?.contains(chip)) return;
+    if (!chip || !els21.promptEditor?.contains(chip)) return;
     event.preventDefault();
     clearPromptChipDropClasses();
     const targetChip = promptDropTargetChip(event);
     if (targetChip) {
       const insertBefore = promptDropPlacement(event, targetChip) === "before" ? targetChip : targetChip.nextSibling;
-      els19.promptEditor.insertBefore(chip, insertBefore);
+      els21.promptEditor.insertBefore(chip, insertBefore);
     } else {
       const range = promptRangeFromPoint(event.clientX, event.clientY);
-      if (range && els19.promptEditor.contains(range.startContainer)) {
+      if (range && els21.promptEditor.contains(range.startContainer)) {
         range.insertNode(chip);
       } else {
-        els19.promptEditor.append(chip);
+        els21.promptEditor.append(chip);
       }
     }
     const trailingBoundary = normalizePromptChipBoundaries(chip);
@@ -33607,7 +33769,7 @@ ${hint}` : hint;
     return position < size / 2 ? "before" : "after";
   }
   function clearPromptChipDropClasses() {
-    els19.promptEditor?.querySelectorAll(".prompt-chip-drop-before, .prompt-chip-drop-after").forEach((chip) => {
+    els21.promptEditor?.querySelectorAll(".prompt-chip-drop-before, .prompt-chip-drop-after").forEach((chip) => {
       chip.classList.remove("prompt-chip-drop-before", "prompt-chip-drop-after");
     });
   }
@@ -33626,7 +33788,7 @@ ${hint}` : hint;
     return null;
   }
   function normalizePromptChipBoundaries(chip) {
-    if (!chip || !els19.promptEditor?.contains(chip)) return null;
+    if (!chip || !els21.promptEditor?.contains(chip)) return null;
     ensurePromptChipLeadingBoundary(chip);
     return ensurePromptChipTrailingBoundary(chip);
   }
@@ -33636,7 +33798,7 @@ ${hint}` : hint;
     if (previousNode.nodeType === Node.TEXT_NODE && /[\s\u00a0]$/.test(previousNode.textContent || "")) {
       return null;
     }
-    els19.promptEditor.insertBefore(document.createTextNode(" "), chip);
+    els21.promptEditor.insertBefore(document.createTextNode(" "), chip);
     return chip.previousSibling;
   }
   function ensurePromptChipTrailingBoundary(chip) {
@@ -33648,7 +33810,7 @@ ${hint}` : hint;
     if (nextNode.nodeType === Node.TEXT_NODE && /^[\s\u00a0]/.test(nextNode.textContent || "")) {
       return null;
     }
-    els19.promptEditor.insertBefore(document.createTextNode(" "), nextNode);
+    els21.promptEditor.insertBefore(document.createTextNode(" "), nextNode);
     return chip.nextSibling;
   }
   function syncPromptAfterChipMutation4() {
@@ -33668,10 +33830,10 @@ ${hint}` : hint;
     return rects.length ? rects[0] : null;
   }
   function clearPromptEditorIfEmpty3() {
-    if (!els19.promptEditor) return;
-    const visibleText = promptTextFromNode2(els19.promptEditor).replace(/\u00a0/g, " ").trim();
+    if (!els21.promptEditor) return;
+    const visibleText = promptTextFromNode2(els21.promptEditor).replace(/\u00a0/g, " ").trim();
     if (!visibleText) {
-      els19.promptEditor.textContent = "";
+      els21.promptEditor.textContent = "";
     }
   }
   function setCaretToEnd2(element2) {
@@ -33697,10 +33859,10 @@ ${hint}` : hint;
     if (!selection) return;
     selection.removeAllRanges();
     selection.addRange(range);
-    els19.promptEditor?.focus();
+    els21.promptEditor?.focus();
   }
   function bindPromptEditorEvents() {
-    els19.promptEditor?.addEventListener("input", () => {
+    els21.promptEditor?.addEventListener("input", () => {
       syncPromptFromEditor5();
       updatePromptCount5();
       const galleryInputsChanged = syncGalleryInputsFromPrompt2();
@@ -33709,27 +33871,27 @@ ${hint}` : hint;
       updatePromptSnippetSuggest3();
       if (!galleryInputsChanged) updateRequestPreview9();
     });
-    els19.promptEditor?.addEventListener("keyup", (event) => {
+    els21.promptEditor?.addEventListener("keyup", (event) => {
       if (event.key === "Escape") return;
       updateMentionSuggest3();
       updateColorSuggest4();
       updatePromptSnippetSuggest3();
       updatePromptSnippetSelectionButton2();
     });
-    els19.promptEditor?.addEventListener("keydown", handlePromptEditorKeydown);
-    els19.promptEditor?.addEventListener("copy", handlePromptEditorCopy);
-    els19.promptEditor?.addEventListener("paste", handlePromptEditorPaste);
-    els19.promptEditor?.addEventListener("click", handlePromptEditorClick);
-    els19.promptEditor?.addEventListener("dragstart", handlePromptChipDragStart);
-    els19.promptEditor?.addEventListener("dragover", handlePromptChipDragOver);
-    els19.promptEditor?.addEventListener("drop", handlePromptChipDrop);
-    els19.promptEditor?.addEventListener("dragend", handlePromptChipDragEnd);
-    els19.promptEditor?.addEventListener("mouseup", updatePromptSnippetSelectionButton2);
-    els19.promptEditor?.addEventListener("blur", () => {
+    els21.promptEditor?.addEventListener("keydown", handlePromptEditorKeydown);
+    els21.promptEditor?.addEventListener("copy", handlePromptEditorCopy);
+    els21.promptEditor?.addEventListener("paste", handlePromptEditorPaste);
+    els21.promptEditor?.addEventListener("click", handlePromptEditorClick);
+    els21.promptEditor?.addEventListener("dragstart", handlePromptChipDragStart);
+    els21.promptEditor?.addEventListener("dragover", handlePromptChipDragOver);
+    els21.promptEditor?.addEventListener("drop", handlePromptChipDrop);
+    els21.promptEditor?.addEventListener("dragend", handlePromptChipDragEnd);
+    els21.promptEditor?.addEventListener("mouseup", updatePromptSnippetSelectionButton2);
+    els21.promptEditor?.addEventListener("blur", () => {
       window.setTimeout(() => {
         hideMentionSuggest3();
         hidePromptSnippetSuggest3();
-        if (!els19.colorSuggest?.contains(document.activeElement) && !promptEditorFocusInside()) hideColorSuggest4();
+        if (!els21.colorSuggest?.contains(document.activeElement) && !promptEditorFocusInside()) hideColorSuggest4();
       }, 160);
     });
     document.addEventListener("selectionchange", () => {
@@ -33775,8 +33937,8 @@ ${hint}` : hint;
   }
 
   // codex_image/webui/frontend/src/prompt-model.ts
-  var bridge19 = getLegacyBridge();
-  var els20 = bridge19.els;
+  var bridge21 = getLegacyBridge();
+  var els22 = bridge21.els;
   function legacyMethod23(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -33835,7 +33997,7 @@ ${galleryText}`;
     return currentPromptFidelity() === "original" ? expandPromptSnippets2(getPromptText8()) : buildPromptForModel();
   }
   function currentPromptFidelity() {
-    const value = els20.promptFidelity?.value || "strict";
+    const value = els22.promptFidelity?.value || "strict";
     return ["strict", "original", "off"].includes(value) ? value : "strict";
   }
   function initPromptModelFeature() {
@@ -33850,8 +34012,8 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/prompt.ts
-  var bridge20 = getLegacyBridge();
-  var els21 = bridge20.els;
+  var bridge22 = getLegacyBridge();
+  var els23 = bridge22.els;
   var promptFeatureInitialized = false;
   function legacyMethod24(name, ...args) {
     const method = getLegacyBridge().methods[name];
@@ -33868,9 +34030,9 @@ ${galleryText}`;
   }
   function handlePromptDocumentClick(event) {
     const target = event.target;
-    if (els21.colorSuggest && !els21.colorSuggest.classList.contains("hidden")) {
-      const clickedColorSuggest = els21.colorSuggest.contains(target);
-      const clickedPromptEditor = els21.promptEditor?.contains(target);
+    if (els23.colorSuggest && !els23.colorSuggest.classList.contains("hidden")) {
+      const clickedColorSuggest = els23.colorSuggest.contains(target);
+      const clickedPromptEditor = els23.promptEditor?.contains(target);
       if (!clickedColorSuggest && !clickedPromptEditor) {
         closePromptColorSuggest();
       }
@@ -33891,8 +34053,8 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/prompt-find-replace.ts
-  var bridge21 = getLegacyBridge();
-  var els22 = bridge21.els;
+  var bridge23 = getLegacyBridge();
+  var els24 = bridge23.els;
   var PROMPT_FIND_ELEMENT_NODE = 1;
   var PROMPT_FIND_TEXT_NODE = 3;
   var promptFindInitialized = false;
@@ -33911,16 +34073,16 @@ ${galleryText}`;
     legacyMethod25("updateRequestPreview");
   }
   function promptFindCell() {
-    return els22.promptFindPanel?.closest(".prompt-template-recent-cell") || null;
+    return els24.promptFindPanel?.closest(".prompt-template-recent-cell") || null;
   }
   function promptFindQuery() {
-    return String(els22.promptFindInput?.value || "");
+    return String(els24.promptFindInput?.value || "");
   }
   function promptFindReplacement() {
-    return String(els22.promptReplaceInput?.value || "");
+    return String(els24.promptReplaceInput?.value || "");
   }
   function isPromptFindOpen() {
-    return Boolean(els22.promptFindPanel && !els22.promptFindPanel.classList.contains("hidden"));
+    return Boolean(els24.promptFindPanel && !els24.promptFindPanel.classList.contains("hidden"));
   }
   function isNodeInsidePromptAtomicChip(node) {
     const element2 = node.nodeType === PROMPT_FIND_ELEMENT_NODE ? node : node.parentElement || (node.parentNode?.nodeType === PROMPT_FIND_ELEMENT_NODE ? node.parentNode : null);
@@ -33940,9 +34102,9 @@ ${galleryText}`;
     }
     Array.from(node.childNodes || []).forEach((child) => collectPromptFindMatchesFromNode(child, needle, matches));
   }
-  function collectPromptFindMatches(query = promptFindQuery()) {
-    const root = els22.promptEditor;
-    const needle = String(query || "");
+  function collectPromptFindMatches(query2 = promptFindQuery()) {
+    const root = els24.promptEditor;
+    const needle = String(query2 || "");
     if (!root || !needle) return [];
     root.normalize();
     const matches = [];
@@ -33950,14 +34112,14 @@ ${galleryText}`;
     return matches;
   }
   function promptFindActionButtons() {
-    return Array.from(els22.promptFindPanel?.querySelectorAll("[data-prompt-find-action]") || []);
+    return Array.from(els24.promptFindPanel?.querySelectorAll("[data-prompt-find-action]") || []);
   }
   function setPromptFindStatus(message) {
-    if (els22.promptFindStatus) els22.promptFindStatus.textContent = message;
+    if (els24.promptFindStatus) els24.promptFindStatus.textContent = message;
   }
   function setPromptFindCount(count = promptFindMatches.length) {
-    if (els22.promptFindCount) {
-      els22.promptFindCount.textContent = formatTranslation("prompt.matchCount", { count });
+    if (els24.promptFindCount) {
+      els24.promptFindCount.textContent = formatTranslation("prompt.matchCount", { count });
     }
   }
   function updatePromptFindControls() {
@@ -34001,18 +34163,18 @@ ${galleryText}`;
     setPromptFindStatus("");
     updatePromptFindControls();
   }
-  function setPromptFindOpen(open) {
-    if (!els22.promptFindPanel) return;
-    els22.promptFindPanel.classList.toggle("hidden", !open);
-    promptFindCell()?.classList.toggle("find-active", open);
-    els22.promptFindButton?.setAttribute("aria-expanded", open ? "true" : "false");
-    if (open) {
+  function setPromptFindOpen(open3) {
+    if (!els24.promptFindPanel) return;
+    els24.promptFindPanel.classList.toggle("hidden", !open3);
+    promptFindCell()?.classList.toggle("find-active", open3);
+    els24.promptFindButton?.setAttribute("aria-expanded", open3 ? "true" : "false");
+    if (open3) {
       clearPromptFindResult();
-      els22.promptFindInput?.focus({ preventScroll: true });
+      els24.promptFindInput?.focus({ preventScroll: true });
       return;
     }
     clearPromptFindResult();
-    els22.promptFindButton?.focus({ preventScroll: true });
+    els24.promptFindButton?.focus({ preventScroll: true });
   }
   function handlePromptFindAction(action) {
     if (action === "count") {
@@ -34041,8 +34203,8 @@ ${galleryText}`;
       return;
     }
     const activeElement = document.activeElement;
-    const insidePromptEditor = Boolean(activeElement && els22.promptEditor?.contains(activeElement));
-    const insideFindPanel = Boolean(activeElement && els22.promptFindPanel?.contains(activeElement));
+    const insidePromptEditor = Boolean(activeElement && els24.promptEditor?.contains(activeElement));
+    const insideFindPanel = Boolean(activeElement && els24.promptFindPanel?.contains(activeElement));
     if (!insidePromptEditor && !insideFindPanel) return;
     event.preventDefault();
     setPromptFindOpen(true);
@@ -34050,26 +34212,26 @@ ${galleryText}`;
   function initPromptFindReplaceFeature() {
     if (promptFindInitialized) return;
     promptFindInitialized = true;
-    if (!els22.promptFindButton || !els22.promptFindPanel || !els22.promptFindInput) return;
-    els22.promptFindButton.addEventListener("click", () => setPromptFindOpen(!isPromptFindOpen()));
+    if (!els24.promptFindButton || !els24.promptFindPanel || !els24.promptFindInput) return;
+    els24.promptFindButton.addEventListener("click", () => setPromptFindOpen(!isPromptFindOpen()));
     bindPromptFindActionButtons();
-    els22.promptFindClose?.addEventListener("click", () => setPromptFindOpen(false));
-    els22.promptFindPanel.addEventListener("keydown", handlePromptFindKeydown);
-    els22.promptFindInput.addEventListener("input", () => {
+    els24.promptFindClose?.addEventListener("click", () => setPromptFindOpen(false));
+    els24.promptFindPanel.addEventListener("keydown", handlePromptFindKeydown);
+    els24.promptFindInput.addEventListener("input", () => {
       clearPromptFindResult();
     });
-    els22.promptReplaceInput?.addEventListener("input", () => {
+    els24.promptReplaceInput?.addEventListener("input", () => {
       setPromptFindStatus("");
       updatePromptFindControls();
     });
-    els22.clearPromptButton?.addEventListener("click", () => {
+    els24.clearPromptButton?.addEventListener("click", () => {
       if (isPromptFindOpen()) window.setTimeout(() => clearPromptFindResult(), 0);
     });
     document.addEventListener("keydown", handlePromptFindShortcut);
   }
 
   // codex_image/webui/frontend/src/output-controls.ts
-  var { els: els23 } = getLegacyBridge();
+  var { els: els25 } = getLegacyBridge();
   function legacyMethod26(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -34089,38 +34251,38 @@ ${galleryText}`;
     input.style.setProperty("--range-progress", `${Math.max(0, Math.min(100, progress))}%`);
   }
   function currentQuantity() {
-    const value = Number.parseInt(els23.nInput?.value || "1", 10);
+    const value = Number.parseInt(els25.nInput?.value || "1", 10);
     if (Number.isNaN(value)) return 1;
     return Math.min(4, Math.max(1, value));
   }
   function updateQuantity() {
-    if (!els23.nInput) return;
-    els23.nInput.value = String(currentQuantity());
-    if (els23.nValue) {
-      els23.nValue.textContent = els23.nInput.value;
+    if (!els25.nInput) return;
+    els25.nInput.value = String(currentQuantity());
+    if (els25.nValue) {
+      els25.nValue.textContent = els25.nInput.value;
     }
-    if (els23.nInput.matches?.('input[type="range"]')) {
-      updateRangeProgress(els23.nInput);
+    if (els25.nInput.matches?.('input[type="range"]')) {
+      updateRangeProgress(els25.nInput);
     }
   }
   function updateCompression() {
-    const compressionEnabled = els23.outputFormat.value !== "png";
-    els23.compression.disabled = !compressionEnabled;
+    const compressionEnabled = els25.outputFormat.value !== "png";
+    els25.compression.disabled = !compressionEnabled;
     if (!compressionEnabled) {
       closeCompressionPopover();
     }
-    els23.compressionValue.textContent = `${els23.compression.value}%`;
-    updateRangeProgress(els23.compression);
+    els25.compressionValue.textContent = `${els25.compression.value}%`;
+    updateRangeProgress(els25.compression);
   }
   function openCompressionPopover() {
-    if (!els23.compressionPopover || els23.outputFormat.value === "png") return;
-    els23.compressionPopover.classList.remove("hidden");
-    els23.compressionPopover.setAttribute("aria-hidden", "false");
+    if (!els25.compressionPopover || els25.outputFormat.value === "png") return;
+    els25.compressionPopover.classList.remove("hidden");
+    els25.compressionPopover.setAttribute("aria-hidden", "false");
   }
   function closeCompressionPopover() {
-    if (!els23.compressionPopover) return;
-    els23.compressionPopover.classList.add("hidden");
-    els23.compressionPopover.setAttribute("aria-hidden", "true");
+    if (!els25.compressionPopover) return;
+    els25.compressionPopover.classList.add("hidden");
+    els25.compressionPopover.setAttribute("aria-hidden", "true");
   }
   function handleOutputFormatDoubleClick(event) {
     const button = event.target.closest("[data-val]");
@@ -34133,8 +34295,8 @@ ${galleryText}`;
     });
   }
   function updateRequestPreview10() {
-    if (!els23.requestJson) return;
-    els23.requestJson.textContent = JSON.stringify(buildPreviewRequest(), null, 2);
+    if (!els25.requestJson) return;
+    els25.requestJson.textContent = JSON.stringify(buildPreviewRequest(), null, 2);
   }
 
   // codex_image/webui/frontend/src/main-model-combobox.ts
@@ -34142,9 +34304,9 @@ ${galleryText}`;
   var MAIN_MODEL_OPTIONS = ["gpt-5.5", "gpt-5.4", "gpt-5.4-mini", "gpt-5.3-codex", "gpt-5.2"];
   var RETIRED_MAIN_MODEL_OPTIONS = /* @__PURE__ */ new Set(["gpt-5.3-codex-spark"]);
   var MAIN_MODEL_STORAGE_KEY = "codex-image-main-model";
-  var bridge22 = getLegacyBridge();
-  var state16 = bridge22.state;
-  var els24 = bridge22.els;
+  var bridge24 = getLegacyBridge();
+  var state16 = bridge24.state;
+  var els26 = bridge24.els;
   function legacyMethod27(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -34152,16 +34314,16 @@ ${galleryText}`;
     }
     return method(...args);
   }
-  function escapeHtml12(value) {
+  function escapeHtml13(value) {
     return legacyMethod27("escapeHtml", value);
   }
-  function mainModelOptionsForQuery(query) {
-    const normalized = String(query || "").trim().toLowerCase();
+  function mainModelOptionsForQuery(query2) {
+    const normalized = String(query2 || "").trim().toLowerCase();
     if (!normalized) return MAIN_MODEL_OPTIONS.slice();
     return MAIN_MODEL_OPTIONS.filter((model) => model.toLowerCase().includes(normalized));
   }
   function openMainModelCombobox({ showAll = false } = {}) {
-    if (!els24.mainModel || !els24.mainModelOptions || !els24.mainModelCombobox) return;
+    if (!els26.mainModel || !els26.mainModelOptions || !els26.mainModelCombobox) return;
     if (showAll) {
       state16.mainModelShowAllOptions = true;
       const selectedIndex = MAIN_MODEL_OPTIONS.indexOf(currentMainModel());
@@ -34169,30 +34331,30 @@ ${galleryText}`;
     }
     state16.mainModelComboboxOpen = true;
     renderMainModelOptions();
-    els24.mainModelOptions.classList.remove("hidden");
-    els24.mainModelCombobox.setAttribute("aria-expanded", "true");
-    els24.mainModel.setAttribute("aria-expanded", "true");
+    els26.mainModelOptions.classList.remove("hidden");
+    els26.mainModelCombobox.setAttribute("aria-expanded", "true");
+    els26.mainModel.setAttribute("aria-expanded", "true");
   }
   function closeMainModelCombobox() {
     state16.mainModelComboboxOpen = false;
     state16.mainModelOptionIndex = 0;
     state16.mainModelShowAllOptions = false;
-    els24.mainModelOptions?.classList.add("hidden");
-    els24.mainModelCombobox?.setAttribute("aria-expanded", "false");
-    els24.mainModel?.setAttribute("aria-expanded", "false");
-    els24.mainModel?.removeAttribute("aria-activedescendant");
+    els26.mainModelOptions?.classList.add("hidden");
+    els26.mainModelCombobox?.setAttribute("aria-expanded", "false");
+    els26.mainModel?.setAttribute("aria-expanded", "false");
+    els26.mainModel?.removeAttribute("aria-activedescendant");
   }
   function renderMainModelOptions() {
-    if (!els24.mainModel || !els24.mainModelOptions) return;
-    const query = state16.mainModelShowAllOptions ? "" : els24.mainModel.value;
-    const options = mainModelOptionsForQuery(query);
+    if (!els26.mainModel || !els26.mainModelOptions) return;
+    const query2 = state16.mainModelShowAllOptions ? "" : els26.mainModel.value;
+    const options = mainModelOptionsForQuery(query2);
     state16.mainModelOptionIndex = Math.min(Math.max(0, state16.mainModelOptionIndex), Math.max(0, options.length - 1));
     if (!options.length) {
-      els24.mainModelOptions.innerHTML = `<div class="model-combobox-empty" role="option" aria-disabled="true">${escapeHtml12(translate("output.mainModelCustomForInput"))}</div>`;
-      els24.mainModel.removeAttribute("aria-activedescendant");
+      els26.mainModelOptions.innerHTML = `<div class="model-combobox-empty" role="option" aria-disabled="true">${escapeHtml13(translate("output.mainModelCustomForInput"))}</div>`;
+      els26.mainModel.removeAttribute("aria-activedescendant");
       return;
     }
-    els24.mainModelOptions.innerHTML = options.map((model, index) => {
+    els26.mainModelOptions.innerHTML = options.map((model, index) => {
       const active = index === state16.mainModelOptionIndex;
       const selected = model === currentMainModel();
       return `
@@ -34202,27 +34364,27 @@ ${galleryText}`;
         type="button"
         role="option"
         aria-selected="${selected ? "true" : "false"}"
-        data-main-model-option="${escapeHtml12(model)}"
-      >${escapeHtml12(model)}</button>
+        data-main-model-option="${escapeHtml13(model)}"
+      >${escapeHtml13(model)}</button>
     `;
     }).join("");
-    els24.mainModel.setAttribute("aria-activedescendant", `mainModelOption-${state16.mainModelOptionIndex}`);
-    els24.mainModelOptions.querySelectorAll("[data-main-model-option]").forEach((button) => {
+    els26.mainModel.setAttribute("aria-activedescendant", `mainModelOption-${state16.mainModelOptionIndex}`);
+    els26.mainModelOptions.querySelectorAll("[data-main-model-option]").forEach((button) => {
       button.addEventListener("mousedown", (event) => event.preventDefault());
       button.addEventListener("click", () => selectMainModelOption(button.dataset.mainModelOption));
     });
   }
   function selectMainModelOption(model) {
-    if (!els24.mainModel || !model) return;
-    els24.mainModel.value = model;
+    if (!els26.mainModel || !model) return;
+    els26.mainModel.value = model;
     persistMainModel();
     updateRequestPreview10();
     closeMainModelCombobox();
-    els24.mainModel.focus();
+    els26.mainModel.focus();
   }
   function handleMainModelKeydown(event) {
-    if (!els24.mainModelOptions) return;
-    const options = mainModelOptionsForQuery(els24.mainModel?.value || "");
+    if (!els26.mainModelOptions) return;
+    const options = mainModelOptionsForQuery(els26.mainModel?.value || "");
     if (event.key === "ArrowDown") {
       event.preventDefault();
       if (!state16.mainModelComboboxOpen) {
@@ -34251,10 +34413,10 @@ ${galleryText}`;
     }
   }
   function currentMainModel() {
-    return (els24.mainModel?.value || DEFAULT_MAIN_MODEL).trim() || DEFAULT_MAIN_MODEL;
+    return (els26.mainModel?.value || DEFAULT_MAIN_MODEL).trim() || DEFAULT_MAIN_MODEL;
   }
   function restoreMainModel() {
-    if (!els24.mainModel) return;
+    if (!els26.mainModel) return;
     try {
       const saved = localStorage.getItem(MAIN_MODEL_STORAGE_KEY);
       let model = (saved || DEFAULT_MAIN_MODEL).trim() || DEFAULT_MAIN_MODEL;
@@ -34262,14 +34424,14 @@ ${galleryText}`;
         model = DEFAULT_MAIN_MODEL;
         localStorage.setItem(MAIN_MODEL_STORAGE_KEY, model);
       }
-      els24.mainModel.value = model;
+      els26.mainModel.value = model;
     } catch {
-      els24.mainModel.value = DEFAULT_MAIN_MODEL;
+      els26.mainModel.value = DEFAULT_MAIN_MODEL;
     }
     renderMainModelOptions();
   }
   function persistMainModel() {
-    if (!els24.mainModel) return;
+    if (!els26.mainModel) return;
     try {
       localStorage.setItem(MAIN_MODEL_STORAGE_KEY, currentMainModel());
     } catch {
@@ -34355,7 +34517,7 @@ ${galleryText}`;
   var GPT_IMAGE_2_MIN_PIXELS = 655360;
   var GPT_IMAGE_2_MAX_PIXELS = 8294400;
   var GPT_IMAGE_2_MAX_LONG_SHORT_RATIO = 3;
-  var { els: els25 } = getLegacyBridge();
+  var { els: els27 } = getLegacyBridge();
   function legacyMethod28(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -34367,8 +34529,8 @@ ${galleryText}`;
     return legacyMethod28("currentPromptFidelity");
   }
   function currentCustomRatio() {
-    const width = String(els25.customRatioWidth?.value || "").trim();
-    const height = String(els25.customRatioHeight?.value || "").trim();
+    const width = String(els27.customRatioWidth?.value || "").trim();
+    const height = String(els27.customRatioHeight?.value || "").trim();
     if (!/^[1-9]$/.test(width) || !/^[1-9]$/.test(height)) {
       return "";
     }
@@ -34400,7 +34562,7 @@ ${galleryText}`;
   function customDimensionValue(input) {
     return normalizeCustomDimension(input?.value);
   }
-  function customSizeValidationMessage(width = customDimensionValue(els25.customWidth), height = customDimensionValue(els25.customHeight)) {
+  function customSizeValidationMessage(width = customDimensionValue(els27.customWidth), height = customDimensionValue(els27.customHeight)) {
     if (width === null || height === null) return translate("output.customSizeRequired");
     if (width < 16 || width > 3840 || height < 16 || height > 3840) return translate("output.customSizeBounds");
     if (width % 16 !== 0 || height % 16 !== 0) return translate("output.customSizeMultiple");
@@ -34420,11 +34582,11 @@ ${galleryText}`;
     return null;
   }
   function currentSize() {
-    if (els25.size.value !== "custom") return els25.size.value;
-    return `${els25.customWidth.value}x${els25.customHeight.value}`;
+    if (els27.size.value !== "custom") return els27.size.value;
+    return `${els27.customWidth.value}x${els27.customHeight.value}`;
   }
   function currentImageToolModel() {
-    return currentAuthSource2() === "api" ? currentApiImageModel() : els25.model.value;
+    return currentAuthSource2() === "api" ? currentApiImageModel() : els27.model.value;
   }
   function webSearchSupportedForCurrentBackend() {
     const authSource = currentAuthSource2();
@@ -34433,7 +34595,7 @@ ${galleryText}`;
     return true;
   }
   function currentWebSearchEnabled() {
-    return Boolean(els25.webSearch?.checked && webSearchSupportedForCurrentBackend());
+    return Boolean(els27.webSearch?.checked && webSearchSupportedForCurrentBackend());
   }
   function currentTaskParams() {
     const params = {
@@ -34442,10 +34604,10 @@ ${galleryText}`;
       size: currentSize(),
       n: currentQuantity(),
       prompt_fidelity: currentPromptFidelity2(),
-      quality: els25.quality.value,
-      output_format: els25.outputFormat.value,
-      moderation: els25.moderation.value,
-      output_compression: els25.outputFormat.value === "png" ? null : Number(els25.compression.value)
+      quality: els27.quality.value,
+      output_format: els27.outputFormat.value,
+      moderation: els27.moderation.value,
+      output_compression: els27.outputFormat.value === "png" ? null : Number(els27.compression.value)
     };
     if (currentWebSearchEnabled()) {
       params.web_search = true;
@@ -34478,9 +34640,9 @@ ${galleryText}`;
   // codex_image/webui/frontend/src/custom-size-controls.ts
   var CUSTOM_SIZE_TRANSITION_MS = 220;
   var CUSTOM_SIZE_HEIGHT_SNAP_TOLERANCE = 4;
-  var bridge23 = getLegacyBridge();
-  var state17 = bridge23.state;
-  var els26 = bridge23.els;
+  var bridge25 = getLegacyBridge();
+  var state17 = bridge25.state;
+  var els28 = bridge25.els;
   var customSizeTransitionTimers = /* @__PURE__ */ new WeakMap();
   function measuredElementHeight2(element2) {
     if (!element2) return 0;
@@ -34488,19 +34650,19 @@ ${galleryText}`;
   }
   function handleSizeModeEvent(event) {
     const button = event.target.closest?.("[data-custom-size-mode]");
-    if (!button || !els26.sizeModeGroup?.contains(button)) return;
+    if (!button || !els28.sizeModeGroup?.contains(button)) return;
     setCustomSizeMode(button.dataset.customSizeMode === "custom");
   }
   function setCustomSizeMode(isCustom) {
-    if (els26.customSizeToggle) els26.customSizeToggle.checked = Boolean(isCustom);
+    if (els28.customSizeToggle) els28.customSizeToggle.checked = Boolean(isCustom);
     updateSizeFromPreset();
   }
   function swapCustomSizeDimensions(event) {
     event?.preventDefault?.();
-    if (!els26.customWidth || !els26.customHeight) return;
-    const width = els26.customWidth.value;
-    els26.customWidth.value = els26.customHeight.value;
-    els26.customHeight.value = width;
+    if (!els28.customWidth || !els28.customHeight) return;
+    const width = els28.customWidth.value;
+    els28.customWidth.value = els28.customHeight.value;
+    els28.customHeight.value = width;
     if (typeof swapCustomRatioDigits === "function") swapCustomRatioDigits();
     updateCustomSize();
     updatePixelPreview("custom");
@@ -34517,8 +34679,8 @@ ${galleryText}`;
     return digit ? Number(digit) : null;
   }
   function customAspectRatioFromManualInputs() {
-    const widthRatio = customRatioDigitValue(els26.customRatioWidth);
-    const heightRatio = customRatioDigitValue(els26.customRatioHeight);
+    const widthRatio = customRatioDigitValue(els28.customRatioWidth);
+    const heightRatio = customRatioDigitValue(els28.customRatioHeight);
     if (!widthRatio || !heightRatio) return null;
     return widthRatio / heightRatio;
   }
@@ -34529,7 +34691,7 @@ ${galleryText}`;
   }
   function updateCustomRatioFieldState() {
     const locked = Boolean(state17.customAspectRatioLocked);
-    els26.customRatioField?.classList.toggle("active", locked);
+    els28.customRatioField?.classList.toggle("active", locked);
   }
   function setCustomAspectRatioFromManualInputs() {
     const ratio = customAspectRatioFromManualInputs();
@@ -34540,10 +34702,10 @@ ${galleryText}`;
   }
   function applyCustomAspectRatioFromWidth() {
     if (!state17.customAspectRatioLocked || !state17.customAspectRatioValue) return;
-    if (!els26.customWidth || !els26.customHeight) return;
-    const width = customDimensionValue(els26.customWidth);
+    if (!els28.customWidth || !els28.customHeight) return;
+    const width = customDimensionValue(els28.customWidth);
     if (!width) return;
-    els26.customHeight.value = normalizeAspectDimension(width / state17.customAspectRatioValue);
+    els28.customHeight.value = normalizeAspectDimension(width / state17.customAspectRatioValue);
   }
   function handleCustomRatioInput(input) {
     sanitizeCustomRatioInput(input);
@@ -34587,10 +34749,10 @@ ${galleryText}`;
     return (Array.isArray(state17.images) ? state17.images : []).find((source) => source && !source.missing && Boolean(sourceUrlForAspectRatio(source)));
   }
   function updateCustomRatioReferenceButtonState() {
-    if (!els26.customRatioFromImageButton) return;
+    if (!els28.customRatioFromImageButton) return;
     const enabled = Boolean(firstReferenceImageSource());
-    els26.customRatioFromImageButton.disabled = !enabled;
-    els26.customRatioFromImageButton.setAttribute("aria-disabled", enabled ? "false" : "true");
+    els28.customRatioFromImageButton.disabled = !enabled;
+    els28.customRatioFromImageButton.setAttribute("aria-disabled", enabled ? "false" : "true");
   }
   function sourceUrlForAspectRatio(source) {
     if (!source || source.missing) return "";
@@ -34614,14 +34776,14 @@ ${galleryText}`;
     });
   }
   function applyCustomAspectRatioDigits(widthRatio, heightRatio) {
-    if (!els26.customRatioWidth || !els26.customRatioHeight) return;
-    els26.customRatioWidth.value = String(widthRatio || "");
-    els26.customRatioHeight.value = String(heightRatio || "");
+    if (!els28.customRatioWidth || !els28.customRatioHeight) return;
+    els28.customRatioWidth.value = String(widthRatio || "");
+    els28.customRatioHeight.value = String(heightRatio || "");
     setCustomAspectRatioFromManualInputs();
     applyCustomAspectRatioFromWidth();
     const numericWidthRatio = Number(widthRatio);
     const numericHeightRatio = Number(heightRatio);
-    if (Number.isFinite(numericWidthRatio) && Number.isFinite(numericHeightRatio) && numericWidthRatio > 0 && numericHeightRatio > 0 && Math.max(numericWidthRatio, numericHeightRatio) / Math.min(numericWidthRatio, numericHeightRatio) <= GPT_IMAGE_2_MAX_LONG_SHORT_RATIO && els26.customWidth && els26.customHeight) {
+    if (Number.isFinite(numericWidthRatio) && Number.isFinite(numericHeightRatio) && numericWidthRatio > 0 && numericHeightRatio > 0 && Math.max(numericWidthRatio, numericHeightRatio) / Math.min(numericWidthRatio, numericHeightRatio) <= GPT_IMAGE_2_MAX_LONG_SHORT_RATIO && els28.customWidth && els28.customHeight) {
       const baseWidth = numericWidthRatio * 16;
       const baseHeight = numericHeightRatio * 16;
       const basePixels = baseWidth * baseHeight;
@@ -34630,11 +34792,11 @@ ${galleryText}`;
       const maxUnitByBounds = Math.floor(Math.min(3840 / baseWidth, 3840 / baseHeight));
       const maxUnit = Math.min(maxUnitByPixels, maxUnitByBounds);
       if (maxUnit >= minUnitByPixels) {
-        const currentWidth = customDimensionValue(els26.customWidth);
+        const currentWidth = customDimensionValue(els28.customWidth);
         const preferredUnit = Math.max(1, Math.round((currentWidth || baseWidth * minUnitByPixels) / baseWidth));
         const unit = Math.min(maxUnit, Math.max(minUnitByPixels, preferredUnit));
-        els26.customWidth.value = String(baseWidth * unit);
-        els26.customHeight.value = String(baseHeight * unit);
+        els28.customWidth.value = String(baseWidth * unit);
+        els28.customHeight.value = String(baseHeight * unit);
       }
     }
     updateCustomSize();
@@ -34657,32 +34819,32 @@ ${galleryText}`;
   }
   function handleCustomDimensionInput(input) {
     if (!state17.customAspectRatioLocked || !state17.customAspectRatioValue) return;
-    if (!els26.customWidth || !els26.customHeight) return;
+    if (!els28.customWidth || !els28.customHeight) return;
     const value = customDimensionValue(input);
     if (!value) return;
-    if (input === els26.customWidth) {
-      els26.customHeight.value = normalizeAspectDimension(value / state17.customAspectRatioValue);
+    if (input === els28.customWidth) {
+      els28.customHeight.value = normalizeAspectDimension(value / state17.customAspectRatioValue);
       return;
     }
-    if (input === els26.customHeight) {
-      els26.customWidth.value = normalizeAspectDimension(value * state17.customAspectRatioValue);
+    if (input === els28.customHeight) {
+      els28.customWidth.value = normalizeAspectDimension(value * state17.customAspectRatioValue);
     }
   }
   function swapCustomRatioDigits() {
-    if (!els26.customRatioWidth || !els26.customRatioHeight) return;
-    const widthRatio = els26.customRatioWidth.value;
-    els26.customRatioWidth.value = els26.customRatioHeight.value;
-    els26.customRatioHeight.value = widthRatio;
+    if (!els28.customRatioWidth || !els28.customRatioHeight) return;
+    const widthRatio = els28.customRatioWidth.value;
+    els28.customRatioWidth.value = els28.customRatioHeight.value;
+    els28.customRatioHeight.value = widthRatio;
     setCustomAspectRatioFromManualInputs();
   }
   function updateSizeFromPreset(event = null) {
     const changedControl = sizeControlName(event?.target);
     syncRatioAndOrientation(changedControl);
-    if (els26.customSizeToggle?.checked) {
-      if (els26.size?.value !== "custom") {
+    if (els28.customSizeToggle?.checked) {
+      if (els28.size?.value !== "custom") {
         populateCustomSizeFromCurrentPreset();
       }
-      els26.size.value = "custom";
+      els28.size.value = "custom";
       if (typeof setCustomAspectRatioFromManualInputs === "function") setCustomAspectRatioFromManualInputs();
       if (typeof applyCustomAspectRatioFromWidth === "function") applyCustomAspectRatioFromWidth();
       updateCustomSize();
@@ -34690,35 +34852,35 @@ ${galleryText}`;
       updateRequestPreview10();
       return;
     }
-    const size = sizeForPreset(els26.resolution?.value, els26.ratio?.value);
-    els26.size.value = size;
+    const size = sizeForPreset(els28.resolution?.value, els28.ratio?.value);
+    els28.size.value = size;
     updatePixelPreview(size);
     updateCustomSize();
     updateRequestPreview10();
   }
   function populateCustomSizeFromCurrentPreset() {
-    if (!els26.customWidth || !els26.customHeight) return;
-    const [width, height] = sizeForPreset(els26.resolution?.value, els26.ratio?.value).split("x");
+    if (!els28.customWidth || !els28.customHeight) return;
+    const [width, height] = sizeForPreset(els28.resolution?.value, els28.ratio?.value).split("x");
     if (!width || !height) return;
-    els26.customWidth.value = width;
-    els26.customHeight.value = height;
+    els28.customWidth.value = width;
+    els28.customHeight.value = height;
   }
   function sizeControlName(target) {
-    if (target === els26.resolution) return "resolution";
-    if (target === els26.ratio) return "ratio";
-    if (target === els26.orientation) return "orientation";
+    if (target === els28.resolution) return "resolution";
+    if (target === els28.ratio) return "ratio";
+    if (target === els28.orientation) return "orientation";
     return null;
   }
   function syncRatioAndOrientation(changedControl) {
-    if (!els26.resolution || !els26.ratio || !els26.orientation) return;
-    if (!GPT_IMAGE_2_SIZE_PRESETS[els26.resolution.value]) {
-      setSizeControlValue(els26.resolution, DEFAULT_RESOLUTION);
+    if (!els28.resolution || !els28.ratio || !els28.orientation) return;
+    if (!GPT_IMAGE_2_SIZE_PRESETS[els28.resolution.value]) {
+      setSizeControlValue(els28.resolution, DEFAULT_RESOLUTION);
     }
-    if (!RATIO_ORIENTATION[els26.ratio.value]) {
-      setSizeControlValue(els26.ratio, DEFAULT_RATIO);
+    if (!RATIO_ORIENTATION[els28.ratio.value]) {
+      setSizeControlValue(els28.ratio, DEFAULT_RATIO);
     }
-    if (!ORIENTATION_DEFAULT_RATIOS[els26.orientation.value]) {
-      setSizeControlValue(els26.orientation, RATIO_ORIENTATION[els26.ratio.value] || DEFAULT_ORIENTATION);
+    if (!ORIENTATION_DEFAULT_RATIOS[els28.orientation.value]) {
+      setSizeControlValue(els28.orientation, RATIO_ORIENTATION[els28.ratio.value] || DEFAULT_ORIENTATION);
     }
     if (changedControl === "orientation") {
       syncRatioFromOrientation();
@@ -34727,22 +34889,22 @@ ${galleryText}`;
     syncOrientationFromRatio();
   }
   function syncOrientationFromRatio() {
-    const nextOrientation = RATIO_ORIENTATION[els26.ratio.value] || DEFAULT_ORIENTATION;
-    setSizeControlValue(els26.orientation, nextOrientation);
+    const nextOrientation = RATIO_ORIENTATION[els28.ratio.value] || DEFAULT_ORIENTATION;
+    setSizeControlValue(els28.orientation, nextOrientation);
   }
   function syncRatioFromOrientation() {
-    const orientation = els26.orientation.value;
+    const orientation = els28.orientation.value;
     if (orientation === "square") {
-      setSizeControlValue(els26.ratio, DEFAULT_RATIO);
+      setSizeControlValue(els28.ratio, DEFAULT_RATIO);
       return;
     }
-    if (RATIO_ORIENTATION[els26.ratio.value] === orientation) return;
-    const counterpart = RATIO_COUNTERPARTS[els26.ratio.value];
+    if (RATIO_ORIENTATION[els28.ratio.value] === orientation) return;
+    const counterpart = RATIO_COUNTERPARTS[els28.ratio.value];
     if (counterpart && RATIO_ORIENTATION[counterpart] === orientation) {
-      setSizeControlValue(els26.ratio, counterpart);
+      setSizeControlValue(els28.ratio, counterpart);
       return;
     }
-    setSizeControlValue(els26.ratio, ORIENTATION_DEFAULT_RATIOS[orientation] || DEFAULT_RATIO);
+    setSizeControlValue(els28.ratio, ORIENTATION_DEFAULT_RATIOS[orientation] || DEFAULT_RATIO);
   }
   function setSizeControlValue(select, value) {
     if (!select || select.value === value) return false;
@@ -34751,66 +34913,66 @@ ${galleryText}`;
     return true;
   }
   function updatePixelPreview(size) {
-    if (!els26.pixelPreview) return;
+    if (!els28.pixelPreview) return;
     if (size === "auto") {
-      els26.pixelPreview.textContent = formatTranslation("output.pixelPreviewAuto");
+      els28.pixelPreview.textContent = formatTranslation("output.pixelPreviewAuto");
       return;
     }
     if (size === "custom") {
       const message = customSizeValidationMessage();
       if (message) {
-        els26.pixelPreview.textContent = formatTranslation("output.pixelPreviewValue", { value: message });
+        els28.pixelPreview.textContent = formatTranslation("output.pixelPreviewValue", { value: message });
         return;
       }
-      els26.pixelPreview.textContent = formatTranslation("output.pixelPreviewValue", {
-        value: `${customDimensionValue(els26.customWidth)} x ${customDimensionValue(els26.customHeight)} px`
+      els28.pixelPreview.textContent = formatTranslation("output.pixelPreviewValue", {
+        value: `${customDimensionValue(els28.customWidth)} x ${customDimensionValue(els28.customHeight)} px`
       });
       return;
     }
     const [width, height] = String(size).split("x");
-    els26.pixelPreview.textContent = formatTranslation("output.pixelPreviewValue", { value: `${width} x ${height} px` });
+    els28.pixelPreview.textContent = formatTranslation("output.pixelPreviewValue", { value: `${width} x ${height} px` });
   }
-  document.addEventListener(LOCALE_CHANGE_EVENT, () => updatePixelPreview(els26.size?.value || ""));
+  document.addEventListener(LOCALE_CHANGE_EVENT, () => updatePixelPreview(els28.size?.value || ""));
   function syncSizeControlsFromSize(size) {
     if (!size || size === "auto") {
-      if (els26.customSizeToggle) els26.customSizeToggle.checked = false;
-      if (els26.resolution) els26.resolution.value = DEFAULT_RESOLUTION;
-      if (els26.ratio) els26.ratio.value = DEFAULT_RATIO;
-      if (els26.orientation) els26.orientation.value = DEFAULT_ORIENTATION;
+      if (els28.customSizeToggle) els28.customSizeToggle.checked = false;
+      if (els28.resolution) els28.resolution.value = DEFAULT_RESOLUTION;
+      if (els28.ratio) els28.ratio.value = DEFAULT_RATIO;
+      if (els28.orientation) els28.orientation.value = DEFAULT_ORIENTATION;
       updateSizeFromPreset();
-      syncRadioButtons(els26.resolution, els26.ratio, els26.orientation);
+      syncRadioButtons(els28.resolution, els28.ratio, els28.orientation);
       return;
     }
     const presetMatch = findPresetForSize(size);
     if (presetMatch) {
-      if (els26.customSizeToggle) els26.customSizeToggle.checked = false;
-      els26.resolution.value = presetMatch.resolution;
-      els26.ratio.value = presetMatch.ratio;
-      els26.orientation.value = presetMatch.orientation;
+      if (els28.customSizeToggle) els28.customSizeToggle.checked = false;
+      els28.resolution.value = presetMatch.resolution;
+      els28.ratio.value = presetMatch.ratio;
+      els28.orientation.value = presetMatch.orientation;
       updateSizeFromPreset();
-      syncRadioButtons(els26.resolution, els26.ratio, els26.orientation);
+      syncRadioButtons(els28.resolution, els28.ratio, els28.orientation);
       return;
     }
     const [width, height] = String(size).split("x");
     if (width && height) {
-      if (els26.customSizeToggle) els26.customSizeToggle.checked = true;
-      els26.size.value = "custom";
-      els26.customWidth.value = width;
-      els26.customHeight.value = height;
+      if (els28.customSizeToggle) els28.customSizeToggle.checked = true;
+      els28.size.value = "custom";
+      els28.customWidth.value = width;
+      els28.customHeight.value = height;
       updatePixelPreview("custom");
       updateCustomSize();
       updateRequestPreview10();
     }
   }
   function setCustomSizeModeLayout(isCustom) {
-    els26.customSize?.classList.toggle("hidden", !isCustom);
-    els26.customSize?.classList.toggle("custom-size-collapsed", !isCustom);
-    els26.customSize?.setAttribute("aria-hidden", isCustom ? "false" : "true");
-    els26.settingsGrid?.classList.toggle("custom-size-mode", isCustom);
+    els28.customSize?.classList.toggle("hidden", !isCustom);
+    els28.customSize?.classList.toggle("custom-size-collapsed", !isCustom);
+    els28.customSize?.setAttribute("aria-hidden", isCustom ? "false" : "true");
+    els28.settingsGrid?.classList.toggle("custom-size-mode", isCustom);
   }
   function measureCustomSizeModeHeight(isCustom) {
-    const grid = els26.settingsGrid;
-    const customSize = els26.customSize;
+    const grid = els28.settingsGrid;
+    const customSize = els28.customSize;
     if (!grid) return 0;
     const originalHeight = grid.style.height;
     const originalGridTransition = grid.style.transition;
@@ -34840,8 +35002,8 @@ ${galleryText}`;
     return height;
   }
   function transitionCustomSizeMode(isCustom) {
-    const grid = els26.settingsGrid;
-    const customSize = els26.customSize;
+    const grid = els28.settingsGrid;
+    const customSize = els28.customSize;
     if (!grid || !customSize) {
       setCustomSizeModeLayout(isCustom);
       state17.customSizeMode = isCustom;
@@ -34919,33 +35081,33 @@ ${galleryText}`;
     customSizeTransitionTimers.set(grid, timerId);
   }
   function updateCustomSize() {
-    const isCustom = els26.size?.value === "custom";
+    const isCustom = els28.size?.value === "custom";
     transitionCustomSizeMode(isCustom);
-    if (els26.customSizeToggle) els26.customSizeToggle.checked = isCustom;
-    els26.sizeModeGroup?.querySelectorAll("[data-custom-size-mode]").forEach((button) => {
+    if (els28.customSizeToggle) els28.customSizeToggle.checked = isCustom;
+    els28.sizeModeGroup?.querySelectorAll("[data-custom-size-mode]").forEach((button) => {
       const active = button.dataset.customSizeMode === (isCustom ? "custom" : "preset");
       button.classList.toggle("active", active);
       button.setAttribute("aria-pressed", active ? "true" : "false");
     });
     const message = isCustom ? customSizeValidationMessage() : "";
-    els26.customSize?.classList.toggle("has-error", Boolean(message));
-    if (els26.customSizeHint) {
-      els26.customSizeHint.textContent = message || formatTranslation("output.customSizeHint");
+    els28.customSize?.classList.toggle("has-error", Boolean(message));
+    if (els28.customSizeHint) {
+      els28.customSizeHint.textContent = message || formatTranslation("output.customSizeHint");
     }
     updateCustomRatioFieldState();
   }
 
   // codex_image/webui/frontend/src/form-controls.ts
-  var bridge24 = getLegacyBridge();
-  var state18 = bridge24.state;
-  var els27 = bridge24.els;
+  var bridge26 = getLegacyBridge();
+  var state18 = bridge26.state;
+  var els29 = bridge26.els;
   var formControlsInitialized = false;
   var formControlEventsBound = false;
   function syncRunButtonLabel2() {
-    if (!els27.runButton || state18.runTimerId) return;
+    if (!els29.runButton || state18.runTimerId) return;
     const mode = state18.mode === "edit" ? "edit" : "generate";
-    els27.runButton.textContent = translate(mode === "edit" ? "prompt.runEdit" : "prompt.run");
-    els27.runButton.title = translate(mode === "edit" ? "prompt.runEditTitle" : "prompt.runTitle");
+    els29.runButton.textContent = translate(mode === "edit" ? "prompt.runEdit" : "prompt.run");
+    els29.runButton.title = translate(mode === "edit" ? "prompt.runEditTitle" : "prompt.runTitle");
   }
   function bindFormControlEvents() {
     if (formControlEventsBound) return;
@@ -34954,55 +35116,55 @@ ${galleryText}`;
       button.addEventListener("click", () => setMode4(button.dataset.mode));
     });
     [
-      els27.mainModel,
-      els27.webSearch,
-      els27.model,
-      els27.size,
-      els27.customWidth,
-      els27.customHeight,
-      els27.quality,
-      els27.outputFormat,
-      els27.moderation,
-      els27.compression,
-      els27.nInput,
-      els27.promptFidelity
+      els29.mainModel,
+      els29.webSearch,
+      els29.model,
+      els29.size,
+      els29.customWidth,
+      els29.customHeight,
+      els29.quality,
+      els29.outputFormat,
+      els29.moderation,
+      els29.compression,
+      els29.nInput,
+      els29.promptFidelity
     ].filter(Boolean).forEach((element2) => element2.addEventListener("input", () => {
       persistMainModel();
       updateQuantity();
       updateCompression();
-      if (element2 === els27.customWidth || element2 === els27.customHeight) handleCustomDimensionInput(element2);
+      if (element2 === els29.customWidth || element2 === els29.customHeight) handleCustomDimensionInput(element2);
       updateCustomSize();
-      if (element2 === els27.customWidth || element2 === els27.customHeight) updatePixelPreview("custom");
+      if (element2 === els29.customWidth || element2 === els29.customHeight) updatePixelPreview("custom");
       updateRequestPreview10();
     }));
-    els27.mainModel?.addEventListener("focus", () => openMainModelCombobox({ showAll: true }));
-    els27.mainModel?.addEventListener("click", () => {
+    els29.mainModel?.addEventListener("focus", () => openMainModelCombobox({ showAll: true }));
+    els29.mainModel?.addEventListener("click", () => {
       if (!state18.mainModelComboboxOpen) openMainModelCombobox({ showAll: true });
     });
-    els27.mainModel?.addEventListener("input", () => {
+    els29.mainModel?.addEventListener("input", () => {
       state18.mainModelShowAllOptions = false;
       openMainModelCombobox();
       renderMainModelOptions();
     });
-    els27.mainModel?.addEventListener("keydown", handleMainModelKeydown);
-    els27.mainModelToggle?.addEventListener("click", (event) => {
+    els29.mainModel?.addEventListener("keydown", handleMainModelKeydown);
+    els29.mainModelToggle?.addEventListener("click", (event) => {
       event.preventDefault();
       if (state18.mainModelComboboxOpen) {
         closeMainModelCombobox();
       } else {
         openMainModelCombobox({ showAll: true });
-        els27.mainModel?.focus();
+        els29.mainModel?.focus();
       }
     });
     document.addEventListener("click", (event) => {
-      if (!els27.mainModelCombobox || els27.mainModelCombobox.contains(event.target)) return;
+      if (!els29.mainModelCombobox || els29.mainModelCombobox.contains(event.target)) return;
       closeMainModelCombobox();
     });
-    [els27.resolution, els27.ratio, els27.orientation].filter(Boolean).forEach((element2) => {
+    [els29.resolution, els29.ratio, els29.orientation].filter(Boolean).forEach((element2) => {
       element2.addEventListener("input", updateSizeFromPreset);
       element2.addEventListener("change", updateSizeFromPreset);
     });
-    [els27.customRatioWidth, els27.customRatioHeight].filter(Boolean).forEach((element2) => {
+    [els29.customRatioWidth, els29.customRatioHeight].filter(Boolean).forEach((element2) => {
       element2.addEventListener("input", () => {
         handleCustomRatioInput(element2);
         updateCustomSize();
@@ -35010,15 +35172,15 @@ ${galleryText}`;
         updateRequestPreview10();
       });
     });
-    els27.sizeModeGroup?.addEventListener("click", handleSizeModeEvent);
-    els27.swapCustomSizeButton?.addEventListener("click", swapCustomSizeDimensions);
-    els27.customRatioFromImageButton?.addEventListener("click", (event) => {
+    els29.sizeModeGroup?.addEventListener("click", handleSizeModeEvent);
+    els29.swapCustomSizeButton?.addEventListener("click", swapCustomSizeDimensions);
+    els29.customRatioFromImageButton?.addEventListener("click", (event) => {
       void applyFirstReferenceImageAspectRatio(event);
     });
-    if (els27.customSizeToggle) {
-      els27.customSizeToggle.addEventListener("change", updateSizeFromPreset);
+    if (els29.customSizeToggle) {
+      els29.customSizeToggle.addEventListener("change", updateSizeFromPreset);
     }
-    els27.outputFormatGroup?.addEventListener("dblclick", handleOutputFormatDoubleClick);
+    els29.outputFormatGroup?.addEventListener("dblclick", handleOutputFormatDoubleClick);
   }
   function setMode4(mode) {
     state18.mode = mode;
@@ -35028,7 +35190,7 @@ ${galleryText}`;
     if (!state18.runTimerId) {
       syncRunButtonLabel2();
     }
-    syncRadioButtons(els27.quality, els27.outputFormat, els27.moderation);
+    syncRadioButtons(els29.quality, els29.outputFormat, els29.moderation);
     updateRequestPreview10();
   }
   function initFormControlsFeature() {
@@ -35077,9 +35239,9 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/task-list-render.ts
-  var bridge25 = getLegacyBridge();
-  var state19 = bridge25.state;
-  var els28 = bridge25.els;
+  var bridge27 = getLegacyBridge();
+  var state19 = bridge27.state;
+  var els30 = bridge27.els;
   var EXPANDED_TASK_GROUP_INITIAL_CARD_COUNT = 24;
   var EXPANDED_TASK_GROUP_CHUNK_SIZE = 48;
   var EXPANDED_TASK_GROUP_ANIMATION_FALLBACK_MS = 320;
@@ -35093,7 +35255,7 @@ ${galleryText}`;
     }
     return method(...args);
   }
-  function escapeHtml13(...args) {
+  function escapeHtml14(...args) {
     return legacyMethod29("escapeHtml", ...args);
   }
   function updateDocumentTitle(...args) {
@@ -35157,20 +35319,20 @@ ${galleryText}`;
   var timestampMs2 = (...args) => legacyMethod29("timestampMs", ...args);
   function renderTasks2(options = {}) {
     const scrollAnchor = options.preserveScroll ? captureTaskListScrollAnchor() : null;
-    const query = taskSearchQuery();
+    const query2 = taskSearchQuery();
     const filters = taskFilterValues();
     const visibleTasks = state19.tasks.filter((task) => !isTaskArchived(task.task_id));
     const tasks = visibleTasks.filter((task) => {
-      return taskMatchesSearch(task, query) && taskMatchesFilters(task, filters);
+      return taskMatchesSearch(task, query2) && taskMatchesFilters(task, filters);
     });
     const visibleTaskIds = visibleTasks.map((task) => String(task.task_id));
     state19.batchSelectedTaskIds = state19.batchSelectedTaskIds.filter((taskId) => visibleTaskIds.includes(String(taskId)));
     renderBatchToolbar();
-    const activeGroup = activeTaskGroup(tasks, query);
-    const groups = taskHistoryGroups(tasks, query);
+    const activeGroup = activeTaskGroup(tasks, query2);
+    const groups = taskHistoryGroups(tasks, query2);
     const expandedGroup = ensureExpandedTaskGroupKey(groups);
-    const layout = taskAnchorLayout(groups, expandedGroup?.key || null, query);
-    const nextRenderKey = taskListRenderKey(tasks, query, layout, filters, activeGroup);
+    const layout = taskAnchorLayout(groups, expandedGroup?.key || null, query2);
+    const nextRenderKey = taskListRenderKey(tasks, query2, layout, filters, activeGroup);
     if (state19.tasksRenderKey === nextRenderKey) {
       updateTaskElapsedDisplays2();
       restoreTaskListScrollAnchor(scrollAnchor);
@@ -35178,26 +35340,26 @@ ${galleryText}`;
     }
     state19.tasksRenderKey = nextRenderKey;
     renderTaskHistoryAnchors(layout);
-    renderHistoryLibraryGroup(tasks, query);
+    renderHistoryLibraryGroup(tasks, query2);
     const activeHtml = activeGroup ? activeTaskGroupHtml(activeGroup) : "";
     renderActiveTaskGroup(activeHtml);
     if (!tasks.length) {
       expandedTaskGroupRenderToken += 1;
-      els28.taskList.innerHTML = `<div class="task-meta">${escapeHtml13(translate("taskList.empty"))}</div>`;
+      els30.taskList.innerHTML = `<div class="task-meta">${escapeHtml14(translate("taskList.empty"))}</div>`;
       updateDocumentTitle();
       restoreTaskListScrollAnchor(scrollAnchor);
       return;
     }
     if (!layout.expandedGroup) {
       expandedTaskGroupRenderToken += 1;
-      els28.taskList.innerHTML = "";
+      els30.taskList.innerHTML = "";
       updateDocumentTitle();
       restoreTaskListScrollAnchor(scrollAnchor);
       return;
     }
     const group = layout.expandedGroup;
     const shouldAnimateExpandedGroup = state19.expandedTaskGroupAnimationPending === true;
-    els28.taskList.innerHTML = renderExpandedTaskGroupShellHtml(group, {
+    els30.taskList.innerHTML = renderExpandedTaskGroupShellHtml(group, {
       startExpanded: !shouldAnimateExpandedGroup
     });
     scheduleExpandedTaskGroupItemsRender(group, layout.expandedKey || group?.key || null);
@@ -35205,7 +35367,7 @@ ${galleryText}`;
     restoreTaskListScrollAnchor(scrollAnchor);
   }
   function taskListScrollContainer() {
-    return els28.sidebarContent || els28.taskHistoryShell || els28.taskList || null;
+    return els30.sidebarContent || els30.taskHistoryShell || els30.taskList || null;
   }
   function captureTaskListScrollAnchor() {
     const scroller = taskListScrollContainer();
@@ -35250,19 +35412,19 @@ ${galleryText}`;
     };
     requestAnimationFrame(restore);
   }
-  function renderHistoryLibraryGroup(tasks, query) {
-    if (!els28.taskHistoryLibrarySlot) return;
-    const html = historyLibraryGroup(tasks, query);
-    els28.taskHistoryLibrarySlot.innerHTML = html;
-    els28.taskHistoryLibrarySlot.classList.toggle("hidden", !html);
+  function renderHistoryLibraryGroup(tasks, query2) {
+    if (!els30.taskHistoryLibrarySlot) return;
+    const html = historyLibraryGroup(tasks, query2);
+    els30.taskHistoryLibrarySlot.innerHTML = html;
+    els30.taskHistoryLibrarySlot.classList.toggle("hidden", !html);
   }
   function renderActiveTaskGroup(activeHtml) {
-    if (!els28.taskActiveList) return;
-    els28.taskActiveList.innerHTML = activeHtml;
-    els28.taskActiveList.classList.toggle("hidden", !activeHtml);
+    if (!els30.taskActiveList) return;
+    els30.taskActiveList.innerHTML = activeHtml;
+    els30.taskActiveList.classList.toggle("hidden", !activeHtml);
   }
-  function taskAnchorLayout(groups, expandedKey, query) {
-    if (query) {
+  function taskAnchorLayout(groups, expandedKey, query2) {
+    if (query2) {
       return {
         top: [],
         bottom: [],
@@ -35291,10 +35453,10 @@ ${galleryText}`;
   }
   function expandedTaskGroupBodyElements(groupKey) {
     const escapedGroupKey = cssEscape(groupKey);
-    const body = els28.taskList?.querySelector(
+    const body = els30.taskList?.querySelector(
       `.task-group-items-expanded[data-expanded-task-group-items-key="${escapedGroupKey}"]`
     );
-    const headerButton = els28.taskList?.querySelector(
+    const headerButton = els30.taskList?.querySelector(
       `.task-group[data-task-group="${escapedGroupKey}"] .task-group-header-split`
     );
     return { body, headerButton };
@@ -35337,8 +35499,8 @@ ${galleryText}`;
     fallbackTimerId = window.setTimeout(finalize, EXPANDED_TASK_GROUP_ANIMATION_FALLBACK_MS);
   }
   function expandedTaskGroupItemsContainer(groupKey) {
-    if (!els28.taskList) return null;
-    return els28.taskList.querySelector(
+    if (!els30.taskList) return null;
+    return els30.taskList.querySelector(
       `.task-group-items-expanded[data-expanded-task-group-items-key="${cssEscape(groupKey)}"]`
     );
   }
@@ -35383,7 +35545,7 @@ ${galleryText}`;
     requestAnimationFrame(renderChunk);
   }
   function taskCardRoot() {
-    return els28.taskHistoryShell || els28.sidebarContent || els28.taskList;
+    return els30.taskHistoryShell || els30.sidebarContent || els30.taskList;
   }
   function taskCardElement(taskId) {
     const root = taskCardRoot();
@@ -35412,23 +35574,23 @@ ${galleryText}`;
     updateDocumentTitle();
   }
   function taskSearchQuery() {
-    return els28.taskSearch.value.trim().toLowerCase();
+    return els30.taskSearch.value.trim().toLowerCase();
   }
   function taskFilterValues() {
     return {
-      ratio: els28.taskRatioFilter?.value || "",
-      orientation: els28.taskOrientationFilter?.value || "",
-      promptFidelity: els28.taskPromptFidelityFilter?.value || "",
-      resolution: els28.taskResolutionFilter?.value || ""
+      ratio: els30.taskRatioFilter?.value || "",
+      orientation: els30.taskOrientationFilter?.value || "",
+      promptFidelity: els30.taskPromptFidelityFilter?.value || "",
+      resolution: els30.taskResolutionFilter?.value || ""
     };
   }
-  function taskSearchHistoryResultMatches(taskId, query) {
-    if (!taskId || !query) return false;
-    if (String(state19.taskSearchHistoryResultQuery || "") !== query) return false;
+  function taskSearchHistoryResultMatches(taskId, query2) {
+    if (!taskId || !query2) return false;
+    if (String(state19.taskSearchHistoryResultQuery || "") !== query2) return false;
     return (state19.taskSearchHistoryResultIds || []).some((id) => String(id) === taskId);
   }
-  function taskMatchesSearch(task, query) {
-    const normalizedQuery = String(query || "").trim().toLowerCase();
+  function taskMatchesSearch(task, query2) {
+    const normalizedQuery = String(query2 || "").trim().toLowerCase();
     const taskId = String(task?.task_id || "");
     if (taskSearchHistoryResultMatches(taskId, normalizedQuery)) {
       return true;
@@ -35443,18 +35605,18 @@ ${galleryText}`;
     if (filters.resolution && taskResolution(task) !== filters.resolution) return false;
     return true;
   }
-  function filteredVisibleTasks(query = taskSearchQuery(), filters = taskFilterValues()) {
+  function filteredVisibleTasks(query2 = taskSearchQuery(), filters = taskFilterValues()) {
     return state19.tasks.filter((task) => {
-      return !isTaskArchived(task.task_id) && taskMatchesSearch(task, query) && taskMatchesFilters(task, filters);
+      return !isTaskArchived(task.task_id) && taskMatchesSearch(task, query2) && taskMatchesFilters(task, filters);
     });
   }
   function clearTaskListFiltersForActiveGroup() {
     let changed = false;
-    if (els28.taskSearch?.value) {
-      els28.taskSearch.value = "";
+    if (els30.taskSearch?.value) {
+      els30.taskSearch.value = "";
       changed = true;
     }
-    [els28.taskRatioFilter, els28.taskOrientationFilter, els28.taskPromptFidelityFilter, els28.taskResolutionFilter].filter(Boolean).forEach((element2) => {
+    [els30.taskRatioFilter, els30.taskOrientationFilter, els30.taskPromptFidelityFilter, els30.taskResolutionFilter].filter(Boolean).forEach((element2) => {
       if (element2.value) {
         element2.value = "";
         changed = true;
@@ -35481,7 +35643,7 @@ ${galleryText}`;
     }
   }
   function renderExpandedTaskGroupShellHtml(group, options = {}) {
-    const groupKey = escapeHtml13(group.key);
+    const groupKey = escapeHtml14(group.key);
     const startExpanded = options.startExpanded !== false;
     return `
     <section class="task-group task-group-expanded" data-task-group="${groupKey}">
@@ -35491,11 +35653,11 @@ ${galleryText}`;
         data-task-group-toggle-key="${groupKey}"
         data-task-group-expanded="true"
         aria-expanded="${startExpanded ? "true" : "false"}"
-        aria-label="${escapeHtml13(formatTranslation("taskGroup.collapse", { label: group.label }))}"
+        aria-label="${escapeHtml14(formatTranslation("taskGroup.collapse", { label: group.label }))}"
       >
         <span class="task-group-label-button">
           <span class="task-group-title">
-            <span class="task-group-label">${escapeHtml13(group.label)}</span>
+            <span class="task-group-label">${escapeHtml14(group.label)}</span>
             <span class="task-group-count-separator" aria-hidden="true"> \xB7 </span>
             <span class="task-group-count">${group.tasks.length}</span>
           </span>
@@ -35537,7 +35699,7 @@ ${galleryText}`;
     return `
     <div ${sectionClass} ${sectionData}>
       <div class="task-active-section-title">
-        <span>${escapeHtml13(label)}</span>
+        <span>${escapeHtml14(label)}</span>
         <span class="task-active-section-count">${tasks.length}</span>
       </div>
       <div class="task-active-section-items">
@@ -35553,8 +35715,8 @@ ${galleryText}`;
     </div>
   `;
   }
-  function activeTaskGroup(tasks, query = "") {
-    if (query) return null;
+  function activeTaskGroup(tasks, query2 = "") {
+    if (query2) return null;
     const activeTasks = activeTasksForGroup(tasks);
     if (!activeTasks.length) return null;
     return {
@@ -35566,7 +35728,7 @@ ${galleryText}`;
     };
   }
   function activeTaskGroupHtml(group) {
-    const groupKey = escapeHtml13(group.key);
+    const groupKey = escapeHtml14(group.key);
     const sections = activeTaskSections(group.tasks || []);
     const dispatchPending = Boolean(legacyMethod29("isQueueDispatchPending"));
     const collapsed = Boolean(state19.activeTaskGroupCollapsed);
@@ -35575,9 +35737,9 @@ ${galleryText}`;
       activeTaskSectionHtml("waiting", translate("taskGroup.waiting"), sections.waiting),
       !sections.running.length && !sections.waiting.length && dispatchPending ? activeTaskDispatchPendingHtml() : ""
     ].join("");
-    const activeLabel = escapeHtml13(group.label);
+    const activeLabel = escapeHtml14(group.label);
     const activeCount = group.tasks.length;
-    const toggleLabel = escapeHtml13(formatTranslation(collapsed ? "taskGroup.expand" : "taskGroup.collapse", { label: group.label }));
+    const toggleLabel = escapeHtml14(formatTranslation(collapsed ? "taskGroup.expand" : "taskGroup.collapse", { label: group.label }));
     return `
     <section class="task-group task-group-expanded task-group-active${collapsed ? " task-active-collapsed" : ""}" data-task-group="${groupKey}">
       <button
@@ -35609,7 +35771,7 @@ ${galleryText}`;
   `;
   }
   function expandedTaskGroupHtml(group) {
-    const groupKey = escapeHtml13(group.key);
+    const groupKey = escapeHtml14(group.key);
     return `
     <section class="task-group task-group-expanded" data-task-group="${groupKey}">
       <button
@@ -35618,11 +35780,11 @@ ${galleryText}`;
         data-task-group-toggle-key="${groupKey}"
         data-task-group-expanded="true"
         aria-expanded="true"
-        aria-label="${escapeHtml13(formatTranslation("taskGroup.collapse", { label: group.label }))}"
+        aria-label="${escapeHtml14(formatTranslation("taskGroup.collapse", { label: group.label }))}"
       >
         <span class="task-group-label-button">
           <span class="task-group-title">
-            <span class="task-group-label">${escapeHtml13(group.label)}</span>
+            <span class="task-group-label">${escapeHtml14(group.label)}</span>
             <span class="task-group-count-separator" aria-hidden="true"> \xB7 </span>
             <span class="task-group-count">${group.tasks.length}</span>
           </span>
@@ -35697,12 +35859,12 @@ ${galleryText}`;
   }
   function taskQueueActionStripHtml(task, queueSection = taskQueueSection(task), waitingIndex = waitingQueueIndex(task?.task_id)) {
     if (!queueSection) return "";
-    const taskId = escapeHtml13(task.task_id);
+    const taskId = escapeHtml14(task.task_id);
     if (queueSection === "running") {
-      const runningActionsLabel = escapeHtml13(translate("queue.runningActions"));
-      const cancelTitle = escapeHtml13(translate("queue.cancelRunningTitle"));
+      const runningActionsLabel = escapeHtml14(translate("queue.runningActions"));
+      const cancelTitle = escapeHtml14(translate("queue.cancelRunningTitle"));
       return `
-      <div class="task-queue-actions task-queue-actions-running" role="group" aria-label="${runningActionsLabel}" data-task-queue-section="${escapeHtml13(queueSection)}">
+      <div class="task-queue-actions task-queue-actions-running" role="group" aria-label="${runningActionsLabel}" data-task-queue-section="${escapeHtml14(queueSection)}">
         <button class="task-queue-action task-queue-cancel-button" type="button" data-task-queue-cancel-id="${taskId}" aria-label="${cancelTitle}" title="${cancelTitle}">${taskQueueActionIconHtml("cancel")}</button>
       </div>
     `;
@@ -35710,15 +35872,15 @@ ${galleryText}`;
     const waitingCount = (state19.queue.waiting || []).length;
     const disableMoveUp = waitingIndex <= 0;
     const disableMoveDown = waitingIndex < 0 || waitingIndex >= waitingCount - 1;
-    const waitingActionsLabel = escapeHtml13(translate("queue.waitingActions"));
-    const dragWaitingLabel = escapeHtml13(translate("queue.dragWaiting"));
-    const dragSortLabel = escapeHtml13(translate("queue.dragSort"));
-    const moveUpTitle = escapeHtml13(translate("queue.moveUpTitle"));
-    const moveDownTitle = escapeHtml13(translate("queue.moveDownTitle"));
-    const promoteTitle = escapeHtml13(translate("queue.promoteTitle"));
-    const deleteTitle = escapeHtml13(translate("queue.deleteWaitingTitle"));
+    const waitingActionsLabel = escapeHtml14(translate("queue.waitingActions"));
+    const dragWaitingLabel = escapeHtml14(translate("queue.dragWaiting"));
+    const dragSortLabel = escapeHtml14(translate("queue.dragSort"));
+    const moveUpTitle = escapeHtml14(translate("queue.moveUpTitle"));
+    const moveDownTitle = escapeHtml14(translate("queue.moveDownTitle"));
+    const promoteTitle = escapeHtml14(translate("queue.promoteTitle"));
+    const deleteTitle = escapeHtml14(translate("queue.deleteWaitingTitle"));
     return `
-    <div class="task-queue-actions task-queue-actions-waiting" role="group" aria-label="${waitingActionsLabel}" data-task-queue-section="${escapeHtml13(queueSection)}">
+    <div class="task-queue-actions task-queue-actions-waiting" role="group" aria-label="${waitingActionsLabel}" data-task-queue-section="${escapeHtml14(queueSection)}">
       <button class="task-queue-drag-handle" type="button" draggable="true" data-task-queue-drag-handle-id="${taskId}" aria-label="${dragWaitingLabel}" title="${dragSortLabel}">
         <svg class="task-queue-drag-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
           <path d="M5 3.5h.1M5 8h.1M5 12.5h.1M10.5 3.5h.1M10.5 8h.1M10.5 12.5h.1" />
@@ -35733,9 +35895,9 @@ ${galleryText}`;
   }
   function taskCardActionsHtml(taskId, queueSection = "") {
     if (queueSection) return "";
-    const actionGroupLabel = escapeHtml13(translate("taskActions.group"));
-    const archiveLabel = escapeHtml13(translate("taskContext.archive"));
-    const deleteLabel = escapeHtml13(translate("taskContext.delete"));
+    const actionGroupLabel = escapeHtml14(translate("taskActions.group"));
+    const archiveLabel = escapeHtml14(translate("taskContext.archive"));
+    const deleteLabel = escapeHtml14(translate("taskContext.delete"));
     return `
       <div class="task-card-actions" role="group" aria-label="${actionGroupLabel}">
         <button class="task-archive-button" type="button" data-archive-task-id="${taskId}" aria-label="${archiveLabel}" title="${archiveLabel}">
@@ -35763,36 +35925,36 @@ ${galleryText}`;
     const activeCurrent = active ? ' aria-current="true"' : "";
     const unread = taskHasUnreadUpdate(task);
     const unreadClass = unread ? " unread" : "";
-    const statusClass = task.status ? ` ${escapeHtml13(task.status)}` : "";
-    const title = escapeHtml13(task.prompt || task.mode || "Untitled");
+    const statusClass = task.status ? ` ${escapeHtml14(task.status)}` : "";
+    const title = escapeHtml14(task.prompt || task.mode || "Untitled");
     const showImageSummary = taskImageSummaryVisible(task);
     const imageBlocks = showImageSummary ? taskImageBlocksHtml(task) : "";
-    const imageSummary = showImageSummary ? escapeHtml13(taskImageSummaryText(task)) : "";
+    const imageSummary = showImageSummary ? escapeHtml14(taskImageSummaryText(task)) : "";
     const imageSummaryHtml = imageSummary ? `<span class="task-image-summary">${imageSummary}</span>` : "";
     const retryFullText = taskRetryStateText2(task);
     const retryText = taskCardRetryStateText(task) || retryFullText;
     const statusLabel = taskStatusLabelHtml(task);
-    const statusMeta = escapeHtml13(retryText ? taskMetaDetailsWithCompletionText(task) : taskMetaDetailsText2(task));
+    const statusMeta = escapeHtml14(retryText ? taskMetaDetailsWithCompletionText(task) : taskMetaDetailsText2(task));
     const taskTime = taskCardCompletionTimeText(task);
     const runtime = taskCardRuntimeText2(task);
     const runtimeFullText = taskRuntimeText(task);
     const completionTitle = taskCompletionTimestampTitle(task);
-    const taskId = escapeHtml13(task.task_id);
+    const taskId = escapeHtml14(task.task_id);
     const runtimeTitleText = [runtimeFullText, completionTitle].filter(Boolean).join(" \xB7 ");
-    const runtimeTitle = runtimeTitleText ? ` title="${escapeHtml13(runtimeTitleText)}"` : "";
-    const runtimeHtml = runtime ? `<span class="task-runtime" data-task-runtime-id="${taskId}" data-task-completed-at-id="${taskId}"${runtimeTitle}>${escapeHtml13(runtime)}</span>` : "";
+    const runtimeTitle = runtimeTitleText ? ` title="${escapeHtml14(runtimeTitleText)}"` : "";
+    const runtimeHtml = runtime ? `<span class="task-runtime" data-task-runtime-id="${taskId}" data-task-completed-at-id="${taskId}"${runtimeTitle}>${escapeHtml14(runtime)}</span>` : "";
     const imageRow = showImageSummary ? `
           <span class="task-image-row">
             ${imageBlocks}
-            <span class="task-status-row task-status-inline" aria-label="${escapeHtml13(taskStatusAccessibleLabel2(task))}">
+            <span class="task-status-row task-status-inline" aria-label="${escapeHtml14(taskStatusAccessibleLabel2(task))}">
               ${statusLabel}
             </span>
             ${imageSummaryHtml}
           </span>
     ` : "";
-    const retryTitle = retryFullText && retryFullText !== retryText ? ` title="${escapeHtml13(retryFullText)}"` : "";
-    const retryHtml = retryText ? `<span class="task-retry-state" data-task-retry-id="${taskId}"${retryTitle}>${escapeHtml13(retryText)}</span>` : "";
-    const timeHtml = !retryText && taskTime ? `<span class="task-card-time">${escapeHtml13(taskTime)}</span>` : "";
+    const retryTitle = retryFullText && retryFullText !== retryText ? ` title="${escapeHtml14(retryFullText)}"` : "";
+    const retryHtml = retryText ? `<span class="task-retry-state" data-task-retry-id="${taskId}"${retryTitle}>${escapeHtml14(retryText)}</span>` : "";
+    const timeHtml = !retryText && taskTime ? `<span class="task-card-time">${escapeHtml14(taskTime)}</span>` : "";
     const detailRightHtml = retryHtml || timeHtml;
     const detailRowClass = detailRightHtml ? "task-detail-row" : "task-detail-row task-detail-row-meta-only";
     const detailRow = statusMeta || detailRightHtml ? `
@@ -35806,17 +35968,17 @@ ${galleryText}`;
     const batchSelectedClass = batchSelected ? " batch-selected" : "";
     const queueIds = queueTaskIdsBySection();
     const queueSection = taskQueueSection(task, queueIds);
-    const queueClass = queueSection ? ` queue-${escapeHtml13(queueSection)}` : "";
+    const queueClass = queueSection ? ` queue-${escapeHtml14(queueSection)}` : "";
     const queueTaskData = queueSection === "waiting" ? ` data-queue-task-id="${taskId}"` : "";
     const queueActions = taskQueueActionStripHtml(task, queueSection, waitingQueueIndex(task.task_id, queueIds));
     const taskActions = taskCardActionsHtml(taskId, queueSection);
     const batchSelect = state19.batchMode ? `
-      <button class="task-select-button" type="button" data-batch-select-task-id="${taskId}" aria-pressed="${batchSelected ? "true" : "false"}" aria-label="${escapeHtml13(translate("taskList.selectSession"))}">
+      <button class="task-select-button" type="button" data-batch-select-task-id="${taskId}" aria-pressed="${batchSelected ? "true" : "false"}" aria-label="${escapeHtml14(translate("taskList.selectSession"))}">
         <span></span>
       </button>
     ` : "";
-    const unreadDot = unread ? `<span class="task-unread-dot" aria-label="${escapeHtml13(translate("taskList.unreadUpdate"))}"></span>` : "";
-    const activeLabel = escapeHtml13(translate("taskList.viewing"));
+    const unreadDot = unread ? `<span class="task-unread-dot" aria-label="${escapeHtml14(translate("taskList.unreadUpdate"))}"></span>` : "";
+    const activeLabel = escapeHtml14(translate("taskList.viewing"));
     return `
     <div class="task-card${active}${unreadClass}${statusClass}${batchClass}${batchSelectedClass}${queueClass}" role="button" tabindex="0" data-task-id="${taskId}" data-task-unread="${unread ? "true" : "false"}" data-active-label="${activeLabel}"${activeCurrent}${queueTaskData}>
       ${batchSelect}
@@ -35850,8 +36012,8 @@ ${galleryText}`;
     const status = String(task?.status || "");
     return ["completed", "failed", "partial_failed"].includes(status) || taskOutputUrls(task).length > 0;
   }
-  function taskHistoryGroups(tasks, query) {
-    if (query) {
+  function taskHistoryGroups(tasks, query2) {
+    if (query2) {
       return [{
         key: "search",
         label: translate("taskGroup.searchResults"),
@@ -35894,13 +36056,13 @@ ${galleryText}`;
     });
     return groups;
   }
-  function historyLibraryGroup(tasks, query) {
-    if (query) return "";
+  function historyLibraryGroup(tasks, query2) {
+    if (query2) return "";
     if (!tasks.some((task) => !isAlwaysVisibleTask(task))) return "";
     return `
     <a class="task-history-library-card" href="/history">
-      <span>${escapeHtml13(translate("footer.historyLibrary"))}</span>
-      <small>${escapeHtml13(translate("historyLibrary.openFull"))}</small>
+      <span>${escapeHtml14(translate("footer.historyLibrary"))}</span>
+      <small>${escapeHtml14(translate("historyLibrary.openFull"))}</small>
     </a>
   `;
   }
@@ -35946,9 +36108,9 @@ ${galleryText}`;
     if (dayDiff <= 6) return "last7";
     return "older";
   }
-  function taskListRenderKey(tasks, query, layout = {}, filters = {}, activeGroup = null) {
+  function taskListRenderKey(tasks, query2, layout = {}, filters = {}, activeGroup = null) {
     return JSON.stringify({
-      query,
+      query: query2,
       filters,
       activeQueue: activeQueueTaskListRenderKey(),
       activeGroup: activeGroup ? [activeGroup.key, activeGroup.label, activeGroup.tasks.length] : null,
@@ -36011,37 +36173,37 @@ ${galleryText}`;
     const outputUrl = taskOutputUrls(task)[0];
     const outputThumbnailUrl = taskThumbnailUrls(task)[0];
     const inputPreviewUrl = taskInputPreviewUrls(task)[0];
-    const imageUrl = outputThumbnailUrl || outputUrl || task.preview_url || inputPreviewUrl;
-    const safeClassName = escapeHtml13(className);
-    if (imageUrl && inputPreviewUrl) {
+    const imageUrl2 = outputThumbnailUrl || outputUrl || task.preview_url || inputPreviewUrl;
+    const safeClassName = escapeHtml14(className);
+    if (imageUrl2 && inputPreviewUrl) {
       const loadingSpinner = taskThumbShowsLoading(task) ? '<span class="task-thumb-stack-spinner" aria-hidden="true"></span>' : "";
-      const imageToImageLabel = escapeHtml13(translate("taskCard.imageToImageThumb"));
+      const imageToImageLabel = escapeHtml14(translate("taskCard.imageToImageThumb"));
       return `
       <div class="${safeClassName} task-thumb-stack" aria-label="${imageToImageLabel}">
-        <img class="task-thumb-reference" src="${escapeHtml13(inputPreviewUrl)}" alt="" loading="lazy" decoding="async" draggable="false">
-        <img class="task-thumb-output" src="${escapeHtml13(imageUrl)}" alt="" loading="lazy" decoding="async" draggable="false">
+        <img class="task-thumb-reference" src="${escapeHtml14(inputPreviewUrl)}" alt="" loading="lazy" decoding="async" draggable="false">
+        <img class="task-thumb-output" src="${escapeHtml14(imageUrl2)}" alt="" loading="lazy" decoding="async" draggable="false">
         ${loadingSpinner}
       </div>
     `;
     }
-    if (imageUrl) {
-      const textToImageLabel = escapeHtml13(translate("taskCard.textToImageThumb"));
-      const textBadge = escapeHtml13(translate("taskCard.textBadge"));
+    if (imageUrl2) {
+      const textToImageLabel = escapeHtml14(translate("taskCard.textToImageThumb"));
+      const textBadge = escapeHtml14(translate("taskCard.textBadge"));
       return `
       <div class="${safeClassName} task-thumb-single" aria-label="${textToImageLabel}">
-        <img class="task-thumb-single-image" src="${escapeHtml13(imageUrl)}" alt="" loading="lazy" decoding="async" draggable="false">
+        <img class="task-thumb-single-image" src="${escapeHtml14(imageUrl2)}" alt="" loading="lazy" decoding="async" draggable="false">
         <span class="task-thumb-mode-badge" aria-hidden="true">${textBadge}</span>
       </div>
     `;
     }
     if (task.status === "failed") {
-      return `<div class="${safeClassName} failed-thumb" aria-label="${escapeHtml13(translate("taskCard.failedThumb"))}"><span>!</span></div>`;
+      return `<div class="${safeClassName} failed-thumb" aria-label="${escapeHtml14(translate("taskCard.failedThumb"))}"><span>!</span></div>`;
     }
     return `<div class="${safeClassName} running-thumb"><span></span></div>`;
   }
   function taskStatusLabelHtml(task) {
-    const label = escapeHtml13(formatTaskStatus2(task) || translate("taskStatus.unknown"));
-    const taskId = escapeHtml13(task?.task_id || "");
+    const label = escapeHtml14(formatTaskStatus2(task) || translate("taskStatus.unknown"));
+    const taskId = escapeHtml14(task?.task_id || "");
     return `<span class="task-status-label" data-task-status-id="${taskId}">${label}</span>`;
   }
   function taskStatusAccessibleLabel2(task) {
@@ -36153,9 +36315,9 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/task-history-anchors.ts
-  var bridge26 = getLegacyBridge();
-  var state20 = bridge26.state;
-  var els29 = bridge26.els;
+  var bridge28 = getLegacyBridge();
+  var state20 = bridge28.state;
+  var els31 = bridge28.els;
   var taskHistoryAnchorInsetObserver = null;
   var TASK_HISTORY_LAYOUT_EASING = "ease";
   var TASK_HISTORY_LAYOUT_DURATION_MS = 180;
@@ -36168,7 +36330,7 @@ ${galleryText}`;
     }
     return method(...args);
   }
-  function escapeHtml14(...args) {
+  function escapeHtml15(...args) {
     return legacyMethod30("escapeHtml", ...args);
   }
   function element(node) {
@@ -36201,8 +36363,8 @@ ${galleryText}`;
     }
   }
   function syncTaskHistoryAnchorInset() {
-    const shell = element(els29.taskHistoryShell);
-    const sidebarContent = element(els29.sidebarContent);
+    const shell = element(els31.taskHistoryShell);
+    const sidebarContent = element(els31.sidebarContent);
     if (!shell || !sidebarContent) return;
     const scrollbarInset = Math.max(0, sidebarContent.offsetWidth - sidebarContent.clientWidth);
     shell.style.setProperty("--task-history-scrollbar-offset", `${scrollbarInset}px`);
@@ -36263,12 +36425,12 @@ ${galleryText}`;
     return true;
   }
   function scrollExpandedTaskGroupToTop2(behavior = "smooth") {
-    const sidebarContent = element(els29.sidebarContent);
+    const sidebarContent = element(els31.sidebarContent);
     if (!sidebarContent) return;
     sidebarContent.scrollTo({ top: 0, behavior: prefersReducedMotion() ? "auto" : behavior });
   }
   function anchorRowHtml(group) {
-    const key = escapeHtml14(group.key);
+    const key = escapeHtml15(group.key);
     return `
     <button
       class="task-history-anchor-row"
@@ -36276,11 +36438,11 @@ ${galleryText}`;
       data-task-group-anchor-key="${key}"
       data-task-group-toggle-key="${key}"
       aria-expanded="false"
-      aria-label="${escapeHtml14(formatTranslation("taskGroup.expand", { label: group.label }))}"
+      aria-label="${escapeHtml15(formatTranslation("taskGroup.expand", { label: group.label }))}"
     >
       <span class="task-history-anchor-label">
         <span class="task-group-title">
-          <span class="task-group-label">${escapeHtml14(group.label)}</span>
+          <span class="task-group-label">${escapeHtml15(group.label)}</span>
           <span class="task-group-count-separator" aria-hidden="true"> \xB7 </span>
           <span class="task-group-count">${group.tasks.length}</span>
         </span>
@@ -36299,8 +36461,8 @@ ${galleryText}`;
   `;
   }
   function renderTaskHistoryAnchors2(layout) {
-    const topAnchors = element(els29.taskHistoryTopAnchors);
-    const bottomAnchors = element(els29.taskHistoryBottomAnchors);
+    const topAnchors = element(els31.taskHistoryTopAnchors);
+    const bottomAnchors = element(els31.taskHistoryBottomAnchors);
     if (!topAnchors || !bottomAnchors) return;
     syncTaskHistoryAnchorInset();
     topAnchors.innerHTML = layout.top.map((group) => anchorRowHtml(group)).join("");
@@ -36310,7 +36472,7 @@ ${galleryText}`;
     applyImmediateAnchorSelection(layout.expandedKey || "");
   }
   function taskHistoryLayoutElements() {
-    const shell = element(els29.taskHistoryShell);
+    const shell = element(els31.taskHistoryShell);
     if (!shell) return [];
     return Array.from(
       shell.querySelectorAll(".task-history-anchor-row, .task-group-header-split")
@@ -36385,9 +36547,9 @@ ${galleryText}`;
     });
   }
   function initTaskHistoryAnchorsFeature() {
-    if (typeof ResizeObserver === "function" && !taskHistoryAnchorInsetObserver && element(els29.sidebarContent)) {
+    if (typeof ResizeObserver === "function" && !taskHistoryAnchorInsetObserver && element(els31.sidebarContent)) {
       taskHistoryAnchorInsetObserver = new ResizeObserver(() => syncTaskHistoryAnchorInset());
-      taskHistoryAnchorInsetObserver.observe(element(els29.sidebarContent));
+      taskHistoryAnchorInsetObserver.observe(element(els31.sidebarContent));
     }
     syncTaskHistoryAnchorInset();
     Object.assign(getLegacyBridge().methods, {
@@ -36402,9 +36564,9 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/task-archive-controls.ts
-  var bridge27 = getLegacyBridge();
-  var state21 = bridge27.state;
-  var els30 = bridge27.els;
+  var bridge29 = getLegacyBridge();
+  var state21 = bridge29.state;
+  var els32 = bridge29.els;
   function legacyMethod31(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -36428,7 +36590,7 @@ ${galleryText}`;
   function taskThumbHtml2(...args) {
     return legacyMethod31("taskThumbHtml", ...args);
   }
-  function escapeHtml15(...args) {
+  function escapeHtml16(...args) {
     return legacyMethod31("escapeHtml", ...args);
   }
   function formatTaskStatus3(...args) {
@@ -36506,8 +36668,8 @@ ${galleryText}`;
     }
   }
   function renderArchiveButton() {
-    if (!els30.archiveButton) return;
-    els30.archiveButton.textContent = translate("footer.historyLibrary");
+    if (!els32.archiveButton) return;
+    els32.archiveButton.textContent = translate("footer.historyLibrary");
   }
   async function restoreArchivedTask(taskId) {
     try {
@@ -36524,29 +36686,29 @@ ${galleryText}`;
   function openArchiveModal() {
     closePromptPopover4();
     renderArchiveModal();
-    els30.archiveModal?.classList.remove("hidden");
-    els30.archiveModal?.setAttribute("aria-hidden", "false");
+    els32.archiveModal?.classList.remove("hidden");
+    els32.archiveModal?.setAttribute("aria-hidden", "false");
   }
   function closeArchiveModal() {
-    els30.archiveModal?.classList.add("hidden");
-    els30.archiveModal?.setAttribute("aria-hidden", "true");
+    els32.archiveModal?.classList.add("hidden");
+    els32.archiveModal?.setAttribute("aria-hidden", "true");
   }
   function renderArchiveModal() {
-    if (!els30.archiveList || !els30.archiveCount) return;
+    if (!els32.archiveList || !els32.archiveCount) return;
     const archivedTasks = state21.tasks.filter((task) => isTaskArchived2(task.task_id));
-    els30.archiveCount.textContent = archivedTasks.length ? formatTranslation("archive.count", { count: archivedTasks.length }) : translate("archive.empty");
+    els32.archiveCount.textContent = archivedTasks.length ? formatTranslation("archive.count", { count: archivedTasks.length }) : translate("archive.empty");
     if (!archivedTasks.length) {
-      els30.archiveList.innerHTML = `<div class="archive-empty">${translate("archive.empty")}</div>`;
+      els32.archiveList.innerHTML = `<div class="archive-empty">${translate("archive.empty")}</div>`;
       return;
     }
-    els30.archiveList.innerHTML = archivedTasks.map((task) => {
+    els32.archiveList.innerHTML = archivedTasks.map((task) => {
       const image = taskThumbHtml2(task, "archive-thumb");
-      const title = escapeHtml15(task.prompt || task.mode || "Untitled");
-      const status = escapeHtml15(formatTaskStatus3(task));
-      const size = escapeHtml15(task.output_size || task.params?.size || "");
-      const provider = escapeHtml15(legacyMethod31("taskCardProviderLabel", task) || "");
+      const title = escapeHtml16(task.prompt || task.mode || "Untitled");
+      const status = escapeHtml16(formatTaskStatus3(task));
+      const size = escapeHtml16(task.output_size || task.params?.size || "");
+      const provider = escapeHtml16(legacyMethod31("taskCardProviderLabel", task) || "");
       const meta = [status, size, provider].filter(Boolean).join(" \xB7 ");
-      const taskId = escapeHtml15(task.task_id);
+      const taskId = escapeHtml16(task.task_id);
       return `
       <article class="archive-card" data-archive-select-task-id="${taskId}">
         ${image}
@@ -36561,19 +36723,19 @@ ${galleryText}`;
       </article>
     `;
     }).join("");
-    els30.archiveList.querySelectorAll("[data-archive-select-task-id]").forEach((card) => {
+    els32.archiveList.querySelectorAll("[data-archive-select-task-id]").forEach((card) => {
       card.addEventListener("click", () => {
         legacyMethod31("selectTask", card.dataset.archiveSelectTaskId);
         closeArchiveModal();
       });
     });
-    els30.archiveList.querySelectorAll("[data-restore-archive-task-id]").forEach((button) => {
+    els32.archiveList.querySelectorAll("[data-restore-archive-task-id]").forEach((button) => {
       button.addEventListener("click", (event) => {
         event.stopPropagation();
         restoreArchivedTask(button.dataset.restoreArchiveTaskId);
       });
     });
-    els30.archiveList.querySelectorAll("[data-delete-archive-task-id]").forEach((button) => {
+    els32.archiveList.querySelectorAll("[data-delete-archive-task-id]").forEach((button) => {
       button.addEventListener("click", (event) => {
         event.stopPropagation();
         openTaskDeleteConfirm(button, button.dataset.deleteArchiveTaskId);
@@ -36604,9 +36766,9 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/task-batch-controls.ts
-  var bridge28 = getLegacyBridge();
-  var state22 = bridge28.state;
-  var els31 = bridge28.els;
+  var bridge30 = getLegacyBridge();
+  var state22 = bridge30.state;
+  var els33 = bridge30.els;
   function legacyMethod32(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -36677,7 +36839,7 @@ ${galleryText}`;
     state22.batchSelectedTaskIds = state22.batchSelectedTaskIds.filter((item) => item !== id);
   }
   function visibleBatchTaskIds() {
-    const root = els31.taskHistoryShell || els31.sidebarContent || els31.taskList;
+    const root = els33.taskHistoryShell || els33.sidebarContent || els33.taskList;
     if (!root) return [];
     return Array.from(root.querySelectorAll(TASK_CARD_SELECTOR)).map((card) => String(card.dataset.taskId || "")).filter((taskId) => taskId && !isTaskArchived3(taskId));
   }
@@ -36725,7 +36887,7 @@ ${galleryText}`;
   }
   function syncBatchTaskSelectionVisuals() {
     const selectedIds = new Set(state22.batchSelectedTaskIds.map(String));
-    const root = els31.taskHistoryShell || els31.sidebarContent || els31.taskList;
+    const root = els33.taskHistoryShell || els33.sidebarContent || els33.taskList;
     root?.querySelectorAll(TASK_CARD_SELECTOR).forEach((card) => {
       const selected = selectedIds.has(String(card.dataset.taskId || ""));
       card.classList.toggle("batch-selected", selected);
@@ -36735,15 +36897,15 @@ ${galleryText}`;
     renderBatchToolbar2();
   }
   function renderBatchToolbar2() {
-    if (!els31.batchToolbar) return;
-    els31.batchToolbar.classList.toggle("hidden", !state22.batchMode);
-    els31.taskList?.classList.toggle("batch-marquee-enabled", state22.batchMode);
-    els31.batchManageButton?.classList.toggle("active", state22.batchMode);
+    if (!els33.batchToolbar) return;
+    els33.batchToolbar.classList.toggle("hidden", !state22.batchMode);
+    els33.taskList?.classList.toggle("batch-marquee-enabled", state22.batchMode);
+    els33.batchManageButton?.classList.toggle("active", state22.batchMode);
     const count = state22.batchSelectedTaskIds.length;
-    if (els31.batchSelectedCount) {
-      els31.batchSelectedCount.textContent = formatTranslation("batch.selectedCount", { count });
+    if (els33.batchSelectedCount) {
+      els33.batchSelectedCount.textContent = formatTranslation("batch.selectedCount", { count });
     }
-    [els31.batchArchiveButton, els31.batchDeleteButton].forEach((button) => {
+    [els33.batchArchiveButton, els33.batchDeleteButton].forEach((button) => {
       if (button) button.disabled = count === 0;
     });
   }
@@ -36785,7 +36947,7 @@ ${galleryText}`;
       setStatus15(formatTranslation("batch.runningCannotDeleteSelected"), "error");
       return;
     }
-    openConfirmPopover5(els31.batchDeleteButton, {
+    openConfirmPopover5(els33.batchDeleteButton, {
       title: formatTranslation("batch.deleteTitle", { count: deletableTasks.length }),
       message: formatTranslation("batch.deleteMessage"),
       detail: skippedCount ? formatTranslation("batch.deleteSkippedDetail", { count: skippedCount }) : "",
@@ -36818,9 +36980,9 @@ ${galleryText}`;
     }
   }
   function handleTaskListPointerDown(event) {
-    if (!state22.batchMode || !els31.taskList || event.button !== 0) return;
+    if (!state22.batchMode || !els33.taskList || event.button !== 0) return;
     if (event.target.closest("button, input, select, textarea, a")) return;
-    if (!event.target.closest(".task-card[data-task-id]") && event.target !== els31.taskList) return;
+    if (!event.target.closest(".task-card[data-task-id]") && event.target !== els33.taskList) return;
     state22.batchSelectionDrag = {
       pointerId: event.pointerId,
       startX: event.clientX,
@@ -36845,7 +37007,7 @@ ${galleryText}`;
       if (distance < 6) return;
       drag.active = true;
       state22.suppressTaskClickAfterDrag = true;
-      els31.taskList?.classList.add("batch-marquee-active");
+      els33.taskList?.classList.add("batch-marquee-active");
       drag.marquee = document.createElement("div");
       drag.marquee.className = "batch-selection-marquee";
       document.body.appendChild(drag.marquee);
@@ -36873,7 +37035,7 @@ ${galleryText}`;
       drag.marquee.style.height = `${selectionRect.height}px`;
     }
     const nextSelectedIds = new Set(drag.originSelectedTaskIds.map(String));
-    els31.taskList.querySelectorAll(TASK_CARD_SELECTOR).forEach((card) => {
+    els33.taskList.querySelectorAll(TASK_CARD_SELECTOR).forEach((card) => {
       const cardRect = card.getBoundingClientRect();
       if (rectsIntersect(selectionRect, cardRect)) {
         nextSelectedIds.add(String(card.dataset.taskId));
@@ -36889,7 +37051,7 @@ ${galleryText}`;
     if (previous === next) return;
     state22.batchSelectedTaskIds = nextIds;
     state22.batchSelectionAnchorTaskId = nextIds.length ? nextIds[nextIds.length - 1] : state22.batchSelectionAnchorTaskId || null;
-    els31.taskList.querySelectorAll(TASK_CARD_SELECTOR).forEach((card) => {
+    els33.taskList.querySelectorAll(TASK_CARD_SELECTOR).forEach((card) => {
       const selected = nextSet.has(String(card.dataset.taskId));
       card.classList.toggle("batch-selected", selected);
       const selectButton = card.querySelector("[data-batch-select-task-id]");
@@ -36920,7 +37082,7 @@ ${galleryText}`;
       drag.marquee.remove();
     }
     state22.batchSelectionDrag = null;
-    els31.taskList?.classList.remove("batch-marquee-active");
+    els33.taskList?.classList.remove("batch-marquee-active");
     window.removeEventListener("pointermove", handleTaskListPointerMove);
     window.removeEventListener("pointerup", handleTaskListPointerUp);
     window.removeEventListener("pointercancel", handleTaskListPointerUp);
@@ -36951,9 +37113,9 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/task-actions.ts
-  var bridge29 = getLegacyBridge();
-  var state23 = bridge29.state;
-  var els32 = bridge29.els;
+  var bridge31 = getLegacyBridge();
+  var state23 = bridge31.state;
+  var els34 = bridge31.els;
   function legacyMethod33(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -37238,9 +37400,9 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/task-submit.ts
-  var bridge30 = getLegacyBridge();
-  var state24 = bridge30.state;
-  var els33 = bridge30.els;
+  var bridge32 = getLegacyBridge();
+  var state24 = bridge32.state;
+  var els35 = bridge32.els;
   function legacyMethod34(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -37377,36 +37539,36 @@ ${galleryText}`;
     setMode5(task.mode || "generate");
     setPromptWithGalleryRefs2(task.prompt || "", task.gallery_refs || []);
     const mainModel = params.main_model || task.request?.model;
-    if (mainModel && els33.mainModel) {
-      els33.mainModel.value = mainModel;
+    if (mainModel && els35.mainModel) {
+      els35.mainModel.value = mainModel;
       persistMainModel2();
     }
-    if (els33.promptFidelity) {
+    if (els35.promptFidelity) {
       const fidelity = ["strict", "original", "off"].includes(params.prompt_fidelity) ? params.prompt_fidelity : "strict";
-      els33.promptFidelity.value = fidelity;
-      els33.promptFidelity.dispatchEvent(new Event("change"));
+      els35.promptFidelity.value = fidelity;
+      els35.promptFidelity.dispatchEvent(new Event("change"));
     }
-    if (els33.webSearch) {
-      els33.webSearch.checked = Boolean(params.web_search);
-      els33.webSearch.dispatchEvent(new Event("input"));
+    if (els35.webSearch) {
+      els35.webSearch.checked = Boolean(params.web_search);
+      els35.webSearch.dispatchEvent(new Event("input"));
     }
-    if (params.model) els33.model.value = params.model;
+    if (params.model) els35.model.value = params.model;
     if (params.size) syncSizeControlsFromSize2(params.size);
-    if (params.n && els33.nInput) {
-      els33.nInput.value = String(params.n);
+    if (params.n && els35.nInput) {
+      els35.nInput.value = String(params.n);
     }
-    if (params.quality) els33.quality.value = params.quality;
-    if (params.output_format) els33.outputFormat.value = params.output_format;
-    if (params.moderation) els33.moderation.value = params.moderation;
+    if (params.quality) els35.quality.value = params.quality;
+    if (params.output_format) els35.outputFormat.value = params.output_format;
+    if (params.moderation) els35.moderation.value = params.moderation;
     if (params.output_compression !== null && params.output_compression !== void 0) {
-      els33.compression.value = params.output_compression;
+      els35.compression.value = params.output_compression;
     }
-    [els33.quality, els33.outputFormat, els33.moderation].forEach((element2) => {
+    [els35.quality, els35.outputFormat, els35.moderation].forEach((element2) => {
       element2.dispatchEvent(new Event("change"));
     });
     updatePromptCount6();
     updateQuantity2();
-    syncRadioButtons2(els33.nInput);
+    syncRadioButtons2(els35.nInput);
     updateCompression2();
     updateCustomSize2();
     updateRequestPreview11();
@@ -37560,7 +37722,7 @@ ${galleryText}`;
       setStatus17(translate("status.editNeedsImage"), "error");
       return;
     }
-    const customSizeError = els33.size?.value === "custom" ? customSizeValidationMessage2() : "";
+    const customSizeError = els35.size?.value === "custom" ? customSizeValidationMessage2() : "";
     if (customSizeError) {
       updateCustomSize2();
       updatePixelPreview2("custom");
@@ -37589,7 +37751,7 @@ ${galleryText}`;
     } else if (currentAuthSource3() === "codex") {
       form.append("codex_mode", currentCodexMode4());
     }
-    if (els33.outputFormat.value !== "png") {
+    if (els35.outputFormat.value !== "png") {
       form.append("output_compression", String(params.output_compression));
     }
     galleries.forEach((source) => form.append("gallery_image_ids", source.id));
@@ -37601,11 +37763,11 @@ ${galleryText}`;
     }
     const pendingTask = createPendingTask();
     addPendingTask2(pendingTask);
-    if (els33.requestJson) {
-      els33.requestJson.textContent = JSON.stringify(pendingTask.request, null, 2);
+    if (els35.requestJson) {
+      els35.requestJson.textContent = JSON.stringify(pendingTask.request, null, 2);
     }
     startRunFeedback2(pendingTask, translate("taskStatus.submitting"));
-    els33.runButton.disabled = true;
+    els35.runButton.disabled = true;
     const controller = new AbortController();
     const submitTimeoutId = window.setTimeout(() => controller.abort(), SUBMIT_TASK_TIMEOUT_MS);
     try {
@@ -37619,8 +37781,8 @@ ${galleryText}`;
         throw new Error(data.detail || translate("taskSubmit.requestFailed"));
       }
       addQueuedTask(data.task);
-      if (els33.requestJson) {
-        els33.requestJson.textContent = JSON.stringify(data.request || {}, null, 2);
+      if (els35.requestJson) {
+        els35.requestJson.textContent = JSON.stringify(data.request || {}, null, 2);
       }
       stopRunFeedback2();
       setStatus17(translate("taskSubmit.queued"), "ok");
@@ -37635,7 +37797,7 @@ ${galleryText}`;
     } finally {
       window.clearTimeout(submitTimeoutId);
       stopRunFeedback2();
-      els33.runButton.disabled = !state24.authAvailable;
+      els35.runButton.disabled = !state24.authAvailable;
     }
   }
   function initTaskSubmitFeature() {
@@ -37649,9 +37811,9 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/task-list-controls.ts
-  var bridge31 = getLegacyBridge();
-  var state25 = bridge31.state;
-  var els34 = bridge31.els;
+  var bridge33 = getLegacyBridge();
+  var state25 = bridge33.state;
+  var els36 = bridge33.els;
   function legacyMethod35(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -37677,34 +37839,34 @@ ${galleryText}`;
   var taskListControlsInitialized = false;
   var taskListControlEventsBound = false;
   function taskFilterControls() {
-    return [els34.taskRatioFilter, els34.taskOrientationFilter, els34.taskPromptFidelityFilter, els34.taskResolutionFilter].filter(Boolean);
+    return [els36.taskRatioFilter, els36.taskOrientationFilter, els36.taskPromptFidelityFilter, els36.taskResolutionFilter].filter(Boolean);
   }
   function activeTaskFilterCount() {
     return taskFilterControls().filter((element2) => Boolean(element2.value)).length;
   }
   function taskSearchHasValue() {
-    return Boolean(String(els34.taskSearch?.value || "").trim());
+    return Boolean(String(els36.taskSearch?.value || "").trim());
   }
   function updateTaskSearchClearButton() {
-    if (!els34.taskSearchClearButton) return;
-    els34.taskSearchClearButton.hidden = !taskSearchHasValue();
+    if (!els36.taskSearchClearButton) return;
+    els36.taskSearchClearButton.hidden = !taskSearchHasValue();
   }
   function clearTaskSearch() {
-    if (!els34.taskSearch?.value) return;
-    els34.taskSearch.value = "";
+    if (!els36.taskSearch?.value) return;
+    els36.taskSearch.value = "";
     updateTaskSearchClearButton();
     renderTasks6();
     void syncTaskSearchHistoryResults();
-    els34.taskSearch.focus({ preventScroll: true });
+    els36.taskSearch.focus({ preventScroll: true });
   }
-  function setTaskFilterPopoverOpen(open) {
-    if (!els34.taskFilterPopover || !els34.taskFilterButton) return;
-    els34.taskFilterPopover.hidden = !open;
-    els34.taskFilterButton.setAttribute("aria-expanded", open ? "true" : "false");
-    els34.taskFilterButton.classList.toggle("is-open", open);
+  function setTaskFilterPopoverOpen(open3) {
+    if (!els36.taskFilterPopover || !els36.taskFilterButton) return;
+    els36.taskFilterPopover.hidden = !open3;
+    els36.taskFilterButton.setAttribute("aria-expanded", open3 ? "true" : "false");
+    els36.taskFilterButton.classList.toggle("is-open", open3);
   }
   function toggleTaskFilterPopover() {
-    setTaskFilterPopoverOpen(Boolean(els34.taskFilterPopover?.hidden));
+    setTaskFilterPopoverOpen(Boolean(els36.taskFilterPopover?.hidden));
   }
   function clearTaskFilters(options = {}) {
     let changed = false;
@@ -37721,36 +37883,36 @@ ${galleryText}`;
   }
   function updateTaskFilterSummary() {
     const activeCount = activeTaskFilterCount();
-    if (els34.taskFilterActiveCount) {
-      els34.taskFilterActiveCount.hidden = activeCount === 0;
-      els34.taskFilterActiveCount.textContent = activeCount ? String(activeCount) : "";
+    if (els36.taskFilterActiveCount) {
+      els36.taskFilterActiveCount.hidden = activeCount === 0;
+      els36.taskFilterActiveCount.textContent = activeCount ? String(activeCount) : "";
     }
-    els34.taskFilterButton?.classList.toggle("has-active-filters", activeCount > 0);
-    if (els34.taskFilterClearButton) {
-      els34.taskFilterClearButton.disabled = activeCount === 0;
+    els36.taskFilterButton?.classList.toggle("has-active-filters", activeCount > 0);
+    if (els36.taskFilterClearButton) {
+      els36.taskFilterClearButton.disabled = activeCount === 0;
     }
   }
   function handleTaskFilterKeydown(event) {
-    if (event.key !== "Escape" || els34.taskFilterPopover?.hidden) return;
+    if (event.key !== "Escape" || els36.taskFilterPopover?.hidden) return;
     event.preventDefault();
     setTaskFilterPopoverOpen(false);
-    els34.taskFilterButton?.focus?.();
+    els36.taskFilterButton?.focus?.();
   }
   function bindTaskListControlEvents() {
     if (taskListControlEventsBound) return;
     taskListControlEventsBound = true;
-    els34.archiveModalClose?.addEventListener("click", closeArchiveModal2);
-    els34.archiveModal?.addEventListener("click", (event) => {
-      if (event.target === els34.archiveModal) closeArchiveModal2();
+    els36.archiveModalClose?.addEventListener("click", closeArchiveModal2);
+    els36.archiveModal?.addEventListener("click", (event) => {
+      if (event.target === els36.archiveModal) closeArchiveModal2();
     });
-    els34.batchManageButton?.addEventListener("click", () => toggleBatchMode2());
-    els34.batchArchiveButton?.addEventListener("click", archiveSelectedTasks2);
-    els34.batchDeleteButton?.addEventListener("click", openBatchDeleteConfirm2);
-    els34.batchCancelButton?.addEventListener("click", () => toggleBatchMode2(false));
-    els34.taskSearch.addEventListener("input", handleTaskSearchInput);
-    els34.taskSearchClearButton?.addEventListener("click", clearTaskSearch);
-    els34.taskFilterButton?.addEventListener("click", toggleTaskFilterPopover);
-    els34.taskFilterClearButton?.addEventListener("click", () => clearTaskFilters());
+    els36.batchManageButton?.addEventListener("click", () => toggleBatchMode2());
+    els36.batchArchiveButton?.addEventListener("click", archiveSelectedTasks2);
+    els36.batchDeleteButton?.addEventListener("click", openBatchDeleteConfirm2);
+    els36.batchCancelButton?.addEventListener("click", () => toggleBatchMode2(false));
+    els36.taskSearch.addEventListener("input", handleTaskSearchInput);
+    els36.taskSearchClearButton?.addEventListener("click", clearTaskSearch);
+    els36.taskFilterButton?.addEventListener("click", toggleTaskFilterPopover);
+    els36.taskFilterClearButton?.addEventListener("click", () => clearTaskFilters());
     document.addEventListener("keydown", handleTaskFilterKeydown);
     taskFilterControls().forEach((element2) => {
       element2.addEventListener("change", () => {
@@ -37768,13 +37930,13 @@ ${galleryText}`;
     void syncTaskSearchHistoryResults();
   }
   function bindTaskListEvents() {
-    const interactiveRoot = els34.taskHistoryShell || els34.sidebarContent || els34.taskList;
+    const interactiveRoot = els36.taskHistoryShell || els36.sidebarContent || els36.taskList;
     interactiveRoot?.addEventListener("click", handleTaskListClick);
     interactiveRoot?.addEventListener("keydown", handleTaskListKeydown);
-    els34.taskList?.addEventListener("pointerdown", handleTaskListPointerDown2);
+    els36.taskList?.addEventListener("pointerdown", handleTaskListPointerDown2);
   }
   function taskHistoryInteractiveRoot() {
-    return els34.taskHistoryShell || els34.sidebarContent || els34.taskList;
+    return els36.taskHistoryShell || els36.sidebarContent || els36.taskList;
   }
   function taskNavigationCards() {
     const root = taskHistoryInteractiveRoot();
@@ -37928,8 +38090,8 @@ ${galleryText}`;
     window.updateQueueElapsedDisplays = updateQueueElapsedDisplays;
   }
   function bindQueueControls() {
-    const els43 = getEls();
-    els43.queueButton?.addEventListener("click", jumpToActiveTaskGroup);
+    const els45 = getEls();
+    els45.queueButton?.addEventListener("click", jumpToActiveTaskGroup);
   }
   function startRealtimeUpdates({ migrateLegacyArchives = false } = {}) {
     const state32 = getState();
@@ -37967,11 +38129,11 @@ ${galleryText}`;
     await handleRealtimePayload(payload2);
   }
   async function handleRealtimePayload(payload2) {
-    const bridge39 = getLegacyBridge();
-    const state32 = bridge39.state;
+    const bridge41 = getLegacyBridge();
+    const state32 = bridge41.state;
     if (payload2?.type === "snapshot") {
       applyQueueState(payload2.queue);
-      await bridge39.methods.applyTasksSnapshot(payload2.tasks || [], {
+      await bridge41.methods.applyTasksSnapshot(payload2.tasks || [], {
         migrateLegacyArchives: state32.realtimeSnapshotNeedsArchiveMigration
       });
       applyQueueTasks(payload2.queue);
@@ -37989,17 +38151,17 @@ ${galleryText}`;
     }
   }
   async function applyRealtimeTaskPayloads(tasks) {
-    const bridge39 = getLegacyBridge();
-    const state32 = bridge39.state;
+    const bridge41 = getLegacyBridge();
+    const state32 = bridge41.state;
     for (const task of tasks) {
       const previousTask = state32.tasks.find((item) => String(item.task_id) === String(task?.task_id));
-      bridge39.methods.notifyTaskUpdate?.(previousTask, task);
-      await bridge39.methods.applyTaskUpdate(task);
+      bridge41.methods.notifyTaskUpdate?.(previousTask, task);
+      await bridge41.methods.applyTaskUpdate(task);
     }
   }
   async function refreshQueue() {
-    const bridge39 = getLegacyBridge();
-    const state32 = bridge39.state;
+    const bridge41 = getLegacyBridge();
+    const state32 = bridge41.state;
     const requestSeq = ++state32.queueRequestSeq;
     try {
       const response = await fetch("/api/queue");
@@ -38011,7 +38173,7 @@ ${galleryText}`;
       state32.queue = normalizeQueueState(data);
       renderQueue();
     } catch (error) {
-      bridge39.methods.setStatus(errorMessage5(error, translate("queue.readFailed")), "error");
+      bridge41.methods.setStatus(errorMessage5(error, translate("queue.readFailed")), "error");
     }
   }
   function defaultQueueState() {
@@ -38035,8 +38197,8 @@ ${galleryText}`;
     renderQueue();
   }
   function renderQueue() {
-    const bridge39 = getLegacyBridge();
-    const state32 = bridge39.state;
+    const bridge41 = getLegacyBridge();
+    const state32 = bridge41.state;
     const summary = state32.queue.summary || {};
     const waitingCount = Number(summary.waiting_count ?? state32.queue.waiting.length ?? 0);
     const runningCount = Number(summary.running_count ?? state32.queue.running.length ?? 0);
@@ -38050,7 +38212,7 @@ ${galleryText}`;
       usableChannelCount,
       dispatchPending
     });
-    bridge39.methods.updateDocumentTitle();
+    bridge41.methods.updateDocumentTitle();
     if (dispatchPending) {
       scheduleQueueDispatchSync();
     } else {
@@ -38065,8 +38227,8 @@ ${galleryText}`;
     renderActiveTaskGroupForQueueChange();
   }
   function renderActiveTaskGroupForQueueChange() {
-    const bridge39 = getLegacyBridge();
-    bridge39.methods.renderTasks?.();
+    const bridge41 = getLegacyBridge();
+    bridge41.methods.renderTasks?.();
   }
   function renderQueueStatusChip({
     waitingCount,
@@ -38075,24 +38237,24 @@ ${galleryText}`;
     usableChannelCount,
     dispatchPending
   }) {
-    const els43 = getEls();
+    const els45 = getEls();
     const total = waitingCount + runningCount;
     const channelText = usableChannelCount === channelCount ? formatTranslation("queue.channel", { count: channelCount }) : formatTranslation("queue.availableChannels", { usable: usableChannelCount, total: channelCount });
     const text = dispatchPending ? formatTranslation("queue.dispatching", { waiting: waitingCount }) : total ? formatTranslation("queue.runningWaiting", { running: runningCount, waiting: waitingCount }) : translate("queue.empty");
     const label = total ? formatTranslation("queue.statusLabel", { text, channelText }) : translate("queue.emptyAria");
-    if (els43.queueStatusText) els43.queueStatusText.textContent = text;
-    if (els43.queueButton) {
-      els43.queueButton.setAttribute("aria-label", label);
-      els43.queueButton.title = total ? translate("queue.jumpTitle") : translate("queue.emptyTitle");
-      els43.queueButton.classList.toggle("has-queue", total > 0 || dispatchPending);
+    if (els45.queueStatusText) els45.queueStatusText.textContent = text;
+    if (els45.queueButton) {
+      els45.queueButton.setAttribute("aria-label", label);
+      els45.queueButton.title = total ? translate("queue.jumpTitle") : translate("queue.emptyTitle");
+      els45.queueButton.classList.toggle("has-queue", total > 0 || dispatchPending);
     }
   }
   function jumpToActiveTaskGroup() {
-    const bridge39 = getLegacyBridge();
-    const state32 = bridge39.state;
+    const bridge41 = getLegacyBridge();
+    const state32 = bridge41.state;
     const hasActiveTasks = Boolean((state32.queue.running || []).length || (state32.queue.waiting || []).length);
     if (!hasActiveTasks) return;
-    bridge39.methods.revealActiveTaskGroup?.();
+    bridge41.methods.revealActiveTaskGroup?.();
   }
   function isQueueDispatchPending() {
     const state32 = getState();
@@ -38143,11 +38305,11 @@ ${galleryText}`;
     });
   }
   function queueItemTitleText(task, position = null) {
-    const bridge39 = getLegacyBridge();
+    const bridge41 = getLegacyBridge();
     const queueTask = task;
-    const prefix = position ? `#${position}` : bridge39.methods.formatTaskStatus(task) || translate("taskStatus.task");
+    const prefix = position ? `#${position}` : bridge41.methods.formatTaskStatus(task) || translate("taskStatus.task");
     const mode = taskModeLabel(task);
-    const count = formatTranslation("taskCard.count", { count: bridge39.methods.taskTotalCount(task) });
+    const count = formatTranslation("taskCard.count", { count: bridge41.methods.taskTotalCount(task) });
     const size = queueTask.output_size || task.params?.size || "";
     return [prefix, mode, count, size].filter(Boolean).join(" \xB7 ");
   }
@@ -38157,7 +38319,7 @@ ${galleryText}`;
     return "";
   }
   async function promoteQueueTask(taskId) {
-    const bridge39 = getLegacyBridge();
+    const bridge41 = getLegacyBridge();
     if (!taskId) return;
     invalidateQueueRequests();
     try {
@@ -38165,9 +38327,9 @@ ${galleryText}`;
       const data = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(data.detail || translate("queue.promoteFailed"));
       applyQueueState(data);
-      await bridge39.methods.refreshTasks();
+      await bridge41.methods.refreshTasks();
     } catch (error) {
-      bridge39.methods.setStatus(errorMessage5(error, translate("queue.promoteFailed")), "error");
+      bridge41.methods.setStatus(errorMessage5(error, translate("queue.promoteFailed")), "error");
     }
   }
   function moveQueueTask(taskId, direction) {
@@ -38185,11 +38347,11 @@ ${galleryText}`;
     void reorderQueue(nextIds);
   }
   function deleteQueuedTask(button, taskId) {
-    const bridge39 = getLegacyBridge();
+    const bridge41 = getLegacyBridge();
     if (!taskId) return;
-    const task = bridge39.state.queue.waiting.find((item) => item.task_id === taskId);
+    const task = bridge41.state.queue.waiting.find((item) => item.task_id === taskId);
     const title = task ? queueItemTitleText(task, task.queue_position || null) : taskId;
-    bridge39.methods.openConfirmPopover(button, {
+    bridge41.methods.openConfirmPopover(button, {
       title: translate("queue.deleteWaitingTitleConfirm"),
       message: translate("queue.deleteWaitingMessage"),
       detail: title,
@@ -38200,8 +38362,8 @@ ${galleryText}`;
     });
   }
   async function performDeleteQueuedTask(taskId) {
-    const bridge39 = getLegacyBridge();
-    const state32 = bridge39.state;
+    const bridge41 = getLegacyBridge();
+    const state32 = bridge41.state;
     invalidateQueueRequests();
     try {
       const response = await fetch(`/api/queue/${encodeURIComponent(taskId)}`, { method: "DELETE" });
@@ -38220,19 +38382,19 @@ ${galleryText}`;
         }
       });
       await refreshQueue();
-      await bridge39.methods.refreshTasks();
-      bridge39.methods.renderPreview();
-      bridge39.methods.setStatus(translate("queue.queuedDeleted"), "ok");
+      await bridge41.methods.refreshTasks();
+      bridge41.methods.renderPreview();
+      bridge41.methods.setStatus(translate("queue.queuedDeleted"), "ok");
     } catch (error) {
-      bridge39.methods.setStatus(errorMessage5(error, translate("queue.deleteQueuedFailed")), "error");
+      bridge41.methods.setStatus(errorMessage5(error, translate("queue.deleteQueuedFailed")), "error");
     }
   }
   function cancelRunningTask(button, taskId) {
-    const bridge39 = getLegacyBridge();
+    const bridge41 = getLegacyBridge();
     if (!taskId) return;
-    const task = bridge39.state.queue.running.find((item) => item.task_id === taskId);
+    const task = bridge41.state.queue.running.find((item) => item.task_id === taskId);
     const title = task ? queueItemTitleText(task) : taskId;
-    bridge39.methods.openConfirmPopover(button, {
+    bridge41.methods.openConfirmPopover(button, {
       title: translate("queue.cancelRunningTitleConfirm"),
       message: translate("queue.cancelRunningMessage"),
       detail: title,
@@ -38243,8 +38405,8 @@ ${galleryText}`;
     });
   }
   async function performCancelRunningTask(taskId) {
-    const bridge39 = getLegacyBridge();
-    const state32 = bridge39.state;
+    const bridge41 = getLegacyBridge();
+    const state32 = bridge41.state;
     invalidateQueueRequests();
     try {
       const response = await fetch(`/api/queue/${encodeURIComponent(taskId)}`, { method: "DELETE" });
@@ -38259,15 +38421,15 @@ ${galleryText}`;
         }
       });
       await refreshQueue();
-      await bridge39.methods.refreshTasks();
-      bridge39.methods.renderPreview();
-      bridge39.methods.setStatus(translate("queue.runningCancelled"), "ok");
+      await bridge41.methods.refreshTasks();
+      bridge41.methods.renderPreview();
+      bridge41.methods.setStatus(translate("queue.runningCancelled"), "ok");
     } catch (error) {
-      bridge39.methods.setStatus(errorMessage5(error, translate("queue.cancelRunningFailed")), "error");
+      bridge41.methods.setStatus(errorMessage5(error, translate("queue.cancelRunningFailed")), "error");
     }
   }
   async function reorderQueue(taskIds) {
-    const bridge39 = getLegacyBridge();
+    const bridge41 = getLegacyBridge();
     invalidateQueueRequests();
     try {
       const response = await fetch(`/api/queue/reorder`, {
@@ -38278,9 +38440,9 @@ ${galleryText}`;
       const data = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(data.detail || translate("queue.reorderFailed"));
       applyQueueState(data);
-      await bridge39.methods.refreshTasks();
+      await bridge41.methods.refreshTasks();
     } catch (error) {
-      bridge39.methods.setStatus(errorMessage5(error, translate("queue.reorderFailed")), "error");
+      bridge41.methods.setStatus(errorMessage5(error, translate("queue.reorderFailed")), "error");
       await refreshQueue();
     }
   }
@@ -38305,7 +38467,7 @@ ${galleryText}`;
     getState().queueDragTaskId = null;
   }
   function applyQueueTasks(queue) {
-    const bridge39 = getLegacyBridge();
+    const bridge41 = getLegacyBridge();
     const tasks = [
       ...Array.isArray(queue?.waiting) ? queue.waiting : [],
       ...Array.isArray(queue?.running) ? queue.running : []
@@ -38314,37 +38476,37 @@ ${galleryText}`;
     const needsTaskReconcile = activeTasksNeedQueueReconcile(queueTaskIds);
     if (!tasks.length) {
       if (needsTaskReconcile) {
-        void bridge39.methods.refreshTasks();
+        void bridge41.methods.refreshTasks();
       }
       return;
     }
     let changed = false;
     tasks.forEach((task) => {
-      const previousTask = bridge39.state.tasks.find((item) => String(item.task_id) === String(task.task_id));
-      bridge39.methods.notifyTaskUpdate?.(previousTask, task);
-      changed = bridge39.methods.updateTaskInState(task) || changed;
-      if (String(task.task_id) === String(bridge39.state.selectedTaskId) && bridge39.methods.taskHasViewableUpdate(task)) {
-        void bridge39.methods.markTaskViewed(task.task_id);
+      const previousTask = bridge41.state.tasks.find((item) => String(item.task_id) === String(task.task_id));
+      bridge41.methods.notifyTaskUpdate?.(previousTask, task);
+      changed = bridge41.methods.updateTaskInState(task) || changed;
+      if (String(task.task_id) === String(bridge41.state.selectedTaskId) && bridge41.methods.taskHasViewableUpdate(task)) {
+        void bridge41.methods.markTaskViewed(task.task_id);
       }
     });
     if (!changed) {
       if (needsTaskReconcile) {
-        void bridge39.methods.refreshTasks();
+        void bridge41.methods.refreshTasks();
       }
       return;
     }
-    bridge39.methods.cleanupSessionSelections();
-    bridge39.methods.renderTasks();
-    bridge39.methods.renderArchiveButton();
-    bridge39.methods.renderArchiveModal();
-    bridge39.methods.renderPreview();
+    bridge41.methods.cleanupSessionSelections();
+    bridge41.methods.renderTasks();
+    bridge41.methods.renderArchiveButton();
+    bridge41.methods.renderArchiveModal();
+    bridge41.methods.renderPreview();
     if (needsTaskReconcile) {
-      void bridge39.methods.refreshTasks();
+      void bridge41.methods.refreshTasks();
     }
   }
   function activeTasksNeedQueueReconcile(queueTaskIds) {
-    const bridge39 = getLegacyBridge();
-    return bridge39.state.tasks.some((task) => {
+    const bridge41 = getLegacyBridge();
+    return bridge41.state.tasks.some((task) => {
       const taskId = String(task?.task_id || "");
       if (!taskId || queueTaskIds.has(taskId) || task?.local_pending) return false;
       const status = String(task?.status || "");
@@ -38362,9 +38524,9 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/task-list-queue-controls.ts
-  var bridge32 = getLegacyBridge();
-  var state26 = bridge32.state;
-  var els35 = bridge32.els;
+  var bridge34 = getLegacyBridge();
+  var state26 = bridge34.state;
+  var els37 = bridge34.els;
   var taskListQueueControlsInitialized = false;
   var taskListQueueControlsBound = false;
   var queueDragOriginalOrder = [];
@@ -38383,7 +38545,7 @@ ${galleryText}`;
     event.stopPropagation();
   }
   function taskListQueueControlRoots() {
-    return [els35.taskActiveList, els35.taskList].filter((root) => root instanceof HTMLElement);
+    return [els37.taskActiveList, els37.taskList].filter((root) => root instanceof HTMLElement);
   }
   function bindTaskListQueueControls() {
     if (taskListQueueControlsBound) return;
@@ -38583,9 +38745,9 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/task-context-menu.ts
-  var bridge33 = getLegacyBridge();
-  var state27 = bridge33.state;
-  var els36 = bridge33.els;
+  var bridge35 = getLegacyBridge();
+  var state27 = bridge35.state;
+  var els38 = bridge35.els;
   var taskContextMenuInitialized = false;
   var taskContextMenuEventsBound = false;
   var taskContextMenuEl = null;
@@ -38597,7 +38759,7 @@ ${galleryText}`;
     }
     return method(...args);
   }
-  function escapeHtml16(...args) {
+  function escapeHtml17(...args) {
     return legacyMethod36("escapeHtml", ...args);
   }
   function setStatus18(...args) {
@@ -38618,21 +38780,21 @@ ${galleryText}`;
   function bindTaskContextMenuEvents() {
     if (taskContextMenuEventsBound) return;
     taskContextMenuEventsBound = true;
-    els36.taskList.addEventListener("contextmenu", handleTaskListContextMenu);
-    els36.taskList.addEventListener("keydown", handleTaskListContextMenuKeydown);
+    els38.taskList.addEventListener("contextmenu", handleTaskListContextMenu);
+    els38.taskList.addEventListener("keydown", handleTaskListContextMenuKeydown);
     document.addEventListener("click", handleTaskContextDocumentClick, true);
     document.addEventListener("keydown", handleTaskContextDocumentKeydown);
     document.addEventListener("scroll", closeTaskContextMenu, true);
     window.addEventListener("resize", closeTaskContextMenu);
     if ("MutationObserver" in window) {
       taskListMutationObserver = new MutationObserver(closeTaskContextMenu);
-      taskListMutationObserver.observe(els36.taskList, { childList: true });
+      taskListMutationObserver.observe(els38.taskList, { childList: true });
     }
   }
   function handleTaskListContextMenu(event) {
     const target = eventTargetElement3(event);
     const card = target?.closest(".task-card[data-task-id]");
-    if (!card || !els36.taskList.contains(card)) return;
+    if (!card || !els38.taskList.contains(card)) return;
     event.preventDefault();
     event.stopPropagation();
     openTaskContextMenu(card, event.clientX, event.clientY);
@@ -38641,7 +38803,7 @@ ${galleryText}`;
     if (event.key !== "ContextMenu" && !(event.shiftKey && event.key === "F10")) return;
     const target = eventTargetElement3(event);
     const card = target?.closest(".task-card[data-task-id]");
-    if (!card || !els36.taskList.contains(card)) return;
+    if (!card || !els38.taskList.contains(card)) return;
     event.preventDefault();
     const rect = card.getBoundingClientRect();
     openTaskContextMenu(card, rect.left + 18, rect.top + 18);
@@ -38714,7 +38876,7 @@ ${galleryText}`;
   function taskContextButton(action, label, disabled = false, danger = false) {
     const disabledAttr = disabled ? " disabled" : "";
     const dangerClass = danger ? " danger" : "";
-    return `<button class="task-context-menu-button${dangerClass}" type="button" role="menuitem" data-task-context-action="${action}"${disabledAttr}>${escapeHtml16(label)}</button>`;
+    return `<button class="task-context-menu-button${dangerClass}" type="button" role="menuitem" data-task-context-action="${action}"${disabledAttr}>${escapeHtml17(label)}</button>`;
   }
   function bindTaskContextMenuActionEvents(menu) {
     menu.querySelectorAll("[data-task-context-action]").forEach((button) => {
@@ -38912,37 +39074,37 @@ ${galleryText}`;
     openTaskNotificationCenter();
   }
   function renderTaskNotifications() {
-    const bridge39 = getLegacyBridge();
-    const state32 = bridge39.state;
-    const els43 = bridge39.els;
+    const bridge41 = getLegacyBridge();
+    const state32 = bridge41.state;
+    const els45 = bridge41.els;
     const unreadCount = state32.taskNotifications.filter((notification) => notification.unread).length;
     state32.taskNotificationUnreadCount = unreadCount;
     const unreadLabel = unreadCount > 0 ? formatTranslation("notifications.unread", { count: unreadCount }) : translate("notifications.title");
-    if (els43.taskNotificationBadge) {
-      els43.taskNotificationBadge.textContent = "";
-      els43.taskNotificationBadge.setAttribute("aria-hidden", "true");
-      els43.taskNotificationBadge.classList.toggle("hidden", unreadCount === 0);
+    if (els45.taskNotificationBadge) {
+      els45.taskNotificationBadge.textContent = "";
+      els45.taskNotificationBadge.setAttribute("aria-hidden", "true");
+      els45.taskNotificationBadge.classList.toggle("hidden", unreadCount === 0);
     }
-    if (els43.taskNotificationButton) {
-      els43.taskNotificationButton.classList.toggle("has-unread", unreadCount > 0);
-      els43.taskNotificationButton.setAttribute("aria-label", unreadLabel);
-      els43.taskNotificationButton.title = unreadLabel;
-      els43.taskNotificationButton.setAttribute("aria-expanded", state32.taskNotificationCenterOpen ? "true" : "false");
+    if (els45.taskNotificationButton) {
+      els45.taskNotificationButton.classList.toggle("has-unread", unreadCount > 0);
+      els45.taskNotificationButton.setAttribute("aria-label", unreadLabel);
+      els45.taskNotificationButton.title = unreadLabel;
+      els45.taskNotificationButton.setAttribute("aria-expanded", state32.taskNotificationCenterOpen ? "true" : "false");
     }
-    if (els43.taskNotificationUnreadSummary) {
-      els43.taskNotificationUnreadSummary.textContent = formatTranslation("notifications.unreadSummary", { count: unreadCount });
-      els43.taskNotificationUnreadSummary.classList.toggle("hidden", unreadCount === 0);
+    if (els45.taskNotificationUnreadSummary) {
+      els45.taskNotificationUnreadSummary.textContent = formatTranslation("notifications.unreadSummary", { count: unreadCount });
+      els45.taskNotificationUnreadSummary.classList.toggle("hidden", unreadCount === 0);
     }
-    if (els43.taskNotificationCenter) {
-      els43.taskNotificationCenter.classList.toggle("hidden", !state32.taskNotificationCenterOpen);
-      els43.taskNotificationCenter.setAttribute("aria-hidden", state32.taskNotificationCenterOpen ? "false" : "true");
+    if (els45.taskNotificationCenter) {
+      els45.taskNotificationCenter.classList.toggle("hidden", !state32.taskNotificationCenterOpen);
+      els45.taskNotificationCenter.setAttribute("aria-hidden", state32.taskNotificationCenterOpen ? "false" : "true");
     }
-    if (!els43.taskNotificationList) return;
+    if (!els45.taskNotificationList) return;
     if (!state32.taskNotifications.length) {
-      els43.taskNotificationList.innerHTML = `<div class="task-notification-empty">${translate("notifications.empty")}</div>`;
+      els45.taskNotificationList.innerHTML = `<div class="task-notification-empty">${translate("notifications.empty")}</div>`;
       return;
     }
-    els43.taskNotificationList.innerHTML = state32.taskNotifications.map((notification) => taskNotificationItemHtml(notification)).join("");
+    els45.taskNotificationList.innerHTML = state32.taskNotifications.map((notification) => taskNotificationItemHtml(notification)).join("");
   }
   async function requestSystemNotificationPermission() {
     if (typeof Notification === "undefined") {
@@ -38963,23 +39125,23 @@ ${galleryText}`;
     return true;
   }
   function bindTaskNotificationEvents() {
-    const els43 = getLegacyBridge().els;
-    els43.taskNotificationButton?.addEventListener("click", (event) => {
+    const els45 = getLegacyBridge().els;
+    els45.taskNotificationButton?.addEventListener("click", (event) => {
       event.stopPropagation();
       toggleTaskNotificationCenter();
     });
-    els43.taskNotificationClearButton?.addEventListener("click", (event) => {
+    els45.taskNotificationClearButton?.addEventListener("click", (event) => {
       event.stopPropagation();
       clearTaskNotifications();
     });
-    els43.taskNotificationList?.addEventListener("click", (event) => {
+    els45.taskNotificationList?.addEventListener("click", (event) => {
       const item = eventTargetElement4(event)?.closest("[data-task-notification-id]");
       if (!(item instanceof HTMLElement)) return;
       const notification = notificationById(item.dataset.taskNotificationId);
       if (notification) void openNotificationTask(notification);
     });
-    els43.taskNotificationInApp?.addEventListener("change", handleTaskNotificationInAppChange);
-    els43.taskNotificationSystem?.addEventListener("change", (event) => {
+    els45.taskNotificationInApp?.addEventListener("change", handleTaskNotificationInAppChange);
+    els45.taskNotificationSystem?.addEventListener("change", (event) => {
       void handleTaskNotificationSystemChange(event);
     });
     document.addEventListener("click", handleTaskNotificationDocumentClick);
@@ -39011,9 +39173,9 @@ ${galleryText}`;
   }
   function handleTaskNotificationDocumentClick(event) {
     const target = event.target;
-    const els43 = getLegacyBridge().els;
+    const els45 = getLegacyBridge().els;
     if (!(target instanceof Node)) return;
-    if (els43.taskNotificationCenter?.contains(target) || els43.taskNotificationButton?.contains(target)) return;
+    if (els45.taskNotificationCenter?.contains(target) || els45.taskNotificationButton?.contains(target)) return;
     closeTaskNotificationCenter();
   }
   function handleTaskNotificationKeydown(event) {
@@ -39030,8 +39192,8 @@ ${galleryText}`;
     renderTaskNotifications();
   }
   function showTaskNotificationToast(notification) {
-    const bridge39 = getLegacyBridge();
-    const region = bridge39.els.taskNotificationToastRegion;
+    const bridge41 = getLegacyBridge();
+    const region = bridge41.els.taskNotificationToastRegion;
     if (!region) return;
     const toast = document.createElement("button");
     toast.type = "button";
@@ -39045,9 +39207,9 @@ ${galleryText}`;
     region.prepend(toast);
     const timerId = window.setTimeout(() => {
       toast.remove();
-      bridge39.state.taskNotificationToastTimerIds = bridge39.state.taskNotificationToastTimerIds.filter((id) => id !== timerId);
+      bridge41.state.taskNotificationToastTimerIds = bridge41.state.taskNotificationToastTimerIds.filter((id) => id !== timerId);
     }, TASK_NOTIFICATION_TOAST_MS);
-    bridge39.state.taskNotificationToastTimerIds.push(timerId);
+    bridge41.state.taskNotificationToastTimerIds.push(timerId);
   }
   function sendSystemTaskNotification(notification) {
     const settings = getLegacyBridge().state.taskNotificationSettings;
@@ -39062,8 +39224,8 @@ ${galleryText}`;
     };
   }
   async function openNotificationTask(notification) {
-    const bridge39 = getLegacyBridge();
-    const task = bridge39.state.tasks.find((item) => String(item.task_id) === String(notification.task_id));
+    const bridge41 = getLegacyBridge();
+    const task = bridge41.state.tasks.find((item) => String(item.task_id) === String(notification.task_id));
     markTaskNotificationRead(notification.id);
     closeTaskNotificationCenter();
     if (!task) {
@@ -39072,7 +39234,7 @@ ${galleryText}`;
     }
     window.focus();
     try {
-      const selectTask3 = bridge39.methods.selectTask;
+      const selectTask3 = bridge41.methods.selectTask;
       if (typeof selectTask3 !== "function") throw new Error("selectTask is unavailable");
       await selectTask3(task.task_id);
     } catch {
@@ -39140,8 +39302,8 @@ ${galleryText}`;
     return notification.message;
   }
   function firstTaskThumbnailUrl(task) {
-    const bridge39 = getLegacyBridge();
-    const urls = bridge39.methods.taskThumbnailUrls?.(task);
+    const bridge41 = getLegacyBridge();
+    const urls = bridge41.methods.taskThumbnailUrls?.(task);
     if (Array.isArray(urls) && urls[0]) return String(urls[0]);
     if (Array.isArray(task.thumbnail_urls) && task.thumbnail_urls[0]) return String(task.thumbnail_urls[0]);
     const output = Array.isArray(task.outputs) ? task.outputs.find((record) => record?.status === "completed") : null;
@@ -39158,17 +39320,17 @@ ${galleryText}`;
   }
   function taskNotificationItemHtml(notification) {
     const unreadClass = notification.unread ? " unread" : "";
-    return `<button class="task-notification-item${unreadClass}" type="button" data-task-notification-id="${escapeHtml17(notification.id)}">
+    return `<button class="task-notification-item${unreadClass}" type="button" data-task-notification-id="${escapeHtml18(notification.id)}">
     ${taskNotificationInnerHtml(notification)}
   </button>`;
   }
   function taskNotificationInnerHtml(notification) {
-    const thumbnail = notification.thumbnail_url ? `<img class="task-notification-thumb" src="${escapeHtml17(notification.thumbnail_url)}" alt="">` : `<span class="task-notification-thumb task-notification-thumb-placeholder" aria-hidden="true">${escapeHtml17(statusGlyph(notification.status))}</span>`;
+    const thumbnail = notification.thumbnail_url ? `<img class="task-notification-thumb" src="${escapeHtml18(notification.thumbnail_url)}" alt="">` : `<span class="task-notification-thumb task-notification-thumb-placeholder" aria-hidden="true">${escapeHtml18(statusGlyph(notification.status))}</span>`;
     return `${thumbnail}
     <span class="task-notification-body">
-      <span class="task-notification-title">${escapeHtml17(taskNotificationDisplayTitle(notification))}</span>
-      <span class="task-notification-message">${escapeHtml17(taskNotificationDisplayMessage(notification))}</span>
-      <span class="task-notification-time">${escapeHtml17(formatNotificationTime(notification.created_at))}</span>
+      <span class="task-notification-title">${escapeHtml18(taskNotificationDisplayTitle(notification))}</span>
+      <span class="task-notification-message">${escapeHtml18(taskNotificationDisplayMessage(notification))}</span>
+      <span class="task-notification-time">${escapeHtml18(formatNotificationTime(notification.created_at))}</span>
     </span>`;
   }
   function statusGlyph(status) {
@@ -39225,13 +39387,13 @@ ${galleryText}`;
     syncTaskNotificationSettingsInputs();
   }
   function syncTaskNotificationSettingsInputs() {
-    const bridge39 = getLegacyBridge();
-    const settings = bridge39.state.taskNotificationSettings;
-    if (bridge39.els.taskNotificationInApp instanceof HTMLInputElement) {
-      bridge39.els.taskNotificationInApp.checked = settings.inApp;
+    const bridge41 = getLegacyBridge();
+    const settings = bridge41.state.taskNotificationSettings;
+    if (bridge41.els.taskNotificationInApp instanceof HTMLInputElement) {
+      bridge41.els.taskNotificationInApp.checked = settings.inApp;
     }
-    if (bridge39.els.taskNotificationSystem instanceof HTMLInputElement) {
-      bridge39.els.taskNotificationSystem.checked = settings.system;
+    if (bridge41.els.taskNotificationSystem instanceof HTMLInputElement) {
+      bridge41.els.taskNotificationSystem.checked = settings.system;
     }
   }
   function restoreTaskNotificationSeenKeys() {
@@ -39271,7 +39433,7 @@ ${galleryText}`;
     if (!text) return "";
     return text.length > 48 ? `${text.slice(0, 48)}...` : text;
   }
-  function escapeHtml17(value) {
+  function escapeHtml18(value) {
     return getLegacyBridge().methods.escapeHtml(value);
   }
   function setStatus19(message, type) {
@@ -39343,7 +39505,7 @@ ${galleryText}`;
     }
     return method(...args);
   }
-  function escapeHtml18(...args) {
+  function escapeHtml19(...args) {
     return legacyMethod37("escapeHtml", ...args);
   }
   function taskRatio2(task) {
@@ -39876,7 +40038,7 @@ ${galleryText}`;
     return formatDurationParts2(totalMilliseconds).text;
   }
   function elapsedWheelMarkup(char) {
-    const safeChar = escapeHtml18(char);
+    const safeChar = escapeHtml19(char);
     if (/^\d$/.test(char)) {
       const digitStrip = "0123456789".split("").map((digit) => `<span>${digit}</span>`).join("");
       return `<span class="elapsed-wheel" aria-hidden="true" data-elapsed-char="${safeChar}" data-elapsed-char-value="${safeChar}" style="--digit-offset: ${safeChar};"><span class="elapsed-wheel-strip">${digitStrip}</span></span>`;
@@ -39893,7 +40055,7 @@ ${galleryText}`;
   function elapsedTimerSpan(kind, startValue) {
     const elapsedMs = elapsedMillisecondsSince2(startValue);
     const elapsed = formatDurationTenths2(elapsedMs);
-    return `<span class="elapsed-timer" aria-label="${elapsed}" data-preview-elapsed="${escapeHtml18(kind)}" data-preview-start="${escapeHtml18(startValue || "")}">${elapsedTimerMarkup2(elapsedMs)}</span>`;
+    return `<span class="elapsed-timer" aria-label="${elapsed}" data-preview-elapsed="${escapeHtml19(kind)}" data-preview-start="${escapeHtml19(startValue || "")}">${elapsedTimerMarkup2(elapsedMs)}</span>`;
   }
   function taskGeneratedCount(task, fallback = 0) {
     const visibleCompleted = taskVisibleCompletedCount(task);
@@ -39981,9 +40143,9 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/task-preview.ts
-  var bridge34 = getLegacyBridge();
-  var state28 = bridge34.state;
-  var els37 = bridge34.els;
+  var bridge36 = getLegacyBridge();
+  var state28 = bridge36.state;
+  var els39 = bridge36.els;
   var previewGridEventsBound = false;
   var pendingPreviewRenderToken = 0;
   function legacyMethod38(name, ...args) {
@@ -39993,7 +40155,7 @@ ${galleryText}`;
     }
     return method(...args);
   }
-  function escapeHtml19(...args) {
+  function escapeHtml20(...args) {
     return legacyMethod38("escapeHtml", ...args);
   }
   function isTaskArchived4(...args) {
@@ -40085,6 +40247,8 @@ ${galleryText}`;
     const visibleSelectedTask = selectedTask && !isTaskArchived4(selectedTask.task_id) ? selectedTask : null;
     const selected = task || visibleSelectedTask || state28.tasks.find((item) => !isTaskArchived4(item.task_id)) || selectedTask || state28.tasks[0];
     const status = taskPreviewStatus(selected);
+    const hasPreviewContent = Boolean(selected && (taskOutputUrls3(selected).length || ["running", "submitting", "queued"].includes(status)));
+    document.body.classList.toggle("has-preview-content", hasPreviewContent);
     updatePreviewDownloadActions(selected);
     const nextPreviewKey = previewStructureKey(selected);
     if (state28.previewRenderKey === nextPreviewKey) {
@@ -40119,9 +40283,9 @@ ${galleryText}`;
       closePromptPopover7();
       cancelDeferredPreviewRender();
       clearPreviewGridLayout();
-      els37.previewGrid.innerHTML = `
+      els39.previewGrid.innerHTML = `
       <div class="empty-preview error-preview">
-        <p>${escapeHtml19(taskFailureMessage2(selected) || translate("preview.taskFailed"))}</p>
+        <p>${escapeHtml20(taskFailureMessage2(selected) || translate("preview.taskFailed"))}</p>
         ${retryFailureSummaryButton(selected)}
       </div>
     `;
@@ -40133,7 +40297,7 @@ ${galleryText}`;
       closePromptPopover7();
       cancelDeferredPreviewRender();
       clearPreviewGridLayout();
-      els37.previewGrid.innerHTML = `<div class="empty-preview">${escapeHtml19(translate("preview.empty"))}</div>`;
+      els39.previewGrid.innerHTML = `<div class="empty-preview">${escapeHtml20(translate("preview.empty"))}</div>`;
       return;
     }
     renderOutputPreview(selected);
@@ -40186,14 +40350,14 @@ ${galleryText}`;
     if (!failure) return "";
     return `
     <div class="running-failure-notice" data-preview-running-failure role="status">
-      <strong>${escapeHtml19(formatTranslation("preview.failedOutput", { index: failure.index }))}</strong>
-      <p>${escapeHtml19(failure.error)}</p>
+      <strong>${escapeHtml20(formatTranslation("preview.failedOutput", { index: failure.index }))}</strong>
+      <p>${escapeHtml20(failure.error)}</p>
     </div>
   `;
   }
   function previewElapsedLineHtml(key, values, elapsedHtml) {
     const marker = "__CODEX_IMAGE_ELAPSED_TIMER__";
-    return formatTranslation(key, { ...values, elapsed: marker }).split(marker).map((part) => escapeHtml19(part)).join(elapsedHtml);
+    return formatTranslation(key, { ...values, elapsed: marker }).split(marker).map((part) => escapeHtml20(part)).join(elapsedHtml);
   }
   function scheduleDeferredPreviewRender(task, { running, failure, waiting, outputUrls, totalCount, itemCount }) {
     const renderToken = ++pendingPreviewRenderToken;
@@ -40241,24 +40405,24 @@ ${galleryText}`;
     window.requestAnimationFrame(syncPreviewImageOrientation);
   }
   function reconcilePreviewOutputCards(task, outputUrls, totalCount, { preservePreviousImages = true, imageAlreadyLoaded = false } = {}) {
-    if (!els37.previewGrid) return;
+    if (!els39.previewGrid) return;
     const desiredKeys = new Set(outputUrls.map((url, index) => previewOutputCardKey(task, url, index)));
     removeStalePreviewNodes(desiredKeys);
     outputUrls.forEach((url, index) => {
       const key = previewOutputCardKey(task, url, index);
       const card = ensurePreviewOutputCard(key);
-      if (els37.previewGrid.children[index] !== card) {
-        els37.previewGrid.insertBefore(card, els37.previewGrid.children[index] || null);
+      if (els39.previewGrid.children[index] !== card) {
+        els39.previewGrid.insertBefore(card, els39.previewGrid.children[index] || null);
       }
       updatePreviewOutputCard(card, task, url, index, totalCount, { preservePreviousImage: preservePreviousImages, imageAlreadyLoaded });
     });
   }
   function currentPreviewOutputCardCount() {
-    if (!els37.previewGrid) return 0;
-    return els37.previewGrid.querySelectorAll(".preview-card[data-preview-card-key]").length;
+    if (!els39.previewGrid) return 0;
+    return els39.previewGrid.querySelectorAll(".preview-card[data-preview-card-key]").length;
   }
   function removeStalePreviewNodes(desiredKeys) {
-    [...els37.previewGrid.children].forEach((child) => {
+    [...els39.previewGrid.children].forEach((child) => {
       if (!(child instanceof HTMLElement)) return;
       const key = child.dataset.previewCardKey;
       if (key) {
@@ -40273,7 +40437,7 @@ ${galleryText}`;
     return `slot-${taskOutputIndex2(task, url, index) || index + 1}`;
   }
   function ensurePreviewOutputCard(key) {
-    const existing = [...els37.previewGrid.querySelectorAll(".preview-card[data-preview-card-key]")].find((card2) => {
+    const existing = [...els39.previewGrid.querySelectorAll(".preview-card[data-preview-card-key]")].find((card2) => {
       return card2 instanceof HTMLElement && card2.dataset.previewCardKey === key;
     });
     if (existing instanceof HTMLElement) return existing;
@@ -40436,7 +40600,7 @@ ${galleryText}`;
     });
   }
   function reconcilePreviewStatusCard(task, flags, visibleOutputCount) {
-    const existing = els37.previewGrid.querySelector("[data-preview-status-card]");
+    const existing = els39.previewGrid.querySelector("[data-preview-status-card]");
     const html = flags.running ? runningProgressCard(task, visibleOutputCount) : flags.waiting ? waitingProgressCard(task, visibleOutputCount) : flags.failure ? failureSummaryCard(task, visibleOutputCount) : "";
     if (!html) {
       existing?.remove();
@@ -40450,13 +40614,13 @@ ${galleryText}`;
     if (existing) {
       existing.replaceWith(next);
     } else {
-      els37.previewGrid.append(next);
+      els39.previewGrid.append(next);
     }
   }
   function bindPreviewGridEvents() {
-    if (previewGridEventsBound || !els37.previewGrid) return;
+    if (previewGridEventsBound || !els39.previewGrid) return;
     previewGridEventsBound = true;
-    els37.previewGrid.addEventListener("click", handlePreviewGridClick);
+    els39.previewGrid.addEventListener("click", handlePreviewGridClick);
   }
   function handlePreviewGridClick(event) {
     const target = event.target instanceof Element ? event.target : null;
@@ -40505,7 +40669,7 @@ ${galleryText}`;
     }
     const image = target.closest("[data-lightbox-url]");
     if (!image) return;
-    const images = [...els37.previewGrid.querySelectorAll("[data-lightbox-url]")];
+    const images = [...els39.previewGrid.querySelectorAll("[data-lightbox-url]")];
     const urls = images.map((item) => item.dataset.lightboxUrl || item.currentSrc || item.src).filter((url) => Boolean(url));
     const currentUrl = image.dataset.lightboxUrl || image.currentSrc || image.src;
     if (!currentUrl) return;
@@ -40517,16 +40681,16 @@ ${galleryText}`;
   function updatePreviewDownloadActions(task) {
     updatePreviewSelectionActions(task);
     const outputUrls = taskOutputUrls3(task);
-    if (!els37.downloadAllButton) return;
+    if (!els39.downloadAllButton) return;
     if (!task?.task_id || outputUrls.length < 2) {
-      els37.downloadAllButton.classList.add("hidden");
-      els37.downloadAllButton.removeAttribute("href");
-      els37.downloadAllButton.removeAttribute("download");
+      els39.downloadAllButton.classList.add("hidden");
+      els39.downloadAllButton.removeAttribute("href");
+      els39.downloadAllButton.removeAttribute("download");
       return;
     }
-    els37.downloadAllButton.href = taskOutputZipUrl(task);
-    els37.downloadAllButton.download = `${task.task_id}-images.zip`;
-    els37.downloadAllButton.classList.remove("hidden");
+    els39.downloadAllButton.href = taskOutputZipUrl(task);
+    els39.downloadAllButton.download = `${task.task_id}-images.zip`;
+    els39.downloadAllButton.classList.remove("hidden");
   }
   function updatePreviewSelectionActions(task) {
     const outputUrls = taskOutputUrls3(task);
@@ -40534,28 +40698,28 @@ ${galleryText}`;
     const selectedCount = selectedUrls.length;
     const totalCount = outputUrls.length;
     const hasSelection = Boolean(task?.task_id && selectedCount > 0 && totalCount > 1);
-    els37.previewSelectionActions?.classList.toggle("hidden", !hasSelection);
-    if (els37.previewSelectionCount) {
-      els37.previewSelectionCount.textContent = selectedCount ? formatTranslation("preview.selectedCount", { selected: selectedCount, total: totalCount }) : translate("preview.selectedZero");
+    els39.previewSelectionActions?.classList.toggle("hidden", !hasSelection);
+    if (els39.previewSelectionCount) {
+      els39.previewSelectionCount.textContent = selectedCount ? formatTranslation("preview.selectedCount", { selected: selectedCount, total: totalCount }) : translate("preview.selectedZero");
     }
-    if (els37.downloadSelectedButton) {
+    if (els39.downloadSelectedButton) {
       if (!hasSelection) {
-        els37.downloadSelectedButton.classList.add("hidden");
-        els37.downloadSelectedButton.removeAttribute("href");
-        els37.downloadSelectedButton.removeAttribute("download");
+        els39.downloadSelectedButton.classList.add("hidden");
+        els39.downloadSelectedButton.removeAttribute("href");
+        els39.downloadSelectedButton.removeAttribute("download");
       } else {
-        els37.downloadSelectedButton.href = taskSelectedOutputDownloadUrl(task);
-        els37.downloadSelectedButton.download = taskSelectedOutputDownloadName(task);
-        els37.downloadSelectedButton.classList.remove("hidden");
+        els39.downloadSelectedButton.href = taskSelectedOutputDownloadUrl(task);
+        els39.downloadSelectedButton.download = taskSelectedOutputDownloadName(task);
+        els39.downloadSelectedButton.classList.remove("hidden");
       }
     }
-    if (els37.deleteUnselectedOutputsButton) {
+    if (els39.deleteUnselectedOutputsButton) {
       const canDeleteUnselected = hasSelection && selectedCount < totalCount;
-      els37.deleteUnselectedOutputsButton.classList.toggle("hidden", !canDeleteUnselected);
+      els39.deleteUnselectedOutputsButton.classList.toggle("hidden", !canDeleteUnselected);
       if (canDeleteUnselected) {
-        els37.deleteUnselectedOutputsButton.dataset.deleteUnselectedTaskId = String(task.task_id || "");
+        els39.deleteUnselectedOutputsButton.dataset.deleteUnselectedTaskId = String(task.task_id || "");
       } else {
-        delete els37.deleteUnselectedOutputsButton.dataset.deleteUnselectedTaskId;
+        delete els39.deleteUnselectedOutputsButton.dataset.deleteUnselectedTaskId;
       }
     }
   }
@@ -40661,36 +40825,36 @@ ${galleryText}`;
     return String(value || "image").replace(/[^\w.-]+/g, "-") || "image";
   }
   function clearPreviewGridLayout() {
-    if (!els37.previewGrid) return;
-    els37.previewGrid.classList.remove("multi-output");
-    [...els37.previewGrid.classList].forEach((className) => {
+    if (!els39.previewGrid) return;
+    els39.previewGrid.classList.remove("multi-output");
+    [...els39.previewGrid.classList].forEach((className) => {
       if (className.startsWith("preview-count-") || className.startsWith("preview-orientation-")) {
-        els37.previewGrid.classList.remove(className);
+        els39.previewGrid.classList.remove(className);
       }
     });
   }
   function applyPreviewGridLayout(outputCount, itemCount) {
     const previousOrientationClass = currentPreviewOrientationClass();
     clearPreviewGridLayout();
-    if (!els37.previewGrid) return;
-    els37.previewGrid.classList.toggle("multi-output", itemCount > 1);
-    els37.previewGrid.classList.add(`preview-count-${outputCount}`);
-    els37.previewGrid.classList.add(previousOrientationClass || "preview-orientation-unknown");
+    if (!els39.previewGrid) return;
+    els39.previewGrid.classList.toggle("multi-output", itemCount > 1);
+    els39.previewGrid.classList.add(`preview-count-${outputCount}`);
+    els39.previewGrid.classList.add(previousOrientationClass || "preview-orientation-unknown");
   }
   function currentPreviewOrientationClass() {
-    if (!els37.previewGrid) return "";
-    return [...els37.previewGrid.classList].find((className) => className.startsWith("preview-orientation-")) || "";
+    if (!els39.previewGrid) return "";
+    return [...els39.previewGrid.classList].find((className) => className.startsWith("preview-orientation-")) || "";
   }
   function syncPreviewImageOrientation() {
-    if (!els37.previewGrid) return;
-    const images = [...els37.previewGrid.querySelectorAll("[data-lightbox-url]")];
+    if (!els39.previewGrid) return;
+    const images = [...els39.previewGrid.querySelectorAll("[data-lightbox-url]")];
     const loadedImages = images.filter((image) => image.naturalWidth > 0 && image.naturalHeight > 0);
     if (!loadedImages.length) return;
     const portraitCount = loadedImages.filter((image) => image.naturalHeight > image.naturalWidth).length;
     const landscapeCount = loadedImages.filter((image) => image.naturalWidth > image.naturalHeight).length;
     const orientation = portraitCount > landscapeCount ? "portrait" : landscapeCount > portraitCount ? "landscape" : "square";
-    els37.previewGrid.classList.remove("preview-orientation-unknown", "preview-orientation-portrait", "preview-orientation-landscape", "preview-orientation-square");
-    els37.previewGrid.classList.add(`preview-orientation-${orientation}`);
+    els39.previewGrid.classList.remove("preview-orientation-unknown", "preview-orientation-portrait", "preview-orientation-landscape", "preview-orientation-square");
+    els39.previewGrid.classList.add(`preview-orientation-${orientation}`);
   }
   function promptPopoverData(task, index) {
     const originalPrompt = task.prompt || task.prompt_for_model || "";
@@ -40702,15 +40866,15 @@ ${galleryText}`;
     const elapsed = elapsedTimerSpan2("running", taskProgressStartValue3(task));
     const generated = taskGeneratedCount2(task, visibleOutputCount);
     const total = taskTotalCount2(task);
-    const size = escapeHtml19(task.params?.size || currentSize2());
+    const size = escapeHtml20(task.params?.size || currentSize2());
     const retryState = taskRetryStateText4(task);
-    const retryStateHtml = retryState ? `<p data-preview-retry-state>${escapeHtml19(retryState)}</p>` : "";
+    const retryStateHtml = retryState ? `<p data-preview-retry-state>${escapeHtml20(retryState)}</p>` : "";
     const failureNotice = runningFailureNotice(task);
     return `
     <div class="running-progress-card">
       <div class="waiting-spinner" aria-hidden="true"></div>
       <div>
-        <strong>${escapeHtml19(translate("preview.continueGenerating"))}</strong>
+        <strong>${escapeHtml20(translate("preview.continueGenerating"))}</strong>
         <p class="elapsed-line">${previewElapsedLineHtml("preview.progressLine", { generated, total }, elapsed)}</p>
         <p class="elapsed-meta">${size}</p>
         ${retryStateHtml}
@@ -40725,15 +40889,15 @@ ${galleryText}`;
     const elapsed = elapsedTimerSpan2("waiting", elapsedFrom);
     const generated = taskGeneratedCount2(task, visibleOutputCount);
     const total = taskTotalCount2(task);
-    const size = escapeHtml19(task.params?.size || currentSize2());
-    const retryReason = task.last_error ? `<p>${escapeHtml19(formatTranslation("preview.lastError", { error: task.last_error }))}</p>` : "";
+    const size = escapeHtml20(task.params?.size || currentSize2());
+    const retryReason = task.last_error ? `<p>${escapeHtml20(formatTranslation("preview.lastError", { error: task.last_error }))}</p>` : "";
     const retryState = taskRetryStateText4(task);
-    const retryStateHtml = retryState ? `<p data-preview-retry-state>${escapeHtml19(retryState)}</p>` : "";
+    const retryStateHtml = retryState ? `<p data-preview-retry-state>${escapeHtml20(retryState)}</p>` : "";
     return `
     <div class="running-progress-card waiting-progress-card">
       <div class="waiting-spinner" aria-hidden="true"></div>
       <div>
-        <strong>${escapeHtml19(translate("preview.waitingContinue"))}</strong>
+        <strong>${escapeHtml20(translate("preview.waitingContinue"))}</strong>
         <p class="elapsed-line">${previewElapsedLineHtml("preview.progressLine", { generated, total }, elapsed)}</p>
         <p class="elapsed-meta">${size}</p>
         ${retryStateHtml}
@@ -40748,13 +40912,13 @@ ${galleryText}`;
     const failed = Number.parseInt(task?.failed_count ?? "", 10);
     const failedCount = Number.isNaN(failed) ? Math.max(0, taskTotalCount2(task) - generated) : failed;
     const total = taskTotalCount2(task);
-    const message = escapeHtml19(taskFailureMessage2(task) || translate("preview.partialFailed"));
+    const message = escapeHtml20(taskFailureMessage2(task) || translate("preview.partialFailed"));
     const retryState = taskRetryStateText4(task);
-    const retryStateHtml = retryState ? `<p data-preview-retry-state>${escapeHtml19(retryState)}</p>` : "";
+    const retryStateHtml = retryState ? `<p data-preview-retry-state>${escapeHtml20(retryState)}</p>` : "";
     return `
     <div class="failure-summary-card">
-      <strong>${escapeHtml19(task.status === "partial_failed" ? translate("preview.partialFailed") : translate("preview.taskFailed"))}</strong>
-      <p>${escapeHtml19(formatTranslation("preview.failureLine", { generated, total, failed: failedCount }))}</p>
+      <strong>${escapeHtml20(task.status === "partial_failed" ? translate("preview.partialFailed") : translate("preview.taskFailed"))}</strong>
+      <p>${escapeHtml20(formatTranslation("preview.failureLine", { generated, total, failed: failedCount }))}</p>
       ${retryStateHtml}
       <p>${message}</p>
       ${retryFailureSummaryButton(task)}
@@ -40762,13 +40926,13 @@ ${galleryText}`;
   `;
   }
   function retryFailureSummaryButton(task) {
-    const taskId = escapeHtml19(task.task_id || "");
+    const taskId = escapeHtml20(task.task_id || "");
     const actions = [];
     if (canRetryFailedTask3(task)) {
-      actions.push(`<button class="ghost-button text-sm" type="button" data-preview-retry-failed-task-id="${taskId}">${escapeHtml19(translate("preview.retryFailed"))}</button>`);
+      actions.push(`<button class="ghost-button text-sm" type="button" data-preview-retry-failed-task-id="${taskId}">${escapeHtml20(translate("preview.retryFailed"))}</button>`);
     }
     if (canAcceptTaskSuccesses3(task)) {
-      actions.push(`<button class="ghost-button text-sm" type="button" data-preview-accept-successes-task-id="${taskId}">${escapeHtml19(translate("preview.acceptSuccesses"))}</button>`);
+      actions.push(`<button class="ghost-button text-sm" type="button" data-preview-accept-successes-task-id="${taskId}">${escapeHtml20(translate("preview.acceptSuccesses"))}</button>`);
     }
     if (!actions.length) return "";
     return `
@@ -40780,16 +40944,16 @@ ${galleryText}`;
   function renderRunningPreview(task) {
     clearPreviewGridLayout();
     const elapsed = elapsedTimerSpan2("running", taskProgressStartValue3(task));
-    const size = escapeHtml19(task.params?.size || currentSize2());
+    const size = escapeHtml20(task.params?.size || currentSize2());
     const modeLabel = task.mode === "edit" ? translate("preview.editMode") : translate("preview.generateMode");
     const retryState = taskRetryStateText4(task);
-    const retryStateHtml = retryState ? `<p data-preview-retry-state>${escapeHtml19(retryState)}</p>` : "";
+    const retryStateHtml = retryState ? `<p data-preview-retry-state>${escapeHtml20(retryState)}</p>` : "";
     const failureNotice = runningFailureNotice(task);
-    els37.previewGrid.innerHTML = `
+    els39.previewGrid.innerHTML = `
     <div class="waiting-preview">
       <div class="waiting-spinner" aria-hidden="true"></div>
       <div>
-        <strong>${escapeHtml19(formatTranslation("preview.runningTitle", { mode: modeLabel }))}</strong>
+        <strong>${escapeHtml20(formatTranslation("preview.runningTitle", { mode: modeLabel }))}</strong>
         <p class="elapsed-line">${previewElapsedLineHtml("preview.elapsedLine", {}, elapsed)}</p>
         <p class="elapsed-meta">${size}</p>
         ${retryStateHtml}
@@ -40804,21 +40968,21 @@ ${galleryText}`;
     const submitting = task.status === "submitting";
     const elapsedFrom = task.started_at || task.queued_at || task.created_at;
     const elapsed = elapsedTimerSpan2("waiting", elapsedFrom);
-    const size = escapeHtml19(task.params?.size || currentSize2());
+    const size = escapeHtml20(task.params?.size || currentSize2());
     const title = submitting ? translate("preview.submittingTitle") : translate("preview.queuedTitle");
     const detail = submitting ? translate("preview.submittingDetail") : translate("preview.queuedDetail");
-    const retryReason = !submitting && task.last_error ? `<p>${escapeHtml19(formatTranslation("preview.lastError", { error: task.last_error }))}</p>` : "";
+    const retryReason = !submitting && task.last_error ? `<p>${escapeHtml20(formatTranslation("preview.lastError", { error: task.last_error }))}</p>` : "";
     const retryState = taskRetryStateText4(task);
-    const retryStateHtml = retryState ? `<p data-preview-retry-state>${escapeHtml19(retryState)}</p>` : "";
-    els37.previewGrid.innerHTML = `
+    const retryStateHtml = retryState ? `<p data-preview-retry-state>${escapeHtml20(retryState)}</p>` : "";
+    els39.previewGrid.innerHTML = `
     <div class="waiting-preview">
       <div class="waiting-spinner" aria-hidden="true"></div>
       <div>
-        <strong>${escapeHtml19(title)}</strong>
+        <strong>${escapeHtml20(title)}</strong>
         <p class="elapsed-line">${previewElapsedLineHtml("preview.elapsedLine", {}, elapsed)}</p>
         <p class="elapsed-meta">${size}</p>
         ${retryStateHtml}
-        <p>${escapeHtml19(detail)}</p>
+        <p>${escapeHtml20(detail)}</p>
         ${retryReason}
       </div>
       <div class="waiting-bar"><span></span></div>
@@ -40826,8 +40990,8 @@ ${galleryText}`;
   `;
   }
   function initTaskPreviewFeature() {
-    els37.deleteUnselectedOutputsButton?.addEventListener("click", () => {
-      openDeleteUnselectedOutputsConfirm(els37.deleteUnselectedOutputsButton);
+    els39.deleteUnselectedOutputsButton?.addEventListener("click", () => {
+      openDeleteUnselectedOutputsConfirm(els39.deleteUnselectedOutputsButton);
     });
     document.addEventListener(LOCALE_CHANGE_EVENT, () => {
       state28.previewRenderKey = null;
@@ -40856,9 +41020,9 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/tasks.ts
-  var bridge35 = getLegacyBridge();
-  var state29 = bridge35.state;
-  var els38 = bridge35.els;
+  var bridge37 = getLegacyBridge();
+  var state29 = bridge37.state;
+  var els40 = bridge37.els;
   function legacyMethod39(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
@@ -40880,8 +41044,8 @@ ${galleryText}`;
   var TASK_SEARCH_HISTORY_LIMIT = 100;
   var TASK_SEARCH_HISTORY_DEBOUNCE_MS = 180;
   var taskSearchHistoryTimerId = 0;
-  function normalizedTaskSearchResultQuery(query) {
-    return String(query || "").trim().toLowerCase();
+  function normalizedTaskSearchResultQuery(query2) {
+    return String(query2 || "").trim().toLowerCase();
   }
   async function refreshTasks({ migrateLegacyArchives = false } = {}) {
     const requestSeq = ++state29.tasksRequestSeq;
@@ -40923,7 +41087,7 @@ ${galleryText}`;
     await renderSelectedTaskPreview();
   }
   function currentTaskSearchQuery() {
-    return String(els38.taskSearch?.value || "").trim();
+    return String(els40.taskSearch?.value || "").trim();
   }
   function activeOrSelectedTask(task) {
     const taskId = String(task?.task_id || "");
@@ -40959,7 +41123,7 @@ ${galleryText}`;
       thumbnail_urls: task.thumbnail_url ? [String(task.thumbnail_url)] : []
     };
   }
-  function mergeTaskSearchHistoryResults(tasks, query) {
+  function mergeTaskSearchHistoryResults(tasks, query2) {
     const previousResultIds = new Set((state29.taskSearchHistoryResultIds || []).map(String));
     const nextTasks = tasks.map(historyTaskSummaryToSidebarTask).filter((task) => task.task_id);
     const nextById = new Map(nextTasks.map((task) => [String(task.task_id), task]));
@@ -40986,7 +41150,7 @@ ${galleryText}`;
     });
     state29.tasks = merged;
     state29.taskSearchHistoryResultIds = Array.from(nextIds);
-    state29.taskSearchHistoryResultQuery = normalizedTaskSearchResultQuery(query);
+    state29.taskSearchHistoryResultQuery = normalizedTaskSearchResultQuery(query2);
     state29.tasksRenderKey = null;
   }
   function clearTaskSearchHistoryResults() {
@@ -41000,29 +41164,29 @@ ${galleryText}`;
     state29.taskSearchHistoryResultQuery = "";
     state29.tasksRenderKey = null;
   }
-  async function fetchTaskSearchHistoryResults(query, requestSeq) {
+  async function fetchTaskSearchHistoryResults(query2, requestSeq) {
     const params = new URLSearchParams();
-    params.set("q", query);
+    params.set("q", query2);
     params.set("limit", String(TASK_SEARCH_HISTORY_LIMIT));
     params.set("archived", "false");
     const response = await fetch(`/api/task-history/tasks?${params.toString()}`);
     const data = await response.json().catch(() => ({}));
     if (!response.ok) throw new Error(data.detail || "Task history search failed");
-    if (requestSeq !== state29.taskSearchHistoryRequestSeq || currentTaskSearchQuery() !== query) return;
-    mergeTaskSearchHistoryResults(Array.isArray(data.tasks) ? data.tasks : [], query);
+    if (requestSeq !== state29.taskSearchHistoryRequestSeq || currentTaskSearchQuery() !== query2) return;
+    mergeTaskSearchHistoryResults(Array.isArray(data.tasks) ? data.tasks : [], query2);
     renderTasks8({ preserveScroll: true });
   }
   async function syncTaskSearchHistoryResults2() {
     window.clearTimeout(taskSearchHistoryTimerId);
-    const query = currentTaskSearchQuery();
+    const query2 = currentTaskSearchQuery();
     const requestSeq = ++state29.taskSearchHistoryRequestSeq;
-    if (!query) {
+    if (!query2) {
       clearTaskSearchHistoryResults();
       renderTasks8({ preserveScroll: true });
       return;
     }
     taskSearchHistoryTimerId = window.setTimeout(() => {
-      void fetchTaskSearchHistoryResults(query, requestSeq).catch((error) => {
+      void fetchTaskSearchHistoryResults(query2, requestSeq).catch((error) => {
         if (requestSeq !== state29.taskSearchHistoryRequestSeq) return;
         console.warn(error);
       });
@@ -41055,9 +41219,9 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/task-selection.ts
-  var bridge36 = getLegacyBridge();
-  var state30 = bridge36.state;
-  var els39 = bridge36.els;
+  var bridge38 = getLegacyBridge();
+  var state30 = bridge38.state;
+  var els41 = bridge38.els;
   var taskSelectionInitialized = false;
   var HISTORY_TASK_REUSE_HANDOFF_KEY = "codex-image-history-task-reuse-handoff";
   var selectedTaskDetailRequestSeq = 0;
@@ -41119,8 +41283,8 @@ ${galleryText}`;
   }
   function applySelectedTaskRequestPreview(task) {
     const requestPayload = taskRequestPreviewPayload2(task);
-    if (requestPayload && els39.requestJson) {
-      els39.requestJson.textContent = JSON.stringify(requestPayload, null, 2);
+    if (requestPayload && els41.requestJson) {
+      els41.requestJson.textContent = JSON.stringify(requestPayload, null, 2);
     }
   }
   function applyTaskInputRestoreSources(sources, taskId, restoreSeq) {
@@ -41357,8 +41521,8 @@ ${galleryText}`;
   }
 
   // codex_image/webui/frontend/src/overlay-popovers.ts
-  var bridge37 = getLegacyBridge();
-  var els40 = bridge37.els;
+  var bridge39 = getLegacyBridge();
+  var els42 = bridge39.els;
   var overlayPopoversInitialized = false;
   var overlayPopoverEventsBound = false;
   var confirmPopoverEl = null;
@@ -41380,7 +41544,7 @@ ${galleryText}`;
     }
     return method(...args);
   }
-  function escapeHtml20(value) {
+  function escapeHtml21(value) {
     return legacyMethod41("escapeHtml", value);
   }
   function closeGalleryEditPopover4() {
@@ -41454,16 +41618,16 @@ ${galleryText}`;
     closeGalleryEditPopover4();
     confirmPopoverState.anchor = anchor;
     confirmPopoverState.onConfirm = typeof options.onConfirm === "function" ? options.onConfirm : null;
-    const message = options.message ? `<p class="confirm-popover-message">${escapeHtml20(options.message)}</p>` : "";
-    const detail = options.detail ? `<div class="confirm-popover-detail">${escapeHtml20(options.detail)}</div>` : "";
+    const message = options.message ? `<p class="confirm-popover-message">${escapeHtml21(options.message)}</p>` : "";
+    const detail = options.detail ? `<div class="confirm-popover-detail">${escapeHtml21(options.detail)}</div>` : "";
     const confirmText = options.confirmText || translate("action.confirm");
     popover.innerHTML = `
-    <div class="confirm-popover-title">${escapeHtml20(options.title || translate("action.confirmQuestion"))}</div>
+    <div class="confirm-popover-title">${escapeHtml21(options.title || translate("action.confirmQuestion"))}</div>
     ${message}
     ${detail}
     <div class="confirm-popover-actions">
-      <button class="ghost-button text-sm" type="button" data-confirm-popover-cancel>${escapeHtml20(translate("action.cancel"))}</button>
-      <button class="ghost-button text-sm danger-button confirm-popover-confirm" type="button" data-confirm-popover-confirm>${escapeHtml20(confirmText)}</button>
+      <button class="ghost-button text-sm" type="button" data-confirm-popover-cancel>${escapeHtml21(translate("action.cancel"))}</button>
+      <button class="ghost-button text-sm danger-button confirm-popover-confirm" type="button" data-confirm-popover-confirm>${escapeHtml21(confirmText)}</button>
     </div>
   `;
     popover.querySelector("[data-confirm-popover-cancel]")?.addEventListener("click", closeConfirmPopover4);
@@ -41509,13 +41673,13 @@ ${galleryText}`;
     return `
     <section class="prompt-popover-section${toneClass}">
       <div class="prompt-popover-section-head">
-        <div class="prompt-popover-label">${escapeHtml20(label)}</div>
+        <div class="prompt-popover-label">${escapeHtml21(label)}</div>
         <div class="prompt-popover-section-tools">
-          <span class="prompt-popover-meta">${escapeHtml20(meta || promptLengthLabel(text))}</span>
+          <span class="prompt-popover-meta">${escapeHtml21(meta || promptLengthLabel(text))}</span>
           ${actions}
         </div>
       </div>
-      <pre class="prompt-popover-text">${escapeHtml20(text || translate("promptPopover.empty"))}</pre>
+      <pre class="prompt-popover-text">${escapeHtml21(text || translate("promptPopover.empty"))}</pre>
     </section>
   `;
   }
@@ -41525,10 +41689,10 @@ ${galleryText}`;
       class="prompt-copy-button prompt-copy-inline"
       type="button"
       data-copy-optimized-prompt
-      aria-label="${escapeHtml20(translate("promptPopover.copyOptimized"))}"
-      title="${escapeHtml20(translate("promptPopover.copyOptimized"))}"
+      aria-label="${escapeHtml21(translate("promptPopover.copyOptimized"))}"
+      title="${escapeHtml21(translate("promptPopover.copyOptimized"))}"
       ${optimizedPrompt ? "" : "disabled"}
-    >${escapeHtml20(translate("templates.copy"))}</button>
+    >${escapeHtml21(translate("templates.copy"))}</button>
   `;
   }
   function submittedPromptDetails(originalPrompt, submittedPrompt) {
@@ -41536,8 +41700,8 @@ ${galleryText}`;
     if (normalizedPromptText(originalPrompt) === normalizedPromptText(submittedPrompt)) return "";
     return `
     <details class="prompt-popover-submitted">
-      <summary>${escapeHtml20(translate("promptPopover.submitted"))}</summary>
-      <pre class="prompt-popover-submitted-text">${escapeHtml20(submittedPrompt)}</pre>
+      <summary>${escapeHtml21(translate("promptPopover.submitted"))}</summary>
+      <pre class="prompt-popover-submitted-text">${escapeHtml21(submittedPrompt)}</pre>
     </details>
   `;
   }
@@ -41564,13 +41728,13 @@ ${galleryText}`;
     popover.innerHTML = `
     <div class="prompt-popover-header">
       <div>
-        <strong>${escapeHtml20(translate("promptPopover.title"))}</strong>
-        <span class="prompt-popover-summary">${escapeHtml20(formatTranslation("promptPopover.summary", {
+        <strong>${escapeHtml21(translate("promptPopover.title"))}</strong>
+        <span class="prompt-popover-summary">${escapeHtml21(formatTranslation("promptPopover.summary", {
       original: promptLengthLabel(originalPrompt),
       optimized: optimizedLength
     }))}</span>
       </div>
-      <button class="prompt-popover-close" type="button" aria-label="${escapeHtml20(translate("promptPopover.close"))}">\xD7</button>
+      <button class="prompt-popover-close" type="button" aria-label="${escapeHtml21(translate("promptPopover.close"))}">\xD7</button>
     </div>
     <div class="prompt-popover-body">
       <div class="prompt-popover-compare">
@@ -41684,8 +41848,8 @@ ${galleryText}`;
         closeConfirmPopover4();
       }
     }
-    if (!els40.compressionPopover || els40.compressionPopover.classList.contains("hidden")) return;
-    if (els40.compressionPopover.contains(target) || els40.outputFormatField?.contains(target)) return;
+    if (!els42.compressionPopover || els42.compressionPopover.classList.contains("hidden")) return;
+    if (els42.compressionPopover.contains(target) || els42.outputFormatField?.contains(target)) return;
     closeCompressionPopover2();
   }
   function handleDocumentKeydown(event) {
@@ -41749,9 +41913,9 @@ ${galleryText}`;
   var SIDEBAR_MIN_WIDTH = 280;
   var SIDEBAR_MAX_WIDTH = 520;
   var SIDEBAR_DEFAULT_WIDTH = 347;
-  var bridge38 = getLegacyBridge();
-  var state31 = bridge38.state;
-  var els41 = bridge38.els;
+  var bridge40 = getLegacyBridge();
+  var state31 = bridge40.state;
+  var els43 = bridge40.els;
   var shellUiInitialized = false;
   var shellUiEventsBound = false;
   var previewPanelHeightFrameId = null;
@@ -41820,8 +41984,8 @@ ${galleryText}`;
     legacyMethod42("updateRequestPreview");
   }
   function handleShellLocaleChange() {
-    if (!els41.statusText) return;
-    const current = String(els41.statusText.textContent || "").trim();
+    if (!els43.statusText) return;
+    const current = String(els43.statusText.textContent || "").trim();
     const waitingLabels = [translate("status.waiting", "zh-CN"), translate("status.waiting", "en")];
     if (waitingLabels.includes(current)) {
       setStatus22(translate("status.waiting"), "");
@@ -41830,7 +41994,7 @@ ${galleryText}`;
   function bindShellUiEvents() {
     if (shellUiEventsBound) return;
     shellUiEventsBound = true;
-    els41.themeSwitcher?.addEventListener("click", (event) => {
+    els43.themeSwitcher?.addEventListener("click", (event) => {
       const button = event.target.closest("[data-theme-option]");
       if (!button) return;
       applyThemePreference(button.dataset.themeOption || "system");
@@ -41838,13 +42002,13 @@ ${galleryText}`;
     state31.themeSystemQuery = window.matchMedia?.("(prefers-color-scheme: dark)");
     state31.themeSystemQuery?.addEventListener?.("change", handleThemeSystemChange);
     document.addEventListener(LOCALE_CHANGE_EVENT, handleShellLocaleChange);
-    if (els41.copyJsonButton) {
-      els41.copyJsonButton.addEventListener("click", copyJson);
+    if (els43.copyJsonButton) {
+      els43.copyJsonButton.addEventListener("click", copyJson);
     }
-    els41.newTaskButton?.addEventListener("click", resetForm);
-    els41.sidebarResizeHandle?.addEventListener("pointerdown", startSidebarResize);
-    els41.sidebarResizeHandle?.addEventListener("keydown", handleSidebarResizeKeydown);
-    els41.sidebarResizeHandle?.addEventListener("dblclick", resetSidebarWidth);
+    els43.newTaskButton?.addEventListener("click", resetForm);
+    els43.sidebarResizeHandle?.addEventListener("pointerdown", startSidebarResize);
+    els43.sidebarResizeHandle?.addEventListener("keydown", handleSidebarResizeKeydown);
+    els43.sidebarResizeHandle?.addEventListener("dblclick", resetSidebarWidth);
     syncSidebarResizeHandleAria();
   }
   function normalizeThemePreference(value) {
@@ -41855,7 +42019,7 @@ ${galleryText}`;
     return window.matchMedia?.("(prefers-color-scheme: dark)")?.matches ? "dark" : "light";
   }
   function updateThemeSwitcher() {
-    els41.themeSwitcher?.querySelectorAll("[data-theme-option]").forEach((button) => {
+    els43.themeSwitcher?.querySelectorAll("[data-theme-option]").forEach((button) => {
       const active = button.dataset.themeOption === state31.themePreference;
       button.classList.toggle("active", active);
       button.setAttribute("aria-pressed", active ? "true" : "false");
@@ -41923,7 +42087,7 @@ ${galleryText}`;
     return Math.min(sidebarMaxWidth(), Math.max(SIDEBAR_MIN_WIDTH, width));
   }
   function sidebarWidthFromCss() {
-    const widthOwner = els41.sidebar || document.documentElement;
+    const widthOwner = els43.sidebar || document.documentElement;
     const inlineWidth = Number.parseInt(widthOwner.style.getPropertyValue("--sidebar-width") || "", 10);
     if (!Number.isNaN(inlineWidth)) return clampSidebarWidth(inlineWidth);
     const tokenWidth = Number.parseInt(getComputedStyle(widthOwner).getPropertyValue("--sidebar-width") || "", 10);
@@ -41933,7 +42097,7 @@ ${galleryText}`;
     return sidebarWidthFromCss() ?? SIDEBAR_DEFAULT_WIDTH;
   }
   function syncSidebarResizeHandleAria(width = null) {
-    const handle = els41.sidebarResizeHandle;
+    const handle = els43.sidebarResizeHandle;
     if (!handle) return;
     const currentWidth = width !== null ? width : currentSidebarWidth();
     handle.setAttribute("aria-valuemin", String(SIDEBAR_MIN_WIDTH));
@@ -41942,7 +42106,7 @@ ${galleryText}`;
   }
   function applySidebarWidth(width, { persist = true, syncPreviewHeight = true } = {}) {
     const nextWidth = clampSidebarWidth(width);
-    (els41.sidebar || document.documentElement).style.setProperty("--sidebar-width", `${nextWidth}px`);
+    (els43.sidebar || document.documentElement).style.setProperty("--sidebar-width", `${nextWidth}px`);
     syncSidebarResizeHandleAria(nextWidth);
     if (persist) {
       try {
@@ -41977,7 +42141,7 @@ ${galleryText}`;
     applySidebarWidth(width, { persist: true, syncPreviewHeight: true });
   }
   function startSidebarResize(event) {
-    if (!els41.sidebar || event.button !== 0) return;
+    if (!els43.sidebar || event.button !== 0) return;
     event.preventDefault();
     const currentWidth = currentSidebarWidth();
     state31.sidebarResize = {
@@ -41986,11 +42150,11 @@ ${galleryText}`;
       startWidth: currentWidth,
       lastWidth: currentWidth
     };
-    els41.sidebar.classList.add("resizing");
-    if (els41.sidebarResizeShield) {
-      els41.sidebarResizeShield.hidden = false;
+    els43.sidebar.classList.add("resizing");
+    if (els43.sidebarResizeShield) {
+      els43.sidebarResizeShield.hidden = false;
     }
-    els41.sidebarResizeHandle?.setPointerCapture?.(event.pointerId);
+    els43.sidebarResizeHandle?.setPointerCapture?.(event.pointerId);
     window.addEventListener("pointermove", updateSidebarResize);
     window.addEventListener("pointerup", finishSidebarResize);
     window.addEventListener("pointercancel", finishSidebarResize);
@@ -42007,18 +42171,18 @@ ${galleryText}`;
     if (!resize || event.pointerId !== resize.pointerId) return;
     const nextWidth = resize.lastWidth ?? resize.startWidth;
     state31.sidebarResize = null;
-    els41.sidebar?.classList.remove("resizing");
-    if (els41.sidebarResizeShield) {
-      els41.sidebarResizeShield.hidden = true;
+    els43.sidebar?.classList.remove("resizing");
+    if (els43.sidebarResizeShield) {
+      els43.sidebarResizeShield.hidden = true;
     }
-    els41.sidebarResizeHandle?.releasePointerCapture?.(event.pointerId);
+    els43.sidebarResizeHandle?.releasePointerCapture?.(event.pointerId);
     window.removeEventListener("pointermove", updateSidebarResize);
     window.removeEventListener("pointerup", finishSidebarResize);
     window.removeEventListener("pointercancel", finishSidebarResize);
     flushSidebarResizeWidth(nextWidth);
   }
   function handleSidebarResizeKeydown(event) {
-    if (!els41.sidebar) return;
+    if (!els43.sidebar) return;
     const step = event.shiftKey ? 32 : 16;
     const currentWidth = currentSidebarWidth();
     if (event.key === "ArrowLeft") {
@@ -42036,12 +42200,12 @@ ${galleryText}`;
     }
   }
   function setupPreviewPanelHeightSync() {
-    if (!els41.controlsCol || !els41.previewCol || !els41.previewPanel) return;
+    if (!els43.controlsCol || !els43.previewCol || !els43.previewPanel) return;
     window.addEventListener("resize", schedulePreviewPanelHeightSync);
     if (window.ResizeObserver) {
       const observer = new ResizeObserver(schedulePreviewPanelHeightSync);
-      observer.observe(els41.controlsCol);
-      els41.controlsCol.querySelectorAll(":scope > .panel").forEach((panel) => observer.observe(panel));
+      observer.observe(els43.controlsCol);
+      els43.controlsCol.querySelectorAll(":scope > .panel").forEach((panel) => observer.observe(panel));
     }
     schedulePreviewPanelHeightSync();
   }
@@ -42059,19 +42223,19 @@ ${galleryText}`;
   }
   function syncPreviewPanelHeight() {
     if (state31.sidebarResize) return;
-    if (!els41.controlsCol || !els41.previewCol || !els41.previewPanel) return;
+    if (!els43.controlsCol || !els43.previewCol || !els43.previewPanel) return;
     if (window.matchMedia("(max-width: 1024px)").matches) {
-      els41.previewCol.style.removeProperty("--controls-col-height");
-      els41.previewPanel.style.removeProperty("--controls-col-height");
+      els43.previewCol.style.removeProperty("--controls-col-height");
+      els43.previewPanel.style.removeProperty("--controls-col-height");
       return;
     }
-    const panels = [...els41.controlsCol.querySelectorAll(":scope > .panel")];
+    const panels = [...els43.controlsCol.querySelectorAll(":scope > .panel")];
     if (!panels.length) return;
     const firstPanelRect = panels[0].getBoundingClientRect();
     const lastPanelRect = panels[panels.length - 1].getBoundingClientRect();
     const height = Math.max(260, Math.ceil(lastPanelRect.bottom - firstPanelRect.top));
-    els41.previewCol.style.setProperty("--controls-col-height", `${height}px`);
-    els41.previewPanel.style.setProperty("--controls-col-height", `${height}px`);
+    els43.previewCol.style.setProperty("--controls-col-height", `${height}px`);
+    els43.previewPanel.style.setProperty("--controls-col-height", `${height}px`);
   }
   function updateDocumentTitle2() {
     const summary = state31.queue.summary || {};
@@ -42092,9 +42256,9 @@ ${galleryText}`;
     document.title = webAppDocumentTitle(status, fullTitle);
   }
   function setStatus22(message, type) {
-    if (!els41.statusText) return;
-    els41.statusText.textContent = message;
-    els41.statusText.className = `status-text ${type || ""}`;
+    if (!els43.statusText) return;
+    els43.statusText.textContent = message;
+    els43.statusText.className = `status-text ${type || ""}`;
   }
   function resetForm() {
     closePromptPopover10();
@@ -42111,19 +42275,19 @@ ${galleryText}`;
     state31.batchSelectionAnchorTaskId = null;
     finishBatchMarqueeSelection2();
     setPromptText3("");
-    if (els41.customSizeToggle) els41.customSizeToggle.checked = false;
-    if (els41.nInput) els41.nInput.value = "1";
-    if (els41.resolution) els41.resolution.value = "standard";
-    if (els41.ratio) els41.ratio.value = "1:1";
-    if (els41.orientation) els41.orientation.value = "square";
-    els41.size.value = "1024x1024";
-    els41.quality.value = "auto";
-    els41.outputFormat.value = "png";
-    els41.moderation.value = "auto";
-    els41.compression.value = "80";
-    if (els41.promptFidelity) els41.promptFidelity.value = "strict";
-    if (els41.webSearch) els41.webSearch.checked = false;
-    [els41.nInput, els41.resolution, els41.ratio, els41.orientation, els41.quality, els41.outputFormat, els41.moderation, els41.promptFidelity, els41.webSearch].forEach((sel) => {
+    if (els43.customSizeToggle) els43.customSizeToggle.checked = false;
+    if (els43.nInput) els43.nInput.value = "1";
+    if (els43.resolution) els43.resolution.value = "standard";
+    if (els43.ratio) els43.ratio.value = "1:1";
+    if (els43.orientation) els43.orientation.value = "square";
+    els43.size.value = "1024x1024";
+    els43.quality.value = "auto";
+    els43.outputFormat.value = "png";
+    els43.moderation.value = "auto";
+    els43.compression.value = "80";
+    if (els43.promptFidelity) els43.promptFidelity.value = "strict";
+    if (els43.webSearch) els43.webSearch.checked = false;
+    [els43.nInput, els43.resolution, els43.ratio, els43.orientation, els43.quality, els43.outputFormat, els43.moderation, els43.promptFidelity, els43.webSearch].forEach((sel) => {
       if (sel) sel.dispatchEvent(new Event("change"));
     });
     setMode6("generate");
@@ -42138,8 +42302,8 @@ ${galleryText}`;
     setStatus22(translate("status.waiting"), "");
   }
   async function copyJson() {
-    if (!els41.requestJson) return;
-    await navigator.clipboard.writeText(els41.requestJson.textContent);
+    if (!els43.requestJson) return;
+    await navigator.clipboard.writeText(els43.requestJson.textContent);
     setStatus22(translate("status.jsonCopied"), "ok");
   }
   function initShellUiFeature() {
@@ -42177,31 +42341,31 @@ ${galleryText}`;
   var appVersionInitialized = false;
   var payload = null;
   var onboardingAutoShown = false;
-  function els42() {
+  function els44() {
     return getLegacyBridge().els;
   }
   function setModalHidden(hidden) {
-    const modal = els42().versionModal;
+    const modal = els44().versionModal;
     if (!modal) return;
     modal.classList.toggle("hidden", hidden);
     modal.setAttribute("aria-hidden", hidden ? "true" : "false");
   }
   function renderAppVersion(statusText) {
-    const versionInfo = els42().versionInfo;
-    const versionLabel = els42().versionLabel;
-    const badge = els42().versionUpdateBadge;
-    const current = els42().versionCurrent;
-    const latest = els42().versionLatest;
-    const source = els42().versionSource;
-    const onboardingNotice = els42().versionOnboardingNotice;
-    const onboardingBody = els42().versionOnboardingBody;
-    const releaseLink = els42().versionReleaseLink;
-    const standardDownloadLink = els42().versionStandardDownloadLink;
-    const updateButton = els42().versionUpdateButton;
-    const continuePortableButton = els42().versionContinuePortableButton;
-    const dismissOnboardingButton = els42().versionDismissOnboardingButton;
-    const modalStatus = els42().versionModalStatus;
-    const panel = els42().versionModal?.querySelector(".version-modal-panel");
+    const versionInfo = els44().versionInfo;
+    const versionLabel = els44().versionLabel;
+    const badge = els44().versionUpdateBadge;
+    const current = els44().versionCurrent;
+    const latest = els44().versionLatest;
+    const source = els44().versionSource;
+    const onboardingNotice = els44().versionOnboardingNotice;
+    const onboardingBody = els44().versionOnboardingBody;
+    const releaseLink = els44().versionReleaseLink;
+    const standardDownloadLink = els44().versionStandardDownloadLink;
+    const updateButton = els44().versionUpdateButton;
+    const continuePortableButton = els44().versionContinuePortableButton;
+    const dismissOnboardingButton = els44().versionDismissOnboardingButton;
+    const modalStatus = els44().versionModalStatus;
+    const panel = els44().versionModal?.querySelector(".version-modal-panel");
     const currentLabel = payload?.current_version_label || "...";
     const latestLabel = payload?.latest_version_label || currentLabel;
     const updateAvailable = Boolean(payload?.update_available);
@@ -42230,7 +42394,7 @@ ${galleryText}`;
       source.textContent = runtimeSourceLabel(payload?.source);
     }
     if (releaseLink) {
-      releaseLink.href = payload?.release_url || "https://github.com/kadevin/ilab-gpt-conjure/releases";
+      releaseLink.href = payload?.release_url || "https://github.com/jiema123/gpt_image_factory/releases";
     }
     if (panel) {
       panel.classList.toggle("has-onboarding", Boolean(onboarding));
@@ -42243,7 +42407,7 @@ ${galleryText}`;
     }
     if (standardDownloadLink) {
       standardDownloadLink.classList.toggle("hidden", !showStandardDownload);
-      standardDownloadLink.href = standardDownloadUrl || onboarding?.release_url || payload?.release_url || "https://github.com/kadevin/ilab-gpt-conjure/releases";
+      standardDownloadLink.href = standardDownloadUrl || onboarding?.release_url || payload?.release_url || "https://github.com/jiema123/gpt_image_factory/releases";
     }
     if (continuePortableButton) {
       continuePortableButton.classList.toggle("hidden", !onboarding);
@@ -42276,7 +42440,7 @@ ${galleryText}`;
         source: "source",
         update_available: false,
         updater_available: false,
-        release_url: "https://github.com/kadevin/ilab-gpt-conjure/releases"
+        release_url: "https://github.com/jiema123/gpt_image_factory/releases"
       };
     }
     renderAppVersion();
@@ -42286,7 +42450,7 @@ ${galleryText}`;
     }
   }
   async function openUpdater() {
-    const updateButton = els42().versionUpdateButton;
+    const updateButton = els44().versionUpdateButton;
     if (updateButton) updateButton.disabled = true;
     try {
       const response = await fetch("/api/app-version/open-updater", { method: "POST" });
@@ -42309,24 +42473,24 @@ ${galleryText}`;
     }
   }
   function bindAppVersionEvents() {
-    els42().versionInfo?.addEventListener("click", () => {
+    els44().versionInfo?.addEventListener("click", () => {
       renderAppVersion();
       setModalHidden(false);
     });
-    els42().versionModalClose?.addEventListener("click", () => setModalHidden(true));
-    els42().versionModal?.addEventListener("click", (event) => {
-      if (event.target === els42().versionModal) setModalHidden(true);
+    els44().versionModalClose?.addEventListener("click", () => setModalHidden(true));
+    els44().versionModal?.addEventListener("click", (event) => {
+      if (event.target === els44().versionModal) setModalHidden(true);
     });
-    els42().versionUpdateButton?.addEventListener("click", () => {
+    els44().versionUpdateButton?.addEventListener("click", () => {
       void openUpdater();
     });
-    els42().versionStandardDownloadLink?.addEventListener("click", () => {
+    els44().versionStandardDownloadLink?.addEventListener("click", () => {
       if (payload?.post_update_onboarding) void dismissOnboarding(false);
     });
-    els42().versionContinuePortableButton?.addEventListener("click", () => {
+    els44().versionContinuePortableButton?.addEventListener("click", () => {
       void dismissOnboarding(true);
     });
-    els42().versionDismissOnboardingButton?.addEventListener("click", () => {
+    els44().versionDismissOnboardingButton?.addEventListener("click", () => {
       void dismissOnboarding(true);
     });
     document.addEventListener("keydown", (event) => {
@@ -42558,6 +42722,8 @@ ${galleryText}`;
   initPromptColorsFeature();
   initPromptSnippetsFeature();
   initPromptTemplatesFeature();
+  initPromptCaseLibraryFeature();
+  initAdvancedSettingsFeature();
   initPromptFeature();
   initPromptFindReplaceFeature();
   initFormControlsFeature();

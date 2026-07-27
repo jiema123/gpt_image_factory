@@ -24,10 +24,10 @@ class UpdateManifestTests(unittest.TestCase):
             assets_dir.mkdir()
 
             assets = {
-                "ilab-gpt-conjure_windows_portable_x64_0.6.0.zip": b"windows",
-                "ilab-gpt-conjure_macos_portable_arm64_0.6.0.zip": b"mac arm",
-                "ilab-gpt-conjure_macos_portable_x64_0.6.0.zip": b"mac intel",
-                "iLab-GPT-CONJURE-windows-x64_0.6.0.zip": b"windows app",
+                "gpt-image-factory_windows_portable_x64_0.6.0.zip": b"windows",
+                "gpt-image-factory_macos_portable_arm64_0.6.0.zip": b"mac arm",
+                "gpt-image-factory_macos_portable_x64_0.6.0.zip": b"mac intel",
+                "GPT-IMAGE-FACTORY-windows-x64_0.6.0.zip": b"windows app",
             }
             for name, payload in assets.items():
                 path = assets_dir / name
@@ -37,8 +37,8 @@ class UpdateManifestTests(unittest.TestCase):
                     f"{digest}  {name}\n", encoding="utf-8"
                 )
             for name, payload in {
-                "iLab-GPT-CONJURE-macos-arm64-0.6.0.dmg": b"mac app arm",
-                "iLab-GPT-CONJURE-macos-x64-0.6.0.dmg": b"mac app intel",
+                "GPT-IMAGE-FACTORY-macos-arm64-0.6.0.dmg": b"mac app arm",
+                "GPT-IMAGE-FACTORY-macos-x64-0.6.0.dmg": b"mac app intel",
             }.items():
                 path = assets_dir / name
                 path.write_bytes(payload)
@@ -58,7 +58,7 @@ class UpdateManifestTests(unittest.TestCase):
                     "--tag",
                     "v0.6.0",
                     "--repo",
-                    "kadevin/ilab-gpt-conjure",
+                    "jiema123/gpt_image_factory",
                     "--output",
                     str(output_path),
                 ],
@@ -71,7 +71,7 @@ class UpdateManifestTests(unittest.TestCase):
             self.assertEqual(manifest["version"], "0.6.0")
             self.assertEqual(
                 manifest["release_url"],
-                "https://github.com/kadevin/ilab-gpt-conjure/releases/tag/v0.6.0",
+                "https://github.com/jiema123/gpt_image_factory/releases/tag/v0.6.0",
             )
             self.assertEqual(
                 set(manifest["platforms"]),
@@ -84,7 +84,7 @@ class UpdateManifestTests(unittest.TestCase):
             windows = manifest["platforms"]["windows-x86_64"]
             self.assertEqual(
                 windows["url"],
-                "https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.6.0/ilab-gpt-conjure_windows_portable_x64_0.6.0.zip",
+                "https://github.com/jiema123/gpt_image_factory/releases/download/v0.6.0/gpt-image-factory_windows_portable_x64_0.6.0.zip",
             )
             self.assertEqual(windows["package"], "portable-zip")
             self.assertRegex(windows["sha256"], r"^[0-9a-f]{64}$")
@@ -92,13 +92,13 @@ class UpdateManifestTests(unittest.TestCase):
             self.assertEqual(windows_app["package"], "standard-zip")
             self.assertEqual(
                 windows_app["url"],
-                "https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.6.0/iLab-GPT-CONJURE-windows-x64_0.6.0.zip",
+                "https://github.com/jiema123/gpt_image_factory/releases/download/v0.6.0/GPT-IMAGE-FACTORY-windows-x64_0.6.0.zip",
             )
             mac_app = manifest["standard_platforms"]["darwin-aarch64"]
             self.assertEqual(mac_app["package"], "standard-dmg")
             self.assertEqual(
                 mac_app["url"],
-                "https://github.com/kadevin/ilab-gpt-conjure/releases/download/v0.6.0/iLab-GPT-CONJURE-macos-arm64-0.6.0.dmg",
+                "https://github.com/jiema123/gpt_image_factory/releases/download/v0.6.0/GPT-IMAGE-FACTORY-macos-arm64-0.6.0.dmg",
             )
 
     def test_build_update_manifest_can_sign_with_ed25519_private_key(self) -> None:
@@ -113,12 +113,12 @@ class UpdateManifestTests(unittest.TestCase):
             assets_dir.mkdir()
 
             assets = {
-                "ilab-gpt-conjure_windows_portable_x64_0.6.0.zip": b"windows",
-                "ilab-gpt-conjure_macos_portable_arm64_0.6.0.zip": b"mac arm",
-                "ilab-gpt-conjure_macos_portable_x64_0.6.0.zip": b"mac intel",
-                "iLab-GPT-CONJURE-windows-x64_0.6.0.zip": b"windows app",
-                "iLab-GPT-CONJURE-macos-arm64-0.6.0.dmg": b"mac app arm",
-                "iLab-GPT-CONJURE-macos-x64-0.6.0.dmg": b"mac app intel",
+                "gpt-image-factory_windows_portable_x64_0.6.0.zip": b"windows",
+                "gpt-image-factory_macos_portable_arm64_0.6.0.zip": b"mac arm",
+                "gpt-image-factory_macos_portable_x64_0.6.0.zip": b"mac intel",
+                "GPT-IMAGE-FACTORY-windows-x64_0.6.0.zip": b"windows app",
+                "GPT-IMAGE-FACTORY-macos-arm64-0.6.0.dmg": b"mac app arm",
+                "GPT-IMAGE-FACTORY-macos-x64-0.6.0.dmg": b"mac app intel",
             }
             for name, payload in assets.items():
                 path = assets_dir / name
@@ -139,7 +139,7 @@ class UpdateManifestTests(unittest.TestCase):
                     "--tag",
                     "v0.6.0",
                     "--repo",
-                    "kadevin/ilab-gpt-conjure",
+                    "jiema123/gpt_image_factory",
                     "--signing-private-key-b64",
                     self.TEST_PRIVATE_KEY_PEM_B64,
                     "--output",
@@ -209,12 +209,12 @@ class UpdateManifestTests(unittest.TestCase):
             assets_dir = root / "dist-assets"
             assets_dir.mkdir()
             for name in (
-                "ilab-gpt-conjure_windows_portable_x64_0.6.0.zip",
-                "ilab-gpt-conjure_macos_portable_arm64_0.6.0.zip",
-                "ilab-gpt-conjure_macos_portable_x64_0.6.0.zip",
-                "iLab-GPT-CONJURE-windows-x64_0.6.0.zip",
-                "iLab-GPT-CONJURE-macos-arm64-0.6.0.dmg",
-                "iLab-GPT-CONJURE-macos-x64-0.6.0.dmg",
+                "gpt-image-factory_windows_portable_x64_0.6.0.zip",
+                "gpt-image-factory_macos_portable_arm64_0.6.0.zip",
+                "gpt-image-factory_macos_portable_x64_0.6.0.zip",
+                "GPT-IMAGE-FACTORY-windows-x64_0.6.0.zip",
+                "GPT-IMAGE-FACTORY-macos-arm64-0.6.0.dmg",
+                "GPT-IMAGE-FACTORY-macos-x64-0.6.0.dmg",
             ):
                 path = assets_dir / name
                 path.write_bytes(b"payload")
@@ -234,7 +234,7 @@ class UpdateManifestTests(unittest.TestCase):
                     "--tag",
                     "v0.6.0",
                     "--repo",
-                    "kadevin/ilab-gpt-conjure",
+                    "jiema123/gpt_image_factory",
                     "--require-signature",
                     "--output",
                     str(root / "latest.json"),
@@ -248,7 +248,7 @@ class UpdateManifestTests(unittest.TestCase):
 
     @staticmethod
     def _manifest_signing_payload(manifest: dict[str, object]) -> bytes:
-        lines = ["ilab-gpt-conjure-update-manifest-v1"]
+        lines = ["gpt-image-factory-update-manifest-v1"]
 
         def field(name: str, value: object) -> None:
             text = str(value)
@@ -268,7 +268,7 @@ class UpdateManifestTests(unittest.TestCase):
 
     @staticmethod
     def _standard_manifest_signing_payload(manifest: dict[str, object]) -> bytes:
-        lines = ["ilab-gpt-conjure-standard-update-manifest-v1"]
+        lines = ["gpt-image-factory-standard-update-manifest-v1"]
 
         def field(name: str, value: object) -> None:
             text = str(value)

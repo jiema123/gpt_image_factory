@@ -26,7 +26,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-PROJECT_NAME="ilab-gpt-conjure"
+PROJECT_NAME="gpt-image-factory"
 APP_BUNDLE_NAME="iLab GPT CONJURE.app"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
@@ -75,7 +75,7 @@ PYTHON_DIR="${APP_BUNDLE_RESOURCES}/python"
 PYTHON_FRAMEWORK="${PYTHON_DIR}/Python.framework"
 CACHE_DIR="${BUILD_ROOT}/_cache"
 DMG_ROOT="${BUILD_ROOT}/create-dmg-root"
-DMG_NAME="iLab-GPT-CONJURE-macos-${PACKAGE_ARCH}-${SAFE_VERSION}.dmg"
+DMG_NAME="GPT-IMAGE-FACTORY-macos-${PACKAGE_ARCH}-${SAFE_VERSION}.dmg"
 DMG_PATH="${BUILD_ROOT}/${DMG_NAME}"
 HASH_PATH="${DMG_PATH}.sha256.txt"
 MANIFEST_PATH="${BUILD_ROOT}/macos-app-build.json"

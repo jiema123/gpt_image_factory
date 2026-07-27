@@ -69,7 +69,7 @@ class TrayLauncherStaticTests(unittest.TestCase):
         self.assertIn('"signature"', combined_source)
         self.assertIn("User-Agent", combined_source)
         self.assertIn(
-            "https://github.com/kadevin/ilab-gpt-conjure/releases/latest/download/latest.json",
+            "https://github.com/jiema123/gpt_image_factory/releases/latest/download/latest.json",
             combined_source,
         )
         self.assertIn("show_platform_about_window", combined_source)

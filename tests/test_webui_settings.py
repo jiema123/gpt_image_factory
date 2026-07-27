@@ -115,9 +115,9 @@ class WebUISettingsTests(unittest.TestCase):
                         "current_version": "0.5.5",
                         "latest_version": "0.5.6",
                         "checked_at": "2026-07-08T00:00:00Z",
-                        "release_url": "https://github.com/kadevin/ilab-gpt-conjure/releases/tag/v0.5.6",
-                        "download_url": "https://example.test/iLab-GPT-CONJURE-macos-arm64-0.5.6.dmg",
-                        "standard_download_url": "https://example.test/iLab-GPT-CONJURE-macos-arm64-0.5.6.dmg",
+                        "release_url": "https://github.com/jiema123/gpt_image_factory/releases/tag/v0.5.6",
+                        "download_url": "https://example.test/GPT-IMAGE-FACTORY-macos-arm64-0.5.6.dmg",
+                        "standard_download_url": "https://example.test/GPT-IMAGE-FACTORY-macos-arm64-0.5.6.dmg",
                     }
                 ),
                 encoding="utf-8",
@@ -145,7 +145,7 @@ class WebUISettingsTests(unittest.TestCase):
         self.assertFalse(payload["updater_available"])
         self.assertEqual(
             payload["standard_download_url"],
-            "https://example.test/iLab-GPT-CONJURE-macos-arm64-0.5.6.dmg",
+            "https://example.test/GPT-IMAGE-FACTORY-macos-arm64-0.5.6.dmg",
         )
 
     def test_app_version_reports_portable_update_notice(self) -> None:
@@ -168,7 +168,7 @@ class WebUISettingsTests(unittest.TestCase):
                         "current_version": "0.3.6",
                         "latest_version": "0.3.7",
                         "checked_at": "2026-06-14T00:00:00Z",
-                        "release_url": "https://github.com/kadevin/ilab-gpt-conjure/releases/tag/v0.3.7",
+                        "release_url": "https://github.com/jiema123/gpt_image_factory/releases/tag/v0.3.7",
                     }
                 ),
                 encoding="utf-8",

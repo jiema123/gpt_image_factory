@@ -3,8 +3,8 @@ set -e
 set -o pipefail
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:${PATH:-}"
 
-REPO_SLUG="kadevin/ilab-gpt-conjure"
-LATEST_UPDATE_MANIFEST_URL="https://github.com/kadevin/ilab-gpt-conjure/releases/latest/download/latest.json"
+REPO_SLUG="jiema123/gpt_image_factory"
+LATEST_UPDATE_MANIFEST_URL="https://github.com/jiema123/gpt_image_factory/releases/latest/download/latest.json"
 BUNDLE_DIR="$(cd "$(dirname "$0")" && pwd)"
 DATA_DIR="${BUNDLE_DIR}/data"
 VERSION_FILE="${BUNDLE_DIR}/portable-version.txt"
@@ -14,7 +14,7 @@ PYTHON_BIN="${BUNDLE_DIR}/python/Python.framework/Versions/3.11/bin/python3"
 LAUNCHER_BIN="${BUNDLE_DIR}/Start iLab GPT CONJURE.app/Contents/MacOS/ilab-conjure-launcher"
 HOST_ARCH="$(uname -m)"
 TIMESTAMP="$(date +"%Y%m%d-%H%M%S")"
-TEMP_ROOT="${TMPDIR:-/tmp}/ilab-gpt-conjure-update-${TIMESTAMP}"
+TEMP_ROOT="${TMPDIR:-/tmp}/gpt-image-factory-update-${TIMESTAMP}"
 EXTRACT_DIR="${TEMP_ROOT}/extract"
 BACKUP_DIR="${BUNDLE_DIR}/.backup/update-${TIMESTAMP}"
 AUTO_INSTALL=0
@@ -72,7 +72,7 @@ case "$HOST_ARCH" in
     exit 1
     ;;
 esac
-ASSET_PREFIX="ilab-gpt-conjure_macos_portable_${PACKAGE_ARCH}_"
+ASSET_PREFIX="gpt-image-factory_macos_portable_${PACKAGE_ARCH}_"
 
 # Do not move data. The data directory contains user settings, API keys, gallery
 # assets, inputs, outputs, history, task databases, and logs.
@@ -183,7 +183,7 @@ from_version = normalize(sys.argv[2])
 to_version = normalize(sys.argv[3])
 if not to_version:
     raise SystemExit(0)
-release_url = f"https://github.com/kadevin/ilab-gpt-conjure/releases/tag/v{to_version}"
+release_url = f"https://github.com/jiema123/gpt_image_factory/releases/tag/v{to_version}"
 payload = {
     "kind": "portable_standard_app_transition",
     "to_version": to_version,
@@ -236,7 +236,7 @@ step "Checking latest release"
 MANIFEST_JSON="${TEMP_ROOT}/latest.json"
 curl -fsSL \
   -H "Accept: application/json" \
-  -H "User-Agent: ilab-gpt-conjure-portable-updater" \
+  -H "User-Agent: gpt-image-factory-portable-updater" \
   "$LATEST_UPDATE_MANIFEST_URL" \
   -o "$MANIFEST_JSON" || fail_update "Could not fetch update manifest."
 

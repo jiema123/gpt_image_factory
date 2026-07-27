@@ -6,7 +6,7 @@ WebUI without installing Python separately.
 ## How to use
 
 1. Extract the zip package into a normal user directory, for example
-   `D:\Apps\ilab-gpt-conjure`.
+   `D:\Apps\gpt-image-factory`.
 2. Double-click `Start iLab GPT CONJURE.exe` for the system tray launcher, or
    `Start WebUI Portable.bat` for the legacy terminal launcher.
 3. Open `http://127.0.0.1:8787/` if the browser does not open automatically.

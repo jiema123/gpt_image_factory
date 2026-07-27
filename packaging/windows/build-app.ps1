@@ -6,7 +6,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$ProjectName = "ilab-gpt-conjure"
+$ProjectName = "gpt-image-factory"
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $RepoRoot = (Resolve-Path (Join-Path $ScriptDir "..\..")).Path
 
@@ -29,7 +29,7 @@ if (-not $SafeVersion) {
   $SafeVersion = "dev"
 }
 
-$BundleName = "iLab-GPT-CONJURE-windows-x64"
+$BundleName = "GPT-IMAGE-FACTORY-windows-x64"
 $BundleRoot = Join-Path $BuildRoot $BundleName
 $ResourcesDir = Join-Path $BundleRoot "resources"
 $AppDir = Join-Path $ResourcesDir "app"

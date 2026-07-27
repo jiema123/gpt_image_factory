@@ -128,6 +128,11 @@ export function handlePromptEditorKeydown(event: any): void {
       const snippet = findPromptSnippetById((first as any).dataset.promptSnippetId);
       if (snippet) insertPromptSnippet(snippet);
     }
+    return;
+  }
+  if (event.key === "Enter" && !event.shiftKey && !event.metaKey && !event.ctrlKey && !event.altKey && !event.isComposing) {
+    event.preventDefault();
+    legacyMethod("runTask");
   }
 }
 

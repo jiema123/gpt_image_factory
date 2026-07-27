@@ -5,10 +5,10 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$RepoSlug = "kadevin/ilab-gpt-conjure"
-$LatestUpdateManifestUrl = "https://github.com/kadevin/ilab-gpt-conjure/releases/latest/download/latest.json"
+$RepoSlug = "jiema123/gpt_image_factory"
+$LatestUpdateManifestUrl = "https://github.com/jiema123/gpt_image_factory/releases/latest/download/latest.json"
 $PlatformKey = "windows-x86_64"
-$AssetPattern = "^ilab-gpt-conjure_windows_portable_x64_.+\.zip$"
+$AssetPattern = "^gpt-image-factory_windows_portable_x64_.+\.zip$"
 $BundleDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $DataDir = Join-Path $BundleDir "data"
 $VersionFile = Join-Path $BundleDir "portable-version.txt"
@@ -16,14 +16,14 @@ $UpdateNoticeFile = Join-Path $DataDir "update-notice.json"
 $PostUpdateOnboardingFile = Join-Path $DataDir "post-update-onboarding.json"
 $LauncherExe = Join-Path $BundleDir "Start iLab GPT CONJURE.exe"
 $Timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
-$TempRoot = Join-Path ([System.IO.Path]::GetTempPath()) "ilab-gpt-conjure-update-$Timestamp"
+$TempRoot = Join-Path ([System.IO.Path]::GetTempPath()) "gpt-image-factory-update-$Timestamp"
 $ExtractDir = Join-Path $TempRoot "extract"
 $ManifestPath = Join-Path $TempRoot "latest.json"
 $BackupRoot = Join-Path $BundleDir ".backup"
 $BackupDir = Join-Path $BackupRoot "update-$Timestamp"
 $Headers = @{
   "Accept" = "application/json"
-  "User-Agent" = "ilab-gpt-conjure-portable-updater"
+  "User-Agent" = "gpt-image-factory-portable-updater"
 }
 
 # Do not move data. The data directory contains user settings, API keys, gallery
@@ -136,7 +136,7 @@ function Write-PostUpdateOnboardingNotice {
       return
     }
     $NormalizedFrom = ConvertTo-VersionString -Value $FromVersion
-    $ReleaseUrl = "https://github.com/kadevin/ilab-gpt-conjure/releases/tag/v$NormalizedTo"
+    $ReleaseUrl = "https://github.com/jiema123/gpt_image_factory/releases/tag/v$NormalizedTo"
     $Payload = [ordered]@{
       kind = "portable_standard_app_transition"
       to_version = $NormalizedTo

@@ -4,11 +4,18 @@
     "build:webui:css": "node scripts/build-webui-css.mjs",
     "typecheck:webui": "tsc -p tsconfig.webui.json --noEmit",
     "build:webui": "esbuild codex_image/webui/frontend/src/main.ts --bundle --format=iife --target=es2020 --outfile=codex_image/webui/static/app.js --sourcemap --log-level=warning && esbuild codex_image/webui/frontend/src/history.ts --bundle --format=iife --target=es2020 --outfile=codex_image/webui/static/history.js --sourcemap --log-level=warning",
-    "check:webui": "npm run build:webui:css && npm run typecheck:webui && npm run build:webui"
+    "build:cloudflare:static": "node scripts/build-cloudflare-static.mjs",
+    "check:webui": "npm run build:webui:css && npm run typecheck:webui && npm run build:webui",
+    "typecheck:cloudflare": "tsc -p tsconfig.cloudflare.json --noEmit",
+    "dev:cloudflare:local": "npm run check:webui && npm run build:cloudflare:static && node scripts/dev-cloudflare-local.mjs",
+    "deploy:workers": "npm run check:webui && npm run typecheck:cloudflare && npm run build:cloudflare:static && wrangler deploy",
+    "deploy:pages": "npm run check:webui && npm run typecheck:cloudflare && npm run build:cloudflare:static && wrangler pages deploy .dist/cloudflare --functions functions"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260708.1",
     "esbuild": "^0.28.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "wrangler": "^4.108.0"
   },
   "dependencies": {
     "konva": "^10.3.0"

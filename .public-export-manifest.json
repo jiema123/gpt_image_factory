@@ -1,6 +1,6 @@
 {
-  "project": "ilab-gpt-conjure",
-  "repo_slug": "kadevin/ilab-gpt-conjure",
+  "project": "gpt-image-factory",
+  "repo_slug": "jiema123/gpt_image_factory",
   "allowlist": [
     ".gitignore",
     ".github/workflows/ci.yml",

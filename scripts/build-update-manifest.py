@@ -12,15 +12,15 @@ from urllib.parse import quote
 
 
 PLATFORM_PATTERNS = {
-    "darwin-aarch64": "ilab-gpt-conjure_macos_portable_arm64_",
-    "darwin-x86_64": "ilab-gpt-conjure_macos_portable_x64_",
-    "windows-x86_64": "ilab-gpt-conjure_windows_portable_x64_",
+    "darwin-aarch64": "gpt-image-factory_macos_portable_arm64_",
+    "darwin-x86_64": "gpt-image-factory_macos_portable_x64_",
+    "windows-x86_64": "gpt-image-factory_windows_portable_x64_",
 }
 
 STANDARD_PLATFORM_PATTERNS = {
-    "darwin-aarch64": ("iLab-GPT-CONJURE-macos-arm64-", ".dmg", "standard-dmg"),
-    "darwin-x86_64": ("iLab-GPT-CONJURE-macos-x64-", ".dmg", "standard-dmg"),
-    "windows-x86_64": ("iLab-GPT-CONJURE-windows-x64_", ".zip", "standard-zip"),
+    "darwin-aarch64": ("GPT-IMAGE-FACTORY-macos-arm64-", ".dmg", "standard-dmg"),
+    "darwin-x86_64": ("GPT-IMAGE-FACTORY-macos-x64-", ".dmg", "standard-dmg"),
+    "windows-x86_64": ("GPT-IMAGE-FACTORY-windows-x64_", ".zip", "standard-zip"),
 }
 
 
@@ -113,7 +113,7 @@ def build_manifest(
 
 
 def manifest_signing_payload(manifest: dict[str, object]) -> bytes:
-    lines = ["ilab-gpt-conjure-update-manifest-v1"]
+    lines = ["gpt-image-factory-update-manifest-v1"]
 
     def field(name: str, value: object) -> None:
         text = str(value)
@@ -135,7 +135,7 @@ def manifest_signing_payload(manifest: dict[str, object]) -> bytes:
 
 
 def standard_manifest_signing_payload(manifest: dict[str, object]) -> bytes:
-    lines = ["ilab-gpt-conjure-standard-update-manifest-v1"]
+    lines = ["gpt-image-factory-standard-update-manifest-v1"]
 
     def field(name: str, value: object) -> None:
         text = str(value)

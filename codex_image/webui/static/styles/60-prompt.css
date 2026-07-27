@@ -623,6 +623,45 @@
   grid-template-rows: auto auto auto auto auto minmax(0, 1fr);
 }
 
+.prompt-case-library-drawer {
+  z-index: 75;
+  display: flex;
+  flex-direction: column;
+}
+
+.prompt-case-library-grid {
+  display: block;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 0;
+  max-height: none;
+  overflow-y: scroll;
+  column-count: 1;
+  overflow-x: hidden;
+  padding-right: 4px;
+}
+
+.prompt-case-library-card {
+  overflow: hidden;
+  padding: 0;
+  text-align: left;
+}
+
+.prompt-case-library-card .prompt-template-card-thumb {
+  height: 150px;
+  background: var(--surface-muted, #f3f6f4);
+}
+
+.prompt-case-library-card .prompt-template-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prompt-case-library-card .prompt-template-card-body {
+  padding: 12px;
+}
+
 .prompt-template-summary.ok {
   color: var(--primary);
 }
@@ -683,6 +722,13 @@
 .prompt-template-toolbar .ghost-button {
   height: 36px;
   min-height: 36px;
+}
+
+.prompt-case-language-switch {
+  display: inline-grid;
+  place-items: center;
+  width: auto;
+  min-width: 64px;
 }
 
 .prompt-template-toolbar .ghost-button {
@@ -770,6 +816,20 @@
   column-gap: 8px;
 }
 
+/* The case library is row-major: case 1/2 on row one, 3/4 on row two. */
+.prompt-case-library-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 8px;
+  column-count: initial;
+}
+
+.prompt-template-grid .prompt-case-library-card {
+  display: grid;
+  margin: 0;
+}
+
 .prompt-template-card {
   display: inline-grid;
   align-content: start;
@@ -852,6 +912,47 @@
   gap: 8px;
   color: var(--muted);
   font-size: 11px;
+}
+
+/* Keep the case library independent from the template drawer's masonry layout. */
+.prompt-template-drawer.prompt-case-library-drawer {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  grid-template-rows: none;
+}
+
+.prompt-template-grid.prompt-case-library-grid {
+  display: grid;
+  flex: 1 1 0;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  max-height: none;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: max-content;
+  align-content: start;
+  gap: 8px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  column-count: initial;
+  padding-right: 4px;
+}
+
+.prompt-template-grid.prompt-case-library-grid .prompt-case-library-card {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+.prompt-template-grid.prompt-case-library-grid .prompt-template-card-title,
+.prompt-template-grid.prompt-case-library-grid .prompt-template-card-subtitle,
+.prompt-template-grid.prompt-case-library-grid .prompt-template-card-preview {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .prompt-template-empty {
