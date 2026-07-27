@@ -323,24 +323,3 @@ must also make the corresponding source code available under the same license.
 This license applies to the software code. It does not grant rights to the
 project name, logo, personal assets, API credentials, user prompts, input
 images, output images, or model/API services used with the software.
-
-## Contact And Custom Work
-
-Feel free to connect on WeChat to discuss AI programming, AI image generation,
-and local image generation workflows.
-
-I also take selected custom development work:
-
-- Local software tools: internal workbenches, batch automation, data dashboards,
-  and AI-assisted production workflows.
-- Business websites: company sites, product showcases, landing pages, and
-  lightweight admin systems.
-- Agent-powered websites: customer support, knowledge-base Q&A, content
-  generation, and workflow assistant web apps.
-
-Scan the QR code and mention `iLab GPT Conjure` or `custom development` so I can
-understand the context quickly.
-
-<p align="center">
-  <img src="assets/wechat-qr.jpg" alt="iLab WeChat QR Code" width="240" />
-</p>
